@@ -12,7 +12,33 @@
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
 		4C9807D321E0F4A700C67A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807D221E0F4A700C67A86 /* Assets.xcassets */; };
 		4C9807D621E0F4A700C67A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807D421E0F4A700C67A86 /* LaunchScreen.storyboard */; };
+		4C9807E421E283DB00C67A86 /* Amusement_Park_Pass_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807E321E283DB00C67A86 /* Amusement_Park_Pass_GeneratorTests.swift */; };
+		4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807EB21E284B900C67A86 /* AreaAccessDataSource.swift */; };
+		4C9807EE21E284FC00C67A86 /* RideAccessDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807ED21E284FC00C67A86 /* RideAccessDataSource.swift */; };
+		4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807EF21E2853300C67A86 /* DiscountAccessDataSource.swift */; };
+		4C9807F221E3771200C67A86 /* AccessKioskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807F121E3771200C67A86 /* AccessKioskManager.swift */; };
+		4C9807F421E3778600C67A86 /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807F321E3778600C67A86 /* Entrant.swift */; };
+		4C9807F621E3799D00C67A86 /* PersonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807F521E3799D00C67A86 /* PersonName.swift */; };
+		4C9807F821E37A6500C67A86 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807F721E37A6500C67A86 /* Address.swift */; };
+		4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807F921E37F8400C67A86 /* Pass.swift */; };
+		4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807FB21E385CB00C67A86 /* VIPPass.swift */; };
+		4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807FD21E38B1300C67A86 /* EmployeePass.swift */; };
+		4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */; };
+		4C98080221E38CAC00C67A86 /* RideServiceEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */; };
+		4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */; };
+		4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080521E39E9600C67A86 /* ManagerPass.swift */; };
+		4C98080B21E68C4700C67A86 /* ParkEntranceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C9807E621E283DB00C67A86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C9807C021E0F4A300C67A86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C9807C721E0F4A300C67A86;
+			remoteInfo = "Amusement Park Pass Generator";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +48,35 @@
 		4C9807D221E0F4A700C67A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C9807D521E0F4A700C67A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C9807D721E0F4A700C67A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C9807E121E283DA00C67A86 /* Amusement Park Pass GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amusement Park Pass GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C9807E321E283DB00C67A86 /* Amusement_Park_Pass_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amusement_Park_Pass_GeneratorTests.swift; sourceTree = "<group>"; };
+		4C9807E521E283DB00C67A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C9807EB21E284B900C67A86 /* AreaAccessDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAccessDataSource.swift; sourceTree = "<group>"; };
+		4C9807ED21E284FC00C67A86 /* RideAccessDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAccessDataSource.swift; sourceTree = "<group>"; };
+		4C9807EF21E2853300C67A86 /* DiscountAccessDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountAccessDataSource.swift; sourceTree = "<group>"; };
+		4C9807F121E3771200C67A86 /* AccessKioskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskManager.swift; sourceTree = "<group>"; };
+		4C9807F321E3778600C67A86 /* Entrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
+		4C9807F521E3799D00C67A86 /* PersonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonName.swift; sourceTree = "<group>"; };
+		4C9807F721E37A6500C67A86 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		4C9807F921E37F8400C67A86 /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
+		4C9807FB21E385CB00C67A86 /* VIPPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPPass.swift; sourceTree = "<group>"; };
+		4C9807FD21E38B1300C67A86 /* EmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePass.swift; sourceTree = "<group>"; };
+		4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceEmployeePass.swift; sourceTree = "<group>"; };
+		4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideServiceEmployeePass.swift; sourceTree = "<group>"; };
+		4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceEmployeePass.swift; sourceTree = "<group>"; };
+		4C98080521E39E9600C67A86 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
+		4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkEntranceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4C9807C521E0F4A300C67A86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C9807DE21E283DA00C67A86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9807CA21E0F4A300C67A86 /* Amusement Park Pass Generator */,
+				4C9807E221E283DB00C67A86 /* Amusement Park Pass GeneratorTests */,
 				4C9807C921E0F4A300C67A86 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */,
+				4C9807E121E283DA00C67A86 /* Amusement Park Pass GeneratorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,14 +107,62 @@
 		4C9807CA21E0F4A300C67A86 /* Amusement Park Pass Generator */ = {
 			isa = PBXGroup;
 			children = (
+				4C98080921E3A14100C67A86 /* Pass */,
+				4C98080821E3A07C00C67A86 /* Entrant */,
+				4C98080721E3A02500C67A86 /* AccessibilityRules */,
 				4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */,
 				4C9807CD21E0F4A300C67A86 /* ViewController.swift */,
 				4C9807CF21E0F4A300C67A86 /* Main.storyboard */,
 				4C9807D221E0F4A700C67A86 /* Assets.xcassets */,
 				4C9807D421E0F4A700C67A86 /* LaunchScreen.storyboard */,
 				4C9807D721E0F4A700C67A86 /* Info.plist */,
+				4C9807F121E3771200C67A86 /* AccessKioskManager.swift */,
+				4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */,
 			);
 			path = "Amusement Park Pass Generator";
+			sourceTree = "<group>";
+		};
+		4C9807E221E283DB00C67A86 /* Amusement Park Pass GeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807E321E283DB00C67A86 /* Amusement_Park_Pass_GeneratorTests.swift */,
+				4C9807E521E283DB00C67A86 /* Info.plist */,
+			);
+			path = "Amusement Park Pass GeneratorTests";
+			sourceTree = "<group>";
+		};
+		4C98080721E3A02500C67A86 /* AccessibilityRules */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807EB21E284B900C67A86 /* AreaAccessDataSource.swift */,
+				4C9807ED21E284FC00C67A86 /* RideAccessDataSource.swift */,
+				4C9807EF21E2853300C67A86 /* DiscountAccessDataSource.swift */,
+			);
+			path = AccessibilityRules;
+			sourceTree = "<group>";
+		};
+		4C98080821E3A07C00C67A86 /* Entrant */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807F321E3778600C67A86 /* Entrant.swift */,
+				4C9807F521E3799D00C67A86 /* PersonName.swift */,
+				4C9807F721E37A6500C67A86 /* Address.swift */,
+			);
+			path = Entrant;
+			sourceTree = "<group>";
+		};
+		4C98080921E3A14100C67A86 /* Pass */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807F921E37F8400C67A86 /* Pass.swift */,
+				4C9807FB21E385CB00C67A86 /* VIPPass.swift */,
+				4C9807FD21E38B1300C67A86 /* EmployeePass.swift */,
+				4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */,
+				4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */,
+				4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */,
+				4C98080521E39E9600C67A86 /* ManagerPass.swift */,
+			);
+			path = Pass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +185,24 @@
 			productReference = 4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4C9807E021E283DA00C67A86 /* Amusement Park Pass GeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C9807EA21E283DB00C67A86 /* Build configuration list for PBXNativeTarget "Amusement Park Pass GeneratorTests" */;
+			buildPhases = (
+				4C9807DD21E283DA00C67A86 /* Sources */,
+				4C9807DE21E283DA00C67A86 /* Frameworks */,
+				4C9807DF21E283DA00C67A86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C9807E721E283DB00C67A86 /* PBXTargetDependency */,
+			);
+			name = "Amusement Park Pass GeneratorTests";
+			productName = "Amusement Park Pass GeneratorTests";
+			productReference = 4C9807E121E283DA00C67A86 /* Amusement Park Pass GeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,6 +215,10 @@
 				TargetAttributes = {
 					4C9807C721E0F4A300C67A86 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					4C9807E021E283DA00C67A86 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 4C9807C721E0F4A300C67A86;
 					};
 				};
 			};
@@ -113,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				4C9807C721E0F4A300C67A86 /* Amusement Park Pass Generator */,
+				4C9807E021E283DA00C67A86 /* Amusement Park Pass GeneratorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +252,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C9807DF21E283DA00C67A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -135,12 +266,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C98080221E38CAC00C67A86 /* RideServiceEmployeePass.swift in Sources */,
+				4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */,
+				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
+				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
+				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
+				4C9807EE21E284FC00C67A86 /* RideAccessDataSource.swift in Sources */,
+				4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */,
+				4C9807F621E3799D00C67A86 /* PersonName.swift in Sources */,
+				4C9807F221E3771200C67A86 /* AccessKioskManager.swift in Sources */,
+				4C98080B21E68C4700C67A86 /* ParkEntranceManager.swift in Sources */,
+				4C9807F421E3778600C67A86 /* Entrant.swift in Sources */,
+				4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */,
+				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,
+				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
+				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C9807DD21E283DA00C67A86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C9807E421E283DB00C67A86 /* Amusement_Park_Pass_GeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C9807E721E283DB00C67A86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C9807C721E0F4A300C67A86 /* Amusement Park Pass Generator */;
+			targetProxy = 4C9807E621E283DB00C67A86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C9807CF21E0F4A300C67A86 /* Main.storyboard */ = {
@@ -314,6 +476,46 @@
 			};
 			name = Release;
 		};
+		4C9807E821E283DB00C67A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CXK45F3F;
+				INFOPLIST_FILE = "Amusement Park Pass GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "SAN.Amusement-Park-Pass-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amusement Park Pass Generator.app/Amusement Park Pass Generator";
+			};
+			name = Debug;
+		};
+		4C9807E921E283DB00C67A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73CXK45F3F;
+				INFOPLIST_FILE = "Amusement Park Pass GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "SAN.Amusement-Park-Pass-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amusement Park Pass Generator.app/Amusement Park Pass Generator";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,6 +533,15 @@
 			buildConfigurations = (
 				4C9807DB21E0F4A700C67A86 /* Debug */,
 				4C9807DC21E0F4A700C67A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C9807EA21E283DB00C67A86 /* Build configuration list for PBXNativeTarget "Amusement Park Pass GeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C9807E821E283DB00C67A86 /* Debug */,
+				4C9807E921E283DB00C67A86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
