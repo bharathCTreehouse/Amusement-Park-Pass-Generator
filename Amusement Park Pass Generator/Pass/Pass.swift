@@ -11,9 +11,14 @@ import Foundation
 class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource {
     
     var passNumber: Int = 0  //Pass number should be assigned with entrant number.
+    var displayableDataSource: EntrantInformationDisplayable
+    var wisherDataSource: EntrantWisher?
     
-    init(withPassNumber passIdentifier: Int) {
+    init(withPassNumber passIdentifier: Int, displayableDataSource displayDataSource: EntrantInformationDisplayable, entrantWisherDataSource wisherDataSource: EntrantWisher? = nil) {
+        
         passNumber = passIdentifier
+        self.displayableDataSource = displayDataSource
+        self.wisherDataSource = wisherDataSource
     }
     
     
@@ -29,4 +34,18 @@ class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource
         return [.none]
     }
 }
+
+
+
+/*extension Pass {
+    
+    var isValid: Bool {
+        
+        if areasAccessible.isEmpty == true || discountPrivileges.isEmpty == true || ridePrivileges.isEmpty == true {
+            
+            return false
+        }
+        return true
+    }
+}*/
 

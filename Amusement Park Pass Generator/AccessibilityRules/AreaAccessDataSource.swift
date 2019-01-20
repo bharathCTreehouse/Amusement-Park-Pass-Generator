@@ -22,3 +22,11 @@ enum AreaAccess {
 protocol AreaAccessDataSource {
     var areasAccessible: [AreaAccess] { get }
 }
+
+
+extension AreaAccessDataSource {
+    
+    var isValid: Bool {
+        return !areasAccessible.isEmpty
+    }
+}

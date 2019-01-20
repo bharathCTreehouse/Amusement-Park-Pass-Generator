@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7421F4C17D00E6791D /* PassDisplay.swift */; };
+		4C15AC7721F4C2E700E6791D /* EntrantInformationDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */; };
+		4C15AC7921F4F03F00E6791D /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7821F4F03F00E6791D /* Wish.swift */; };
+		4C15AC7B21F4F0A600E6791D /* EntrantWisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C15AC7421F4C17D00E6791D /* PassDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassDisplay.swift; sourceTree = "<group>"; };
+		4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationDisplayable.swift; sourceTree = "<group>"; };
+		4C15AC7821F4F03F00E6791D /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
+		4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantWisher.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +169,10 @@
 				4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */,
 				4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */,
 				4C98080521E39E9600C67A86 /* ManagerPass.swift */,
+				4C15AC7421F4C17D00E6791D /* PassDisplay.swift */,
+				4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */,
+				4C15AC7821F4F03F00E6791D /* Wish.swift */,
+				4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */,
 			);
 			path = Pass;
 			sourceTree = "<group>";
@@ -266,9 +278,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C15AC7921F4F03F00E6791D /* Wish.swift in Sources */,
+				4C15AC7721F4C2E700E6791D /* EntrantInformationDisplayable.swift in Sources */,
 				4C98080221E38CAC00C67A86 /* RideServiceEmployeePass.swift in Sources */,
 				4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
+				4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
@@ -280,6 +295,7 @@
 				4C9807F421E3778600C67A86 /* Entrant.swift in Sources */,
 				4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */,
 				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,
+				4C15AC7B21F4F0A600E6791D /* EntrantWisher.swift in Sources */,
 				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,

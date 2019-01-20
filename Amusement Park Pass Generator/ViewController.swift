@@ -10,68 +10,83 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let kioskManager: AccessKioskManager = AccessKioskManager()
+    let entranceManager: ParkEntranceManager = ParkEntranceManager()
+    
+    var classicGuest: Entrant? = nil
+    var vipGuest: Entrant? = nil
+    var childGuest: Entrant? = nil
+    
+    var foodEmployee: Entrant? = nil
+    var rideEmployee: Entrant? = nil
+    var maintenanceEmployee: Entrant? = nil
+    
+    var manager: Entrant? = nil
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        generatePass()
         
-        createAmusementParkEntrants()
     }
     
-    func createAmusementParkEntrants() {
+    func generatePass() {
+        //Collect all the data from UI and first create EntrantType. Pass this EntrantType to the entrance manager who will validate data and return the Entrant object with the pass assigned to it.
         
-        let kioskManager: AccessKioskManager = AccessKioskManager()
-        
-        let firstVipGuest: Entrant = Entrant(withEntrantType: .guest(.vip), entrantNumber: 1)
-        let vipPass: VIPPass = VIPPass(withPassNumber: firstVipGuest.entrantNumber)
-        firstVipGuest.pass = vipPass
-        
-        
-        do {
-            let foodDiscount: Int? = try kioskManager.swipeForFoodWith(pass: firstVipGuest.pass!)
-            if let foodDiscount = foodDiscount {
-                //check birthday
-                print("DISCOUNT ON FOOD: \(foodDiscount)")
-            }
-            else {
-                print("Sorry, you do not have any food coupons on your pass.")
-            }
+        //classic guest
+        let classicGuestType: EntrantType = EntrantType.guest(.classic)
+        if let entr = entrantForType(classicGuestType) {
+            classicGuest = entr
         }
-        catch ParkError.passGenerationError {
-            print("Pass not generated properly. Please contact staff.")
+        
+        //vip guest
+        let vipGuestType: EntrantType = EntrantType.guest(.vip)
+        if let entr = entrantForType(vipGuestType) {
+            vipGuest = entr
         }
-        catch ParkError.requestingUnknownLocationAccess {
-            print("You are requesting access to an unknown location.")
-        }
-        catch {
-            print("An unknown error has occurred.")
+        
+        //child guest
+        let childGuestType: EntrantType = EntrantType.guest(.freeChild(Date()))
+        if let entr = entrantForType(childGuestType) {
+            childGuest = entr
         }
         
         
-        
-        
-        
-        do {
-            let merchandiseDiscount: Int? = try kioskManager.swipeForMerchandiseWith(pass: firstVipGuest.pass!)
-            if let merchandiseDiscount = merchandiseDiscount {
-                print("DISCOUNT ON MERCHANDISE: \(merchandiseDiscount)")
-            }
-            else {
-                print("Sorry, you do not have any merchandise coupons on your pass.")
-            }
+        //food employee
+        let foodEmployeeType: EntrantType = EntrantType.employee(.foodServices(PersonName(firstName:"vv", lastName:"xxx"), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
+        if let entr = entrantForType(foodEmployeeType) {
+            foodEmployee = entr
         }
-        catch ParkError.passGenerationError {
-            print("Pass not generated properly. Please contact staff.")
+        else {
+            print("Fail!!!")
         }
-        catch ParkError.requestingUnknownLocationAccess {
-            print("You are requesting access to an unknown location.")
-        }
-        catch {
-            print("An unknown error has occurred.")
-        }
-       
         
         
     }
+    
+    
+    
+    func entrantForType(_ type: EntrantType) -> Entrant? {
+        
+        var entrant: Entrant? = nil
+        do {
+            entrant = try entranceManager.entrant(forType: type)
+        }
+        catch let PassGenerationFailure.missingEntrantInformation(missingField) {
+            print("\(missingField) is invalid/missing.")
+        }
+        catch PassGenerationFailure.passGenerationFailed {
+            print("Failed to generate pass.")
+        }
+        catch {
+            print("Unknown error.")
+        }
+        return entrant
+        
+    }
+    
+ 
 
 
 }

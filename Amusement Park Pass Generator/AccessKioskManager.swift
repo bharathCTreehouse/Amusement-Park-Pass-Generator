@@ -67,12 +67,12 @@ class AccessKioskManager {
         }
         
         var discountValue: Int? = nil
-        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (dis: Discount) -> Bool in
+        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
             
-            switch dis {
+            switch discount {
                 
-                case let .food(v1): discountValue = v1
-                                    return true
+                case let .food(value): discountValue = value
+                                      return true
                 case .merchandise(_): return false
                 case .none: return false
                 case .undefined: throw ParkError.passGenerationError
@@ -92,12 +92,12 @@ class AccessKioskManager {
         }
         
         var discountValue: Int? = nil
-        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (dis: Discount) -> Bool in
+        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
             
-            switch dis {
+            switch discount {
                 
                 case  .food(_): return false
-                case let .merchandise(m1): discountValue = m1
+                case let .merchandise(value): discountValue = value
                                            return true
                 case .none: return false
                 case .undefined: throw ParkError.passGenerationError

@@ -12,61 +12,35 @@ import Foundation
 enum EntrantType {
     case guest (GuestType)
     case employee (EmployeeType)
-    case manager
+    case manager (PersonName, Address)
 }
 
 
 enum GuestType {
     case classic
     case vip
-    case freeChild
+    case freeChild (Date)
 }
 
 
-enum EmployeeType {
-    case foodServices
-    case rideServices
-    case maintenance
+enum EmployeeType  {
+    case foodServices (PersonName, Address)
+    case rideServices (PersonName, Address)
+    case maintenance (PersonName, Address)
 }
 
 
 class Entrant {
     
-    var name: PersonName?
-    var address: Address?
-    var dateOfBirth: Date? = nil
     var type: EntrantType
     var entrantNumber: Int = 0
-    var pass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
+    var pass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)
     
     
-    init(withName name: PersonName?, address: Address?, entrantType: EntrantType, entrantNumber: Int) {
+    init(withPass pass: Pass, entrantType: EntrantType, entrantNumber: Int) {
         
-        self.name = name
-        self.address = address
         self.entrantNumber = entrantNumber
         type = entrantType
+        self.pass = pass
     }
-    
-    
-    convenience init(withDateOfBirth date: Date, entrantType: EntrantType, entrantNumber: Int) {
-        
-        self.init(withName: nil, address: nil, entrantType: entrantType, entrantNumber: entrantNumber)
-        dateOfBirth = date
-    }
-    
-    
-    convenience init(withEntrantType type: EntrantType, entrantNumber: Int) {
-        self.init(withName: nil, address: nil, entrantType: type, entrantNumber: entrantNumber)
-    }
-    
-    
-    
-    deinit {
-        name = nil
-        address = nil
-        dateOfBirth = nil
-    }
-   
-    
 }
