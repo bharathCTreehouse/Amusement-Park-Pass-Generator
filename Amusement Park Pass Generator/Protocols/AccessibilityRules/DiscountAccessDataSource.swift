@@ -16,23 +16,17 @@ enum Discount {
     case none
     case undefined
     
-    /*static func == (lhs: Discount, rhs: Discount) -> Bool {
+    
+    func discountString() -> String {
         
-        var detailTuple: (Discount,Int)
-        
-        switch lhs {
-            case let .food(v1): detailTuple = (Discount.food(v1), v1)
-            case .undefined: detailTuple = (Discount.undefined, 0)
-            case .none: print("None")
-            case let .merchandise(m1): print(m1)
+        switch self {
+            case let .food(value): return "\(value) percent discount on food"
+            case let .merchandise(value): return "\(value) percent discount on merchandise"
+            default:
+                return "No discount"
         }
-            
-        
-        return true
-    }*/
+    }
     
-    
-
 }
 
 

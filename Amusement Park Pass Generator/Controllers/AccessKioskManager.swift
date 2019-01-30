@@ -109,5 +109,42 @@ class AccessKioskManager {
 
     }
     
+}
+
+
+//Wish checker
+extension AccessKioskManager {
+    
+    private func birthDateOfEntrant(withPass pass: PersonalInformationReminder) -> Date? {
+        
+        var birthDate:Date? = nil
+        
+        let _: Bool =  pass.reminders.contains(where: ( { (reminder: InformationReminder) -> Bool in
+            
+            switch reminder {
+                
+                case let .dataOfBirth(date): birthDate = date
+                                             return true
+                default:  return false
+                
+                
+            }
+        }))
+        
+        return birthDate
+    }
+    
+    
+    func isTodayBirthdayOfEntrant(withPass pass: PersonalInformationReminder) -> Bool? {
+        
+        if let dob = birthDateOfEntrant(withPass: pass) {
+            
+            let bDateFormatter: DateFormatter = DateFormatter()
+            bDateFormatter.dateFormat = "MMM d"
+            return bDateFormatter.string(from: dob)  ==  bDateFormatter.string(from: Date())
+        }
+        return nil
+    }
+    
     
 }

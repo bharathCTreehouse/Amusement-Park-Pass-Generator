@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7421F4C17D00E6791D /* PassDisplay.swift */; };
-		4C15AC7721F4C2E700E6791D /* EntrantInformationDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */; };
-		4C15AC7921F4F03F00E6791D /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7821F4F03F00E6791D /* Wish.swift */; };
-		4C15AC7B21F4F0A600E6791D /* EntrantWisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */; };
+		4C15AC7E21FF7FB800E6791D /* PersonalInformationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7D21FF7FB800E6791D /* PersonalInformationDataSource.swift */; };
+		4C15AC802200B19800E6791D /* PersonalInformationReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7F2200B19800E6791D /* PersonalInformationReminder.swift */; };
+		4C15AC822200C91000E6791D /* FreeChildPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC812200C91000E6791D /* FreeChildPass.swift */; };
+		4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC882200D8A500E6791D /* ReminderPass.swift */; };
+		4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */; };
+		4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8C2200DB9800E6791D /* VendorPass.swift */; };
+		4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8E2202378600E6791D /* AccessDataSource.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -46,9 +50,13 @@
 
 /* Begin PBXFileReference section */
 		4C15AC7421F4C17D00E6791D /* PassDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassDisplay.swift; sourceTree = "<group>"; };
-		4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationDisplayable.swift; sourceTree = "<group>"; };
-		4C15AC7821F4F03F00E6791D /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
-		4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantWisher.swift; sourceTree = "<group>"; };
+		4C15AC7D21FF7FB800E6791D /* PersonalInformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationDataSource.swift; sourceTree = "<group>"; };
+		4C15AC7F2200B19800E6791D /* PersonalInformationReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationReminder.swift; sourceTree = "<group>"; };
+		4C15AC812200C91000E6791D /* FreeChildPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChildPass.swift; sourceTree = "<group>"; };
+		4C15AC882200D8A500E6791D /* ReminderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPass.swift; sourceTree = "<group>"; };
+		4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorCitizenPass.swift; sourceTree = "<group>"; };
+		4C15AC8C2200DB9800E6791D /* VendorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorPass.swift; sourceTree = "<group>"; };
+		4C15AC8E2202378600E6791D /* AccessDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessDataSource.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +102,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C15AC7C21FF7F4E00E6791D /* PersonalInformation */ = {
+			isa = PBXGroup;
+			children = (
+				4C15AC7D21FF7FB800E6791D /* PersonalInformationDataSource.swift */,
+				4C15AC7F2200B19800E6791D /* PersonalInformationReminder.swift */,
+			);
+			path = PersonalInformation;
+			sourceTree = "<group>";
+		};
+		4C15AC832200CAE800E6791D /* Employee */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807FD21E38B1300C67A86 /* EmployeePass.swift */,
+				4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */,
+				4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */,
+				4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */,
+			);
+			name = Employee;
+			sourceTree = "<group>";
+		};
+		4C15AC842200CAF100E6791D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4C98080521E39E9600C67A86 /* ManagerPass.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		4C15AC852200D13000E6791D /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807FB21E385CB00C67A86 /* VIPPass.swift */,
+			);
+			name = Guest;
+			sourceTree = "<group>";
+		};
+		4C15AC862200D37600E6791D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807F921E37F8400C67A86 /* Pass.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		4C15AC872200D88100E6791D /* PassWithReminders */ = {
+			isa = PBXGroup;
+			children = (
+				4C15AC882200D8A500E6791D /* ReminderPass.swift */,
+				4C15AC812200C91000E6791D /* FreeChildPass.swift */,
+				4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */,
+				4C15AC8C2200DB9800E6791D /* VendorPass.swift */,
+			);
+			name = PassWithReminders;
+			sourceTree = "<group>";
+		};
+		4C15AC902202385C00E6791D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C9807F121E3771200C67A86 /* AccessKioskManager.swift */,
+				4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */,
+				4C9807CD21E0F4A300C67A86 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4C15AC91220238AB00E6791D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C15AC7C21FF7F4E00E6791D /* PersonalInformation */,
+				4C98080721E3A02500C67A86 /* AccessibilityRules */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4C9807BF21E0F4A300C67A86 = {
 			isa = PBXGroup;
 			children = (
@@ -115,17 +197,15 @@
 		4C9807CA21E0F4A300C67A86 /* Amusement Park Pass Generator */ = {
 			isa = PBXGroup;
 			children = (
+				4C15AC91220238AB00E6791D /* Protocols */,
+				4C15AC902202385C00E6791D /* Controllers */,
 				4C98080921E3A14100C67A86 /* Pass */,
 				4C98080821E3A07C00C67A86 /* Entrant */,
-				4C98080721E3A02500C67A86 /* AccessibilityRules */,
 				4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */,
-				4C9807CD21E0F4A300C67A86 /* ViewController.swift */,
 				4C9807CF21E0F4A300C67A86 /* Main.storyboard */,
 				4C9807D221E0F4A700C67A86 /* Assets.xcassets */,
 				4C9807D421E0F4A700C67A86 /* LaunchScreen.storyboard */,
 				4C9807D721E0F4A700C67A86 /* Info.plist */,
-				4C9807F121E3771200C67A86 /* AccessKioskManager.swift */,
-				4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */,
 			);
 			path = "Amusement Park Pass Generator";
 			sourceTree = "<group>";
@@ -145,6 +225,7 @@
 				4C9807EB21E284B900C67A86 /* AreaAccessDataSource.swift */,
 				4C9807ED21E284FC00C67A86 /* RideAccessDataSource.swift */,
 				4C9807EF21E2853300C67A86 /* DiscountAccessDataSource.swift */,
+				4C15AC8E2202378600E6791D /* AccessDataSource.swift */,
 			);
 			path = AccessibilityRules;
 			sourceTree = "<group>";
@@ -162,17 +243,12 @@
 		4C98080921E3A14100C67A86 /* Pass */ = {
 			isa = PBXGroup;
 			children = (
-				4C9807F921E37F8400C67A86 /* Pass.swift */,
-				4C9807FB21E385CB00C67A86 /* VIPPass.swift */,
-				4C9807FD21E38B1300C67A86 /* EmployeePass.swift */,
-				4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */,
-				4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */,
-				4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */,
-				4C98080521E39E9600C67A86 /* ManagerPass.swift */,
+				4C15AC872200D88100E6791D /* PassWithReminders */,
+				4C15AC862200D37600E6791D /* Common */,
+				4C15AC852200D13000E6791D /* Guest */,
+				4C15AC842200CAF100E6791D /* Manager */,
+				4C15AC832200CAE800E6791D /* Employee */,
 				4C15AC7421F4C17D00E6791D /* PassDisplay.swift */,
-				4C15AC7621F4C2E700E6791D /* EntrantInformationDisplayable.swift */,
-				4C15AC7821F4F03F00E6791D /* Wish.swift */,
-				4C15AC7A21F4F0A600E6791D /* EntrantWisher.swift */,
 			);
 			path = Pass;
 			sourceTree = "<group>";
@@ -278,15 +354,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C15AC7921F4F03F00E6791D /* Wish.swift in Sources */,
-				4C15AC7721F4C2E700E6791D /* EntrantInformationDisplayable.swift in Sources */,
+				4C15AC7E21FF7FB800E6791D /* PersonalInformationDataSource.swift in Sources */,
 				4C98080221E38CAC00C67A86 /* RideServiceEmployeePass.swift in Sources */,
 				4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */,
+				4C15AC802200B19800E6791D /* PersonalInformationReminder.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
 				4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
+				4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
+				4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */,
 				4C9807EE21E284FC00C67A86 /* RideAccessDataSource.swift in Sources */,
 				4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */,
 				4C9807F621E3799D00C67A86 /* PersonName.swift in Sources */,
@@ -295,10 +373,12 @@
 				4C9807F421E3778600C67A86 /* Entrant.swift in Sources */,
 				4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */,
 				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,
-				4C15AC7B21F4F0A600E6791D /* EntrantWisher.swift in Sources */,
+				4C15AC822200C91000E6791D /* FreeChildPass.swift in Sources */,
 				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
+				4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,
+				4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

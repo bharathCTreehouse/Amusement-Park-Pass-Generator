@@ -10,12 +10,28 @@ import Foundation
 
 
 enum AreaAccess {
+    
     case amusement
     case kitchen
     case rideControl
     case maintenance
     case office
     case undefined
+    
+    func areaAccessString() -> String {
+        
+        switch self {
+            case .amusement: return "You have access to amusement area"
+            case .kitchen: return "You have access to kitchen area"
+            case .rideControl: return "You have access to ride control areas"
+            case .maintenance: return "You have access to maintenance area"
+            case .office: return "You have access to office area"
+
+
+            default:
+                return "You have no area access"
+        }
+    }
 }
 
 

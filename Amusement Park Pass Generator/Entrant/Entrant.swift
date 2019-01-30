@@ -10,9 +10,52 @@ import Foundation
 
 //Should we have an unknown type here??
 enum EntrantType {
+    
     case guest (GuestType)
     case employee (EmployeeType)
     case manager (PersonName, Address)
+    
+    func nameOfEntrant() -> PersonName? {
+        
+        switch self {
+            
+            case let .employee(.foodServices(name, _)): return name
+            case let .employee(.rideServices(name, _)): return name
+            case let .employee(.maintenance(name, _)):  return name
+            case let .manager((name, _)): return name
+            default: return nil
+       
+        }
+    }
+    
+    func addressOfEntrant() -> Address? {
+        
+        switch self {
+            
+            case let .employee(.foodServices(_, address)): return address
+            case let .employee(.rideServices(_, address)): return address
+            case let .employee(.maintenance(_, address)):  return address
+            case let .manager((_, address)): return address
+            default: return nil
+            
+        }
+        
+    }
+    
+    func passTypeString() -> String {
+        
+        switch self {
+            case .employee(.foodServices(_, _)): return "Food service employee pass"
+            case .employee(.rideServices(_, _)): return "Ride service employee pass"
+            case .employee(.maintenance(_, _)):  return "Maintenance service employee pass"
+            case .manager((_, _)): return "Manager pass"
+            case .guest(.classic): return "Classic guest pass"
+            case .guest(.vip): return "VIP guest pass"
+            case .guest(.freeChild): return "Child guest pass"
+
+
+        }
+    }
 }
 
 
@@ -32,15 +75,14 @@ enum EmployeeType  {
 
 class Entrant {
     
-    var type: EntrantType
     var entrantNumber: Int = 0
-    var pass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)
     
+    let type: EntrantType
     
-    init(withPass pass: Pass, entrantType: EntrantType, entrantNumber: Int) {
+    init(withType entrantType: EntrantType, entrantNumber: Int) {
         
-        self.entrantNumber = entrantNumber
         type = entrantType
-        self.pass = pass
+        self.entrantNumber = entrantNumber
+
     }
 }

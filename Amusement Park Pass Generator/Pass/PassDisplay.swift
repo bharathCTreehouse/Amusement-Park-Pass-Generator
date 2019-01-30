@@ -14,10 +14,13 @@ struct PassDisplay {
     let name: String?
     let entrantTypeDescription: String
     
+    //Ride details
+    //Discount details
+    
 }
 
 
-extension PassDisplay: EntrantInformationDisplayable {
+/*extension PassDisplay: EntrantInformationDisplayable {
     
     var entrantDescription: String {
         return entrantTypeDescription
@@ -26,4 +29,4 @@ extension PassDisplay: EntrantInformationDisplayable {
     var fullName: String? {
         return name
     }
-}
+}*/

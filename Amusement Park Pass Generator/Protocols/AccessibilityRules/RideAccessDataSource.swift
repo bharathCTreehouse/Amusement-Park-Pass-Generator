@@ -9,9 +9,20 @@
 import Foundation
 
 enum RideAccess {
+    
     case all
     case skipRideLines
     case undefined
+    
+    func rideAccessString() -> String {
+        
+        switch self {
+            case .all: return "You have access to all rides"
+            case .skipRideLines: return "You can skip lines"
+            default:
+                return "You have no ride access"
+        }
+    }
 }
 
 protocol RideAccessDataSource  {

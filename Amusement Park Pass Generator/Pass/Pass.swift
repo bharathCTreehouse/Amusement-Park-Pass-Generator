@@ -11,17 +11,18 @@ import Foundation
 class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource {
     
     var passNumber: Int = 0  //Pass number should be assigned with entrant number.
-    var displayableDataSource: EntrantInformationDisplayable
-    var wisherDataSource: EntrantWisher?
+    //var displayableData: PassDisplay
     
-    init(withPassNumber passIdentifier: Int, displayableDataSource displayDataSource: EntrantInformationDisplayable, entrantWisherDataSource wisherDataSource: EntrantWisher? = nil) {
+    let entrant: Entrant
+    
+    
+    init(withPassNumber passNumber: Int, entrant: Entrant) {
         
-        passNumber = passIdentifier
-        self.displayableDataSource = displayDataSource
-        self.wisherDataSource = wisherDataSource
+        self.passNumber = passNumber
+        self.entrant = entrant
     }
     
-    
+   
     var areasAccessible: [AreaAccess] {
         return [.amusement]
     }
@@ -37,15 +38,45 @@ class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource
 
 
 
-/*extension Pass {
+extension Pass: PersonalInformationDataSource {
     
-    var isValid: Bool {
+    
+    var informationCollected: [PersonalInfo] {
         
-        if areasAccessible.isEmpty == true || discountPrivileges.isEmpty == true || ridePrivileges.isEmpty == true {
+        var data: [PersonalInfo] = []
+        
+        if let nameDetails = self.entrant.type.nameOfEntrant() {
             
-            return false
+            data.append(PersonalInfo.firstName(nameDetails.firstName))
+            data.append(PersonalInfo.lastName(nameDetails.lastName))
         }
-        return true
+        if let address = self.entrant.type.addressOfEntrant() {
+            
+            if let state = address.state {
+                data.append(PersonalInfo.state(state))
+            }
+            if let zipCode = address.zipCode {
+                data.append(PersonalInfo.state(zipCode))
+            }
+            data.append(PersonalInfo.state(address.streetAddress))
+            data.append(PersonalInfo.state(address.city))
+            
+        }
+        return data
     }
-}*/
+    
+    
+    
+    var passTypeDescription: String {
+        return self.entrant.type.passTypeString()
+    }
+
+}
+
+
+
+
+
+
+
 
