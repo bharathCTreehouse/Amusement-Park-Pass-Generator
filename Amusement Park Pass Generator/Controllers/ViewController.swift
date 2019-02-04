@@ -51,8 +51,8 @@ class ViewController: UIViewController {
         
         //child guest
         let bDateFormatter: DateFormatter = DateFormatter()
-        bDateFormatter.dateFormat = "MMM d"
-        let bDate: Date? = bDateFormatter.date(from: "Jan 31")
+        bDateFormatter.dateFormat = "MMM d, yyyy"
+        let bDate: Date? = bDateFormatter.date(from: "Feb 04, 2016")
         let childGuestType: EntrantType = EntrantType.guest(.freeChild(bDate!))
         if let pass = passForType(childGuestType) {
             childGuestPass = pass
@@ -79,11 +79,8 @@ class ViewController: UIViewController {
         do {
             pass = try entranceManager.pass(forEntrantType: type)
         }
-        catch let PassGenerationFailure.missingEntrantInformation(missingField) {
-            print("\(missingField) is invalid/missing.")
-        }
-        catch PassGenerationFailure.passGenerationFailed {
-            print("Failed to generate pass.")
+        catch let PassGenerationFailure.passGenerationFailed(reason) {
+            print(reason)
         }
         catch {
             print("Unknown error.")
@@ -101,18 +98,22 @@ extension ViewController {
     
     func swipe() {
         
+        if childGuestPass == nil {
+            return
+        }
+        
         do {
-            let hasAccess: Bool = try kioskManager.swipe(pass: foodEmployeePass!, atArea: .kitchen)
+            let hasAccess: Bool = try kioskManager.swipe(pass: childGuestPass!, atArea: .amusement)
             if hasAccess == true {
                 print("Access granted")
-                print("\((foodEmployeePass as? PersonalInformationDataSource)?.passTypeDescription ?? "Unknown pass")")
+                print("\((childGuestPass as? PersonalInformationDataSource)?.passTypeDescription ?? "Unknown pass")")
                 var str: String = ""
-                for dis in foodEmployeePass!.discountPrivileges {
+                for dis in childGuestPass!.discountPrivileges {
                     str = str + "\n" + dis.discountString()
                     //print(dis.discountString())
                 }
                 self.accessLabel.text = str
-                guard let birthWisherPass = (foodEmployeePass as? PersonalInformationReminder) else {
+                guard let birthWisherPass = (childGuestPass as? PersonalInformationReminder) else {
                     //No birthDate entered. No point checking further.
                     return
                 }
