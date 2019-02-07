@@ -23,10 +23,23 @@ class ParkEntranceManager {
     var entrantCount: Int = 0
     
     
-    func pass(forEntrantType entrantType: EntrantType) throws -> (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource) {
+    func pass(forEntrantType entrantType: EntrantType) throws -> AccessDataSource {
         
         var entrantPass: Pass? = nil
         let entrant: Entrant = Entrant(withType: entrantType, entrantNumber: (entrantCount + 1))
+        
+        
+        
+        func validate(name: PersonName, address: Address) throws {
+            
+            if let nameError = missingOrInvalidInfo(fromEntrantName: name) {
+                throw PassGenerationFailure.passGenerationFailed(nameError.userDisplayString())
+            }
+            if let addressError = missingOrInvalidInfo(fromEntrantAddress: address) {
+                throw PassGenerationFailure.passGenerationFailed(addressError.userDisplayString())
+            }
+        }
+        
         
         switch entrantType {
             
@@ -36,7 +49,6 @@ class ParkEntranceManager {
             case let .guest(.freeChild(birthDate)):
                 do {
                    try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withLimit: LimitType.under(5)))
-                    
                     entrantPass = ReminderPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate, entrant: entrant)
                 }
                 catch DateError.invalidDate {
@@ -51,45 +63,25 @@ class ParkEntranceManager {
                 entrantPass = VIPPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             case let .employee(.foodServices(name, address)):
-                if let nameError = missingOrInvalidInfo(fromEntrantName: name) {
-                    throw PassGenerationFailure.passGenerationFailed(nameError.userDisplayString())
-                   }
-                if let addressError = missingOrInvalidInfo(fromEntrantAddress: address) {
-                    throw PassGenerationFailure.passGenerationFailed(addressError.userDisplayString())
-                }
+                try validate(name: name, address: address)
                 entrantPass = FoodServiceEmployeePass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             case let .employee(.rideServices(name, address)):
-                if let nameError = missingOrInvalidInfo(fromEntrantName: name) {
-                    throw PassGenerationFailure.passGenerationFailed(nameError.userDisplayString())
-                }
-                if let addressError = missingOrInvalidInfo(fromEntrantAddress: address) {
-                    throw PassGenerationFailure.passGenerationFailed(addressError.userDisplayString())
-                }
+                try validate(name: name, address: address)
                 entrantPass = RideServiceEmployeePass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             case let .employee(.maintenance(name, address)):
-                if let nameError = missingOrInvalidInfo(fromEntrantName: name) {
-                    throw PassGenerationFailure.passGenerationFailed(nameError.userDisplayString())
-                }
-                if let addressError = missingOrInvalidInfo(fromEntrantAddress: address) {
-                    throw PassGenerationFailure.passGenerationFailed(addressError.userDisplayString())
-                }
+                try validate(name: name, address: address)
                 entrantPass = MaintenanceEmployeePass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             case let .manager(name, address):
-                if let nameError = missingOrInvalidInfo(fromEntrantName: name) {
-                    throw PassGenerationFailure.passGenerationFailed(nameError.userDisplayString())
-                }
-                if let addressError = missingOrInvalidInfo(fromEntrantAddress: address) {
-                    throw PassGenerationFailure.passGenerationFailed(addressError.userDisplayString())
-                }
+                try validate(name: name, address: address)
                 entrantPass = ManagerPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
         }
         
         
-        if entrantPass?.areasAccessible.isEmpty == true || entrantPass?.discountPrivileges.isEmpty == true || entrantPass?.ridePrivileges.isEmpty == true {
+       if entrantPass?.areasAccessible.isEmpty == true || entrantPass?.discountPrivileges.isEmpty == true || entrantPass?.ridePrivileges.isEmpty == true {
             
             throw PassGenerationFailure.passGenerationFailed("Unable to provide required access.")
         }

@@ -8,15 +8,15 @@
 
 import Foundation
 
-class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource {
+class Pass: AccessDataSource {
     
-    var passNumber: Int = 0  //Pass number should be assigned with entrant number.
+    var passNumber: PassIdentifier = 0  //Pass number should be assigned with entrant number.
     //var displayableData: PassDisplay
     
     let entrant: Entrant
     
     
-    init(withPassNumber passNumber: Int, entrant: Entrant) {
+    init(withPassNumber passNumber: PassIdentifier, entrant: Entrant) {
         
         self.passNumber = passNumber
         self.entrant = entrant
@@ -33,6 +33,11 @@ class Pass: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource
     
     var discountPrivileges: [Discount] {
         return [.none]
+    }
+    
+    
+    var uniqueIdentifier: PassIdentifier {
+        return passNumber
     }
 }
 
@@ -72,6 +77,17 @@ extension Pass: PersonalInformationDataSource {
     }
 
 }
+
+
+
+
+//extension Pass: EntrantPassIdentifierDataSource {
+//    
+//    var uniqueIdentifier: PassIdentifier {
+//        return passNumber
+//    }
+//    
+//}
 
 
 

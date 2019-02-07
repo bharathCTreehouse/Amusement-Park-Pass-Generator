@@ -12,6 +12,7 @@ enum ParkError: Swift.Error {
     
     case passGenerationError
     case requestingUnknownLocationAccess
+    case requestingAccessTooSoon
     case unknown
 }
 
@@ -19,6 +20,8 @@ enum ParkError: Swift.Error {
 class AccessKioskManager {
     
     //This class is responsible for granting/rejecting permission on passes assigned to users at various kiosks inside the park. Also responsible for error handling related to pass swiping.
+    
+    var malpracticeChecker: KioskMalpracticeChecker? = nil
     
     
     func swipe(pass: AreaAccessDataSource, atArea area: AreaAccess) throws -> Bool {
@@ -28,7 +31,7 @@ class AccessKioskManager {
             throw ParkError.requestingUnknownLocationAccess
         }
         else if pass.areasAccessible.contains(.undefined) == true
-            || pass.areasAccessible.isEmpty == true
+            || pass.areasAccessible.isEmpty == true ||  pass as? AccessDataSource == nil
         {
             //Your pass does not seem to have proper access. Pass not generated properly.
             throw ParkError.passGenerationError
@@ -45,7 +48,8 @@ class AccessKioskManager {
     
     func swipeForRideWith(pass: RideAccessDataSource) throws -> (hasAccess: Bool, canSkipLine: Bool) {
         
-        if pass.ridePrivileges.contains(.undefined) == true || pass.ridePrivileges.isEmpty == true {
+        //First check for malpractice.
+        if pass.ridePrivileges.contains(.undefined) == true || pass.ridePrivileges.isEmpty == true || pass as? AccessDataSource == nil {
             throw ParkError.passGenerationError
         }
         else {
@@ -54,15 +58,24 @@ class AccessKioskManager {
                 return (hasAccess: false, canSkipLine: false)
             }
             else  {
-                return (hasAccess: true, canSkipLine: pass.ridePrivileges.contains(.skipRideLines))
+                //Entrant has access to ride. Check for too soon access.
+                let isSwipedRecently: Bool = has(pass: pass as! AccessDataSource, beenAccessedWithinSeconds: 5)
+                if isSwipedRecently == true {
+                    throw ParkError.requestingAccessTooSoon
+                }
+                else {
+                    store(pass: pass as! AccessDataSource, withTimeLimitInSeconds: 5)
+                    return (hasAccess: true, canSkipLine: pass.ridePrivileges.contains(.skipRideLines))
+                }
             }
         }
+        
     }
     
-    
+        
     func swipeForFoodWith(pass: DiscountAccessDataSource) throws -> Int? {
         
-        if pass.discountPrivileges.isEmpty == true {
+        if  pass.discountPrivileges.isEmpty == true || pass as? AccessDataSource == nil {
             throw ParkError.passGenerationError
         }
         
@@ -87,7 +100,7 @@ class AccessKioskManager {
     
     func swipeForMerchandiseWith(pass: DiscountAccessDataSource) throws -> Int? {
         
-        if pass.discountPrivileges.isEmpty == true {
+        if pass.discountPrivileges.isEmpty == true || pass as? AccessDataSource == nil {
             throw ParkError.passGenerationError
         }
         
@@ -146,5 +159,31 @@ extension AccessKioskManager {
         return nil
     }
     
+    
+}
+
+
+
+//Malpractice check initiation.
+extension AccessKioskManager {
+    
+    func has(pass: AccessDataSource, beenAccessedWithinSeconds time: Int) -> Bool {
+        
+        if malpracticeChecker == nil {
+            malpracticeChecker = KioskMalpracticeChecker()
+        }
+        let isRecentlySwiped: Bool = malpracticeChecker!.hasEntrantAccessedRide(withPassIdentifier: pass.uniqueIdentifier, withinTimeLimitInSeconds: time)
+        return isRecentlySwiped
+        
+    }
+    
+    
+   func store(pass: AccessDataSource, withTimeLimitInSeconds time: Int) {
+        
+        if malpracticeChecker == nil {
+            malpracticeChecker = KioskMalpracticeChecker()
+        }
+        malpracticeChecker!.storePass(withIdentifier: pass.uniqueIdentifier, timeLimitInSeconds: time)
+    }
     
 }

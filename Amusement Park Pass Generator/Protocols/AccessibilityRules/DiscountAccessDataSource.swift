@@ -23,7 +23,7 @@ enum Discount {
             case let .food(value): return "\(value) percent discount on food"
             case let .merchandise(value): return "\(value) percent discount on merchandise"
             default:
-                return "No discount"
+                return "No discount. Sorry!"
         }
     }
     

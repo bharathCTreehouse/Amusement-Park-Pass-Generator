@@ -29,7 +29,7 @@ enum AreaAccess {
 
 
             default:
-                return "You have no area access"
+                return "You have no access"
         }
     }
 }

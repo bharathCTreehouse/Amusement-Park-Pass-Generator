@@ -10,140 +10,261 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var accessLabel: UILabel!
-    
+    @IBOutlet weak var missingInfoSwitch: UISwitch!
+    @IBOutlet weak var passGenerationStatusLabel: UILabel!
+    @IBOutlet weak var accessStatusLabel: UILabel!
+    @IBOutlet weak var specialMessageLabel: UILabel!
+
     let kioskManager: AccessKioskManager = AccessKioskManager()
     let entranceManager: ParkEntranceManager = ParkEntranceManager()
-    
-    var classicGuestPass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    var vipGuestPass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    var childGuestPass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    
-    var foodEmployeePass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    var rideEmployeePass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    var maintenanceEmployeePass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-    
-    var managerPass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
+    var entrantPass: AccessDataSource? = nil
 
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        generatePass()
-        swipe()
-        
-    }
-    
-    func generatePass() {
-        //Collect all the data from UI and first create EntrantType. Pass this EntrantType to the entrance manager who will validate data and return the Entrant object with the pass assigned to it.
-        
-        //classic guest
-        let classicGuestType: EntrantType = EntrantType.guest(.classic)
-        if let pass = passForType(classicGuestType) {
-            classicGuestPass = pass
-        }
-        
-        //vip guest
-        let vipGuestType: EntrantType = EntrantType.guest(.vip)
-        if let pass = passForType(vipGuestType) {
-            vipGuestPass = pass
-        }
-        
-        //child guest
-        let bDateFormatter: DateFormatter = DateFormatter()
-        bDateFormatter.dateFormat = "MMM d, yyyy"
-        let bDate: Date? = bDateFormatter.date(from: "Feb 04, 2016")
-        let childGuestType: EntrantType = EntrantType.guest(.freeChild(bDate!))
-        if let pass = passForType(childGuestType) {
-            childGuestPass = pass
-        }
-        
-        
-        //food employee
-        let foodEmployeeType: EntrantType = EntrantType.employee(.foodServices(PersonName(firstName:"vv", lastName:"xxx"), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
-        if let pass = passForType(foodEmployeeType) {
-            foodEmployeePass = pass
-        }
-        else {
-            print("Fail!!!")
-        }
-        
-        
-    }
-    
-    
-    
-    func passForType(_ type: EntrantType) -> (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? {
-        
-        var pass: (AreaAccessDataSource & RideAccessDataSource & DiscountAccessDataSource)? = nil
-        do {
-            pass = try entranceManager.pass(forEntrantType: type)
-        }
-        catch let PassGenerationFailure.passGenerationFailed(reason) {
-            print(reason)
-        }
-        catch {
-            print("Unknown error.")
-        }
-        return pass
         
     }
     
 }
 
 
+//Pass generation
+extension ViewController {
+    
+    @IBAction func generatePassButtonTapped(_ sender: UIButton) {
+        
+        var typeOfEntrant: EntrantType? = nil
+        
+        //Reset the current pass and begin.
+        entrantPass = nil
 
+        
+        switch sender.tag {
+            
+            case 1: typeOfEntrant = EntrantType.guest(.classic)
+            
+            case 2: typeOfEntrant = EntrantType.guest(.vip)
+            
+            case 3:
+                let bDateFormatter: DateFormatter = DateFormatter()
+                bDateFormatter.dateFormat = "MMM d, yyyy"
+                let bDate: Date? = bDateFormatter.date(from: "Feb 08, 2017")
+                typeOfEntrant = EntrantType.guest(.freeChild(bDate!))
+            
+            case 4:
+                let fName: String = (self.missingInfoSwitch.isOn == true) ? "":"abc"
+                typeOfEntrant =
+                    EntrantType.employee(.foodServices(PersonName(firstName:fName, lastName:"xxx"), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
+            
+            case 5:
+                let lName: String = (self.missingInfoSwitch.isOn == true) ? "    ":"xxx"
+                typeOfEntrant = EntrantType.employee(.rideServices(PersonName(firstName:"ddd", lastName:lName), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
+            
+            case 6:
+                let street: String = (self.missingInfoSwitch.isOn == true) ? "":"India"
+                typeOfEntrant = EntrantType.employee(.maintenance(PersonName(firstName:"ddd", lastName:"xxx"), Address(streetAddress:street, city:"BLR", state:nil, zipCode:nil)))
+            
+             case 7:
+                let city: String = (self.missingInfoSwitch.isOn == true) ? "":"BLR"
+                typeOfEntrant = EntrantType.manager(PersonName(firstName:"ddd", lastName:"xxx"), Address(streetAddress:"India", city:city, state:nil, zipCode:nil))
+            
+            default: break
+            
+        }
+        
+        self.entrantPass = passForType(typeOfEntrant!)
+        
+    }
+    
+    
+    func passForType(_ type: EntrantType) -> AccessDataSource? {
+        
+        var pass: AccessDataSource? = nil
+        do {
+            pass = try entranceManager.pass(forEntrantType: type)
+            self.passGenerationStatusLabel.text = "Pass generated successfully \n" + ((pass as? PersonalInformationDataSource)?.passTypeDescription)!
+        }
+        catch let PassGenerationFailure.passGenerationFailed(reason) {
+            self.passGenerationStatusLabel.text = reason
+        }
+        catch {
+            self.passGenerationStatusLabel.text = "An unknown error has occurred during pass generation. Please try generating again."
+        }
+        return pass
+        
+    }
+}
+
+
+
+//This will probably move to a different view controller in the second part of the project.
 //Swiping
 extension ViewController {
     
-    func swipe() {
+    
+    @IBAction func swipeButtonTapped(_ sender: UIButton) {
         
-        if childGuestPass == nil {
+        if entrantPass == nil {
             return
         }
         
         do {
-            let hasAccess: Bool = try kioskManager.swipe(pass: childGuestPass!, atArea: .amusement)
-            if hasAccess == true {
-                print("Access granted")
-                print("\((childGuestPass as? PersonalInformationDataSource)?.passTypeDescription ?? "Unknown pass")")
-                var str: String = ""
-                for dis in childGuestPass!.discountPrivileges {
-                    str = str + "\n" + dis.discountString()
-                    //print(dis.discountString())
-                }
-                self.accessLabel.text = str
-                guard let birthWisherPass = (childGuestPass as? PersonalInformationReminder) else {
-                    //No birthDate entered. No point checking further.
-                    return
-                }
-                let isBirthday: Bool? = kioskManager.isTodayBirthdayOfEntrant(withPass: birthWisherPass)
-                if isBirthday != nil {
-                    if isBirthday == true {
-                        print("A very happy birthday to you. Wishing you many many more!")
-                    }
-                }
-               
+            switch sender.tag {
+                
+                case 8:
+                    let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .amusement)
+                    handleAccess(toArea: .amusement, withPermissionGrant: hasAccess)
+
+                case 9:
+                    let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .kitchen)
+                    handleAccess(toArea: .kitchen, withPermissionGrant: hasAccess)
+                
+                case 10:
+                    let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .rideControl)
+                    handleAccess(toArea: .rideControl, withPermissionGrant: hasAccess)
+                
+                case 11:
+                    let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .maintenance)
+                    handleAccess(toArea: .maintenance, withPermissionGrant: hasAccess)
+
+                case 12:
+                    let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .office)
+                    handleAccess(toArea: .office, withPermissionGrant: hasAccess)
+
+                
+                
+                case 13:
+                    let rideAccess: (Bool,Bool) = try kioskManager.swipeForRideWith(pass: entrantPass!)
+                    handleAccessToRide(.all, withPermsissionDetails: rideAccess)
+                
+                case 14:
+                    let foodDiscount: Int? = try kioskManager.swipeForFoodWith(pass: entrantPass!)
+                    handleAccessToFoodCounter(withDiscountPrivilege: foodDiscount)
+                
+                case 15:
+                    let merchandiseDiscount: Int? = try kioskManager.swipeForMerchandiseWith(pass: entrantPass!)
+                    handleAccessToMerchandiseCounter(withDiscountPrivilege: merchandiseDiscount)
+                
+                default: break
+                
             }
-            else {
-                print("Sorry, no access")
-            }
+           
         }
         catch ParkError.passGenerationError {
-            print("Pass not generated properly. Please contact admin.")
+            self.accessStatusLabel.text = "Pass not generated properly.Please contact an admin."
         }
         catch ParkError.requestingUnknownLocationAccess {
-            print("You are trying to access an unknown location.")
+            self.accessStatusLabel.text = "You are trying to access an unknown location."
         }
-        catch ParkError.unknown {
-            print("Unknown error has occurred.")
+        catch ParkError.requestingAccessTooSoon {
+            self.accessStatusLabel.text = "You seem to have accessed this ride just a few seconds ago. Please try again after sometime."
         }
         catch {
-            print("Unknown error has occurred.")
+            self.accessStatusLabel.text = "Unknown error has occurred."
         }
         
         
     }
     
+    
+    func handleAccess(toArea area: AreaAccess, withPermissionGrant granted: Bool) {
+        
+        if granted ==  true {
+            
+            //Permission granted. User has access.
+            self.accessStatusLabel.text = "Access granted! \(area.areaAccessString())"
+            
+            //Check for birthday only when entrant has access to the requested area.
+            checkForBirthday()
+
+        }
+        else {
+            //No permission
+            self.accessStatusLabel.text = "Access denied! \(AreaAccess.undefined.areaAccessString())"
+        }
+        
+    }
+    
+    
+    func handleAccessToRide(_ ride: RideAccess, withPermsissionDetails details: (hasAccess: Bool, canSkipLines: Bool)) {
+        
+        if details.hasAccess == true {
+            
+            //Access granted.
+            var userText: String = "Access granted! \(ride.rideAccessString())"
+            if details.canSkipLines == true {
+                userText = userText + "\(RideAccess.skipRideLines.rideAccessString())"
+            }
+            self.accessStatusLabel.text = userText
+            
+            //Check for birthday only when entrant has access to the requested area.
+            checkForBirthday()
+        }
+        else {
+            //No access to rides.
+            self.accessStatusLabel.text = "Access denied! \(RideAccess.undefined.rideAccessString())"
+        }
+        
+    }
+    
+    
+    func handleAccessToFoodCounter(withDiscountPrivilege percentage: Int?) {
+        
+        if percentage != nil {
+            //Entrant has a discount on food.
+            handleAccessTo(discountArea: .food(percentage!))
+            checkForBirthday()
+        }
+        else {
+            //No discount on food.
+            handleAccessTo(discountArea: .none)
+        }
+    }
+    
+    
+    func handleAccessToMerchandiseCounter(withDiscountPrivilege percentage: Int?) {
+        
+        if percentage != nil {
+            //Entrant has a discount on merchandise.
+            handleAccessTo(discountArea: .merchandise(percentage!))
+            checkForBirthday()
+        }
+        else {
+            //No discount on merchandise.
+            handleAccessTo(discountArea: .none)
+        }
+    }
+    
+    
+    func handleAccessTo(discountArea area: Discount) {
+        self.accessStatusLabel.text = area.discountString()
+    }
+    
+    
+    
+    func checkForBirthday() {
+        
+        guard let birthWisherPass = (entrantPass as? PersonalInformationReminder) else {
+            
+            //No birthDate/anniversaryDate entered. No point checking further.
+            self.specialMessageLabel.text = nil
+            return
+        }
+        
+        let isBirthday: Bool? = kioskManager.isTodayBirthdayOfEntrant(withPass: birthWisherPass)
+        
+        if isBirthday != nil {
+            
+            if isBirthday == true {
+                self.specialMessageLabel.text = "A very happy birthday to you. Wishing you many many more!"
+            }
+            else {
+                self.specialMessageLabel.text = nil
+
+            }
+        }
+        
+    }
 }
 

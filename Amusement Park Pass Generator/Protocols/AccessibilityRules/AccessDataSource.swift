@@ -11,4 +11,5 @@ import Foundation
 
 protocol AccessDataSource: AreaAccessDataSource, RideAccessDataSource, DiscountAccessDataSource {
     
+    var uniqueIdentifier: PassIdentifier { get }
 }
