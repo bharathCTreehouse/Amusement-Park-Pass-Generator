@@ -9,16 +9,16 @@
 import Foundation
 
 enum PassGenerationFailure: Swift.Error {
-    //case missingEntrantInformation (String)  //??
-    //case invalidEntrantInformation (String)  //??
     case passGenerationFailed(String)
     case unknownError
 }
 
 
+//Responsible for getting user details, creating entrant objects and pass generation. Also responsible for error handling related to user object creation and pass generation.
+
+
 class ParkEntranceManager {
     
-    //Responsible for getting user details, creating entrant objects and pass generation. Also responsible for error handling related to user object creation and pass generation.
     
     var entrantCount: Int = 0
     
@@ -48,7 +48,7 @@ class ParkEntranceManager {
             
             case let .guest(.freeChild(birthDate)):
                 do {
-                   try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withLimit: LimitType.under(5)))
+                    try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.under(age: 5)))
                     entrantPass = ReminderPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate, entrant: entrant)
                 }
                 catch DateError.invalidDate {

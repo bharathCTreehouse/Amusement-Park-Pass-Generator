@@ -14,14 +14,31 @@ enum ParkError: Swift.Error {
     case requestingUnknownLocationAccess
     case requestingAccessTooSoon
     case unknown
+    
+    func userDisplayString() -> String {
+        
+        switch self {
+            
+            case .passGenerationError: return "Pass not generated properly.Please contact an admin."
+            
+            case .requestingUnknownLocationAccess: return "You are trying to access an unknown location."
+            
+            case .requestingAccessTooSoon: return "You seem to have accessed this ride just a few seconds ago. Please try again after sometime."
+            
+            default: return "An unknown error has occurred."
+            
+        }
+    }
 }
+
+
+//This class is responsible for granting/rejecting permission on passes assigned to users at various kiosks inside the park. Also responsible for error handling related to pass swiping.
 
 
 class AccessKioskManager {
     
-    //This class is responsible for granting/rejecting permission on passes assigned to users at various kiosks inside the park. Also responsible for error handling related to pass swiping.
     
-    var malpracticeChecker: KioskMalpracticeChecker? = nil
+    lazy var malpracticeChecker: RideKioskMalpracticeChecker = RideKioskMalpracticeChecker()
     
     
     func swipe(pass: AreaAccessDataSource, atArea area: AreaAccess) throws -> Bool {
@@ -36,13 +53,9 @@ class AccessKioskManager {
             //Your pass does not seem to have proper access. Pass not generated properly.
             throw ParkError.passGenerationError
         }
-        else if pass.areasAccessible.contains(area) == true {
-            //You have permission to access the requested area.
-            return true
-        }
         
-        //No permission.
-        return false
+        return pass.areasAccessible.contains(area)
+        
     }
     
     
@@ -85,10 +98,9 @@ class AccessKioskManager {
             switch discount {
                 
                 case let .food(value): discountValue = value
-                                      return true
-                case .merchandise(_): return false
-                case .none: return false
+                                       return true
                 case .undefined: throw ParkError.passGenerationError
+                default: return false
                 
             }
         }))
@@ -109,11 +121,11 @@ class AccessKioskManager {
             
             switch discount {
                 
-                case  .food(_): return false
-                case let .merchandise(value): discountValue = value
-                                           return true
-                case .none: return false
+                case let .merchandise(value):
+                                    discountValue = value
+                                    return true
                 case .undefined: throw ParkError.passGenerationError
+                default: return false
                 
             }
         }))
@@ -125,7 +137,7 @@ class AccessKioskManager {
 }
 
 
-//Wish checker
+//Birthday check
 extension AccessKioskManager {
     
     private func birthDateOfEntrant(withPass pass: PersonalInformationReminder) -> Date? {
@@ -164,26 +176,20 @@ extension AccessKioskManager {
 
 
 
-//Malpractice check initiation.
+//Malpractice check
 extension AccessKioskManager {
     
     func entrantTryingToCheatUsing(pass: AccessDataSource) -> Bool {
         
-        if malpracticeChecker == nil {
-            malpracticeChecker = KioskMalpracticeChecker()
-        }
-        let isRecentlySwiped: Bool = malpracticeChecker!.isEntrantTryingToCheatUsingPass(withPassIdentifier: pass.uniqueIdentifier)
+        let isRecentlySwiped: Bool = malpracticeChecker.isEntrantTryingToCheatUsingPass(withPassIdentifier: pass.uniqueIdentifier)
         return isRecentlySwiped
         
     }
     
     
-   func store(pass: AccessDataSource, withTimeLimitInSeconds time: Int) {
+    func store(pass: AccessDataSource, withTimeLimitInSeconds time: Int) {
         
-        if malpracticeChecker == nil {
-            malpracticeChecker = KioskMalpracticeChecker()
-        }
-        malpracticeChecker!.storePass(withIdentifier: pass.uniqueIdentifier, timeLimitInSeconds: time)
+        malpracticeChecker.storePass(withIdentifier: pass.uniqueIdentifier, timeLimitInSeconds: time)
     }
     
 }

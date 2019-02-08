@@ -1,5 +1,5 @@
 //
-//  KioskMalpracticeChecker.swift
+//  RideKioskMalpracticeChecker.swift
 //  Amusement Park Pass Generator
 //
 //  Created by Bharath Chandrashekar on 05/02/19.
@@ -8,18 +8,17 @@
 
 import Foundation
 
-typealias PassIdentifier = Int
 
 
-class KioskMalpracticeChecker {
-    
+/*Check for malpractice (entrant trying to access ride within x seconds).*/
+
+
+class RideKioskMalpracticeChecker {
     
     
     var rideCheckpointSwipeDetails: [PassIdentifier: Date] = [:]
     
     
-    /*Check for malpractice (entrant trying to access ride within x seconds).*/
-
     func isEntrantTryingToCheatUsingPass(withPassIdentifier passNumber: PassIdentifier) -> Bool {
         
         guard let _ = rideCheckpointSwipeDetails[passNumber] else {
@@ -34,7 +33,7 @@ class KioskMalpracticeChecker {
 
 
 
-extension KioskMalpracticeChecker {
+extension RideKioskMalpracticeChecker {
     
     
     func storePass(withIdentifier passNumber: PassIdentifier, timeLimitInSeconds time: Int) {

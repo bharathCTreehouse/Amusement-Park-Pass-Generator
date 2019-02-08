@@ -8,11 +8,12 @@
 
 import Foundation
 
+typealias PassIdentifier = Int
+
+
 class Pass: AccessDataSource {
     
     var passNumber: PassIdentifier = 0  //Pass number should be assigned with entrant number.
-    
-    //var displayableData: PassDisplay
     
     let entrant: Entrant
     

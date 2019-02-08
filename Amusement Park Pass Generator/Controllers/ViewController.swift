@@ -17,13 +17,27 @@ class ViewController: UIViewController {
 
     let kioskManager: AccessKioskManager = AccessKioskManager()
     let entranceManager: ParkEntranceManager = ParkEntranceManager()
-    var entrantPass: AccessDataSource? = nil
+    var entrantPass: AccessDataSource? = nil {
+        
+        didSet {
+            updateSpecialMessageLabel(withText: nil)
+            accessStatusLabel.text = nil
+        }
+    }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+    }
+    
+    deinit {
+        missingInfoSwitch = nil
+        passGenerationStatusLabel = nil
+        accessStatusLabel = nil
+        specialMessageLabel = nil
+        entrantPass = nil
     }
     
 }
@@ -37,7 +51,7 @@ extension ViewController {
         var typeOfEntrant: EntrantType? = nil
         
         //Reset the current pass and begin.
-        entrantPass = nil
+        //entrantPass = nil
 
         
         switch sender.tag {
@@ -49,7 +63,7 @@ extension ViewController {
             case 3:
                 let bDateFormatter: DateFormatter = DateFormatter()
                 bDateFormatter.dateFormat = "MMM d, yyyy"
-                let bDate: Date? = bDateFormatter.date(from: "Feb 08, 2017")
+                let bDate: Date? = bDateFormatter.date(from: "Feb 09, 2017")
                 typeOfEntrant = EntrantType.guest(.freeChild(bDate!))
             
             case 4:
@@ -86,10 +100,10 @@ extension ViewController {
             self.passGenerationStatusLabel.text = "Pass generated successfully \n" + ((pass as? PersonalInformationDataSource)?.passTypeDescription)!
         }
         catch let PassGenerationFailure.passGenerationFailed(reason) {
-            self.passGenerationStatusLabel.text = reason
+            self.passGenerationStatusLabel.text = "Failed to generate pass: \(reason)"
         }
         catch {
-            self.passGenerationStatusLabel.text = "An unknown error has occurred during pass generation. Please try generating again."
+            self.passGenerationStatusLabel.text = "Failed to generate pass: An unknown error has occurred. Please try generating again."
         }
         return pass
         
@@ -105,9 +119,14 @@ extension ViewController {
     
     @IBAction func swipeButtonTapped(_ sender: UIButton) {
         
+        
+        updateSpecialMessageLabel(withText: nil)
+
+        
         if entrantPass == nil {
             return
         }
+        
         
         do {
             switch sender.tag {
@@ -151,19 +170,13 @@ extension ViewController {
             }
            
         }
-        catch ParkError.passGenerationError {
-            self.accessStatusLabel.text = "Pass not generated properly.Please contact an admin."
-        }
-        catch ParkError.requestingUnknownLocationAccess {
-            self.accessStatusLabel.text = "You are trying to access an unknown location."
-        }
-        catch ParkError.requestingAccessTooSoon {
-            self.accessStatusLabel.text = "You seem to have accessed this ride just a few seconds ago. Please try again after sometime."
+        
+        catch let error as ParkError {
+            self.accessStatusLabel.text = error.userDisplayString()
         }
         catch {
-            self.accessStatusLabel.text = "Unknown error has occurred."
+            self.accessStatusLabel.text = ParkError.unknown.userDisplayString()
         }
-        
         
     }
     
@@ -180,8 +193,9 @@ extension ViewController {
 
         }
         else {
-            //No permission
+            //No permission.
             self.accessStatusLabel.text = "Access denied! \(AreaAccess.undefined.areaAccessString())"
+            
         }
         
     }
@@ -204,6 +218,7 @@ extension ViewController {
         else {
             //No access to rides.
             self.accessStatusLabel.text = "Access denied! \(RideAccess.undefined.rideAccessString())"
+
         }
         
     }
@@ -219,6 +234,7 @@ extension ViewController {
         else {
             //No discount on food.
             handleAccessTo(discountArea: .none)
+
         }
     }
     
@@ -233,6 +249,7 @@ extension ViewController {
         else {
             //No discount on merchandise.
             handleAccessTo(discountArea: .none)
+
         }
     }
     
@@ -241,14 +258,19 @@ extension ViewController {
         self.accessStatusLabel.text = area.discountString()
     }
     
+}
+
+
+
+//Birthday related UI updates.
+extension ViewController {
     
     
     func checkForBirthday() {
         
         guard let birthWisherPass = (entrantPass as? PersonalInformationReminder) else {
             
-            //No birthDate entered. No point checking further.
-            self.specialMessageLabel.text = nil
+            //No birthDate information collected. No point checking further.
             return
         }
         
@@ -257,17 +279,20 @@ extension ViewController {
         if isBirthday != nil {
             
             if isBirthday == true {
-                self.specialMessageLabel.text = "A very happy birthday to you. Wishing you many many more!"
+                updateSpecialMessageLabel(withText: "A very happy birthday to you. Wishing you many many more!")
             }
-            else {
-                self.specialMessageLabel.text = nil
-
-            }
-        }
-        else {
-            self.specialMessageLabel.text = nil
+            
         }
         
     }
+    
+    
+    
+    
+    func updateSpecialMessageLabel(withText text: String?) {
+        self.specialMessageLabel.text = text
+
+    }
+    
 }
 
