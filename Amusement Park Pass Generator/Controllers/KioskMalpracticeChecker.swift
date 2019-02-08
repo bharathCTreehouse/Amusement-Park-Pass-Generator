@@ -18,20 +18,16 @@ class KioskMalpracticeChecker {
     var rideCheckpointSwipeDetails: [PassIdentifier: Date] = [:]
     
     
-    /*Check for malpractice (guest trying to access ride within x seconds).*/
+    /*Check for malpractice (entrant trying to access ride within x seconds).*/
 
-    func hasEntrantAccessedRide(withPassIdentifier passNumber: PassIdentifier, withinTimeLimitInSeconds time: Int ) -> Bool {
+    func isEntrantTryingToCheatUsingPass(withPassIdentifier passNumber: PassIdentifier) -> Bool {
         
-        guard let swipedDate = rideCheckpointSwipeDetails[passNumber] else {
+        guard let _ = rideCheckpointSwipeDetails[passNumber] else {
             //This pass has not yet been swiped at this ride.
             return false
         }
+        return true
         
-        //This pass has been swiped at this ride. So we will have to check the elapsed time.
-        let interval: TimeInterval = Date().timeIntervalSince(swipedDate)
-        
-        //This pass has been swiped at this ride. If it has been more than 5 seconds, then allow access.
-        return (interval <= Double(time))
     }
 }
 

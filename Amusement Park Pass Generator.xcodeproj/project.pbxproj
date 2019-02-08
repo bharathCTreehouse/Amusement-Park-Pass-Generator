@@ -17,7 +17,6 @@
 		4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8E2202378600E6791D /* AccessDataSource.swift */; };
 		4C15AC942207642100E6791D /* DateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC932207642100E6791D /* DateValidator.swift */; };
 		4C15AC962209E43300E6791D /* KioskMalpracticeChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC952209E43300E6791D /* KioskMalpracticeChecker.swift */; };
-		4C15AC99220A0A5000E6791D /* EntrantPassIdentifierDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC98220A0A5000E6791D /* EntrantPassIdentifierDataSource.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -62,7 +61,6 @@
 		4C15AC8E2202378600E6791D /* AccessDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessDataSource.swift; sourceTree = "<group>"; };
 		4C15AC932207642100E6791D /* DateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidator.swift; sourceTree = "<group>"; };
 		4C15AC952209E43300E6791D /* KioskMalpracticeChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskMalpracticeChecker.swift; sourceTree = "<group>"; };
-		4C15AC98220A0A5000E6791D /* EntrantPassIdentifierDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantPassIdentifierDataSource.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 		4C15AC91220238AB00E6791D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4C15AC97220A0A1D00E6791D /* UniquePassIdentifier */,
 				4C15AC7C21FF7F4E00E6791D /* PersonalInformation */,
 				4C98080721E3A02500C67A86 /* AccessibilityRules */,
 			);
@@ -190,14 +187,6 @@
 				4C15AC932207642100E6791D /* DateValidator.swift */,
 			);
 			path = Validators;
-			sourceTree = "<group>";
-		};
-		4C15AC97220A0A1D00E6791D /* UniquePassIdentifier */ = {
-			isa = PBXGroup;
-			children = (
-				4C15AC98220A0A5000E6791D /* EntrantPassIdentifierDataSource.swift */,
-			);
-			path = UniquePassIdentifier;
 			sourceTree = "<group>";
 		};
 		4C9807BF21E0F4A300C67A86 = {
@@ -404,7 +393,6 @@
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */,
 				4C15AC962209E43300E6791D /* KioskMalpracticeChecker.swift in Sources */,
-				4C15AC99220A0A5000E6791D /* EntrantPassIdentifierDataSource.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,
 				4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */,
 			);

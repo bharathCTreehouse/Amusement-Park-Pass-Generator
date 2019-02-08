@@ -59,7 +59,7 @@ class AccessKioskManager {
             }
             else  {
                 //Entrant has access to ride. Check for too soon access.
-                let isSwipedRecently: Bool = has(pass: pass as! AccessDataSource, beenAccessedWithinSeconds: 5)
+                let isSwipedRecently: Bool = entrantTryingToCheatUsing(pass: pass as! AccessDataSource)
                 if isSwipedRecently == true {
                     throw ParkError.requestingAccessTooSoon
                 }
@@ -167,12 +167,12 @@ extension AccessKioskManager {
 //Malpractice check initiation.
 extension AccessKioskManager {
     
-    func has(pass: AccessDataSource, beenAccessedWithinSeconds time: Int) -> Bool {
+    func entrantTryingToCheatUsing(pass: AccessDataSource) -> Bool {
         
         if malpracticeChecker == nil {
             malpracticeChecker = KioskMalpracticeChecker()
         }
-        let isRecentlySwiped: Bool = malpracticeChecker!.hasEntrantAccessedRide(withPassIdentifier: pass.uniqueIdentifier, withinTimeLimitInSeconds: time)
+        let isRecentlySwiped: Bool = malpracticeChecker!.isEntrantTryingToCheatUsingPass(withPassIdentifier: pass.uniqueIdentifier)
         return isRecentlySwiped
         
     }

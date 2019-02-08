@@ -58,7 +58,7 @@ extension ViewController {
                     EntrantType.employee(.foodServices(PersonName(firstName:fName, lastName:"xxx"), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
             
             case 5:
-                let lName: String = (self.missingInfoSwitch.isOn == true) ? "    ":"xxx"
+                let lName: String = (self.missingInfoSwitch.isOn == true) ? "$#&    ":"xxx"
                 typeOfEntrant = EntrantType.employee(.rideServices(PersonName(firstName:"ddd", lastName:lName), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
             
             case 6:
@@ -247,7 +247,7 @@ extension ViewController {
         
         guard let birthWisherPass = (entrantPass as? PersonalInformationReminder) else {
             
-            //No birthDate/anniversaryDate entered. No point checking further.
+            //No birthDate entered. No point checking further.
             self.specialMessageLabel.text = nil
             return
         }
@@ -263,6 +263,9 @@ extension ViewController {
                 self.specialMessageLabel.text = nil
 
             }
+        }
+        else {
+            self.specialMessageLabel.text = nil
         }
         
     }
