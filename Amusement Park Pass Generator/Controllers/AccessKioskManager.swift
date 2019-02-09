@@ -67,7 +67,7 @@ class AccessKioskManager {
         }
         else {
             
-            let ride = pass.isPermittedToAccessRides()
+            let ride: (hasAccess: Bool, canSkipLines: Bool) = pass.isPermittedToAccessRides()
             
             if ride.hasAccess == true {
                 
@@ -113,7 +113,7 @@ class AccessKioskManager {
             throw ParkError.passGenerationError
         }
         else {
-            return pass.discountAtFoodCounter()
+            return pass.discountAtMerchandiseCounter()
         }
         
     }

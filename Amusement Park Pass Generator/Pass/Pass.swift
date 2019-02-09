@@ -22,20 +22,24 @@ class Pass: AccessDataSource {
         self.entrant = entrant
     }
     
-   
+    
+    //MARK: AreaAccessDataSource
     var areasAccessible: [AreaAccess] {
         return [.amusement]
     }
     
+    //MARK: RideAccessDataSource
     var ridePrivileges: [RideAccess] {
         return [.all]
     }
     
+    //MARK: DiscountAccessDataSource
     var discountPrivileges: [Discount] {
         return [.none]
     }
     
     
+    //MARK: AccessDataSource
     var uniqueIdentifier: PassIdentifier {
         return passNumber
     }
@@ -45,6 +49,7 @@ class Pass: AccessDataSource {
 
 extension Pass: PersonalInformationDataSource {
     
+    /*Information collected here will be used to display on the pass*/
     
     var informationCollected: [PersonalInfo] {
         
@@ -71,24 +76,10 @@ extension Pass: PersonalInformationDataSource {
     }
     
     
-    
+    /*Information collected here will be used to display on the pass*/
+
     var passTypeDescription: String {
         return self.entrant.type.passTypeString()
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

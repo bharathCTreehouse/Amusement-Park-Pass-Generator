@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7421F4C17D00E6791D /* PassDisplay.swift */; };
 		4C15AC7E21FF7FB800E6791D /* PersonalInformationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7D21FF7FB800E6791D /* PersonalInformationDataSource.swift */; };
 		4C15AC802200B19800E6791D /* PersonalInformationReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC7F2200B19800E6791D /* PersonalInformationReminder.swift */; };
-		4C15AC822200C91000E6791D /* FreeChildPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC812200C91000E6791D /* FreeChildPass.swift */; };
 		4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC882200D8A500E6791D /* ReminderPass.swift */; };
 		4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */; };
 		4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15AC8C2200DB9800E6791D /* VendorPass.swift */; };
@@ -51,10 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C15AC7421F4C17D00E6791D /* PassDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassDisplay.swift; sourceTree = "<group>"; };
 		4C15AC7D21FF7FB800E6791D /* PersonalInformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationDataSource.swift; sourceTree = "<group>"; };
 		4C15AC7F2200B19800E6791D /* PersonalInformationReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationReminder.swift; sourceTree = "<group>"; };
-		4C15AC812200C91000E6791D /* FreeChildPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChildPass.swift; sourceTree = "<group>"; };
 		4C15AC882200D8A500E6791D /* ReminderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPass.swift; sourceTree = "<group>"; };
 		4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorCitizenPass.swift; sourceTree = "<group>"; };
 		4C15AC8C2200DB9800E6791D /* VendorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorPass.swift; sourceTree = "<group>"; };
@@ -154,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				4C15AC882200D8A500E6791D /* ReminderPass.swift */,
-				4C15AC812200C91000E6791D /* FreeChildPass.swift */,
 				4C15AC8A2200DA0600E6791D /* SeniorCitizenPass.swift */,
 				4C15AC8C2200DB9800E6791D /* VendorPass.swift */,
 			);
@@ -262,7 +257,6 @@
 				4C15AC852200D13000E6791D /* Guest */,
 				4C15AC842200CAF100E6791D /* Manager */,
 				4C15AC832200CAE800E6791D /* Employee */,
-				4C15AC7421F4C17D00E6791D /* PassDisplay.swift */,
 			);
 			path = Pass;
 			sourceTree = "<group>";
@@ -373,7 +367,6 @@
 				4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */,
 				4C15AC802200B19800E6791D /* PersonalInformationReminder.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
-				4C15AC7521F4C17D00E6791D /* PassDisplay.swift in Sources */,
 				4C15AC942207642100E6791D /* DateValidator.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
@@ -388,7 +381,6 @@
 				4C9807F421E3778600C67A86 /* Entrant.swift in Sources */,
 				4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */,
 				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,
-				4C15AC822200C91000E6791D /* FreeChildPass.swift in Sources */,
 				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */,

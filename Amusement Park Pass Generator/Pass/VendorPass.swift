@@ -40,6 +40,3 @@ class VendorPass: ReminderPass {
     }
 }
 
-
-
-

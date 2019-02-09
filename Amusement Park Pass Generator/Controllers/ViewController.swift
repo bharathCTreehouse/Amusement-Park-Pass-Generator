@@ -63,8 +63,8 @@ extension ViewController {
             case 3:
                 let bDateFormatter: DateFormatter = DateFormatter()
                 bDateFormatter.dateFormat = "MMM d, yyyy"
-                let bDate: Date? = bDateFormatter.date(from: "Feb 09, 2017")
-                typeOfEntrant = EntrantType.guest(.freeChild(bDate!))
+                let bDate: Date? = bDateFormatter.date(from: "Feb 10, 2017")
+                typeOfEntrant = EntrantType.guest(.freeChild(dateOfBirth: bDate!))
             
             case 4:
                 let fName: String = (self.missingInfoSwitch.isOn == true) ? "":"abc"

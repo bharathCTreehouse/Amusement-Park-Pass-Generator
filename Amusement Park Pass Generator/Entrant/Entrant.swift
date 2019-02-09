@@ -8,7 +8,6 @@
 
 import Foundation
 
-//Should we have an unknown type here??
 enum EntrantType {
     
     case guest (GuestType)
@@ -45,6 +44,7 @@ enum EntrantType {
     func passTypeString() -> String {
         
         switch self {
+            
             case .employee(.foodServices(_, _)): return "Food service employee pass"
             case .employee(.rideServices(_, _)): return "Ride service employee pass"
             case .employee(.maintenance(_, _)):  return "Maintenance service employee pass"
@@ -52,6 +52,10 @@ enum EntrantType {
             case .guest(.classic): return "Classic guest pass"
             case .guest(.vip): return "VIP guest pass"
             case .guest(.freeChild): return "Child guest pass"
+            
+            //This is for part 2 of the app.
+            /*case .guest(.seasonPassGuest(_, _)): return "Season guest pass"
+            case .guest(.seniorGuest(_, dateOfBirth: _)): return "Senior guest pass"*/
 
 
         }
@@ -62,7 +66,11 @@ enum EntrantType {
 enum GuestType {
     case classic
     case vip
-    case freeChild (Date)
+    case freeChild (dateOfBirth: Date)
+    
+    //This is for part 2 of the app.
+    /*case seasonPassGuest (PersonName, Address)
+    case seniorGuest (PersonName, dateOfBirth: Date)*/
 }
 
 
@@ -70,6 +78,9 @@ enum EmployeeType  {
     case foodServices (PersonName, Address)
     case rideServices (PersonName, Address)
     case maintenance (PersonName, Address)
+    
+    //This is for part 2 of the app.
+    /*case contract (PersonName, Address)*/
 }
 
 

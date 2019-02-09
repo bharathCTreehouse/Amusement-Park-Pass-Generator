@@ -10,13 +10,6 @@ import Foundation
 
 class SeniorCitizenPass: ReminderPass {
     
-    /*init(withPassNumber passNumber: Int, dateOfBirth: Date, entrant: Entrant) {
-        
-        super.init(withPassNumber: passNumber, dateOfBirth: dateOfBirth)
-        self.entrantName = entrantName
-
-    }*/
-    
     override var ridePrivileges: [RideAccess] {
         var rides: [RideAccess] = super.ridePrivileges
         rides.append(.skipRideLines)
