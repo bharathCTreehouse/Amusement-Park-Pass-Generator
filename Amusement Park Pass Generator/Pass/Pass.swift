@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias PassIdentifier = Int
-
 
 class Pass: AccessDataSource {
     
@@ -79,6 +77,9 @@ extension Pass: PersonalInformationDataSource {
     }
 
 }
+
+
+
 
 
 

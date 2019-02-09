@@ -37,109 +37,95 @@ enum ParkError: Swift.Error {
 
 class AccessKioskManager {
     
+    //MARK: - Polymorphic swiping methods
     
     lazy var malpracticeChecker: RideKioskMalpracticeChecker = RideKioskMalpracticeChecker()
     
     
-    func swipe(pass: AreaAccessDataSource, atArea area: AreaAccess) throws -> Bool {
+    //Can handle access to all kinds of area for any kind of pass.
+    func swipe(pass: AccessDataSource, atArea area: AreaAccess) throws -> Bool {
         
         if area == .undefined {
             //You are requesting access to an unknown/undefined location.
             throw ParkError.requestingUnknownLocationAccess
         }
-        else if pass.areasAccessible.contains(.undefined) == true
-            || pass.areasAccessible.isEmpty == true ||  pass as? AccessDataSource == nil
-        {
+        else if pass.hasValidAreaAccess == false {
             //Your pass does not seem to have proper access. Pass not generated properly.
             throw ParkError.passGenerationError
+
         }
-        
-        return pass.areasAccessible.contains(area)
+        return pass.isPermitted(toArea: area)
         
     }
     
     
-    func swipeForRideWith(pass: RideAccessDataSource) throws -> (hasAccess: Bool, canSkipLine: Bool) {
+    //Can handle access to a ride for any kind of pass.
+    func swipeForRideWith(pass: AccessDataSource) throws -> (hasAccess: Bool, canSkipLine: Bool) {
         
-        //First check for malpractice.
-        if pass.ridePrivileges.contains(.undefined) == true || pass.ridePrivileges.isEmpty == true || pass as? AccessDataSource == nil {
+        if pass.hasValidRideAccess == false {
             throw ParkError.passGenerationError
         }
         else {
-            if pass.ridePrivileges.contains(.all) == false {
-                //No access to rides. No question of skipping lines.
-                return (hasAccess: false, canSkipLine: false)
-            }
-            else  {
+            
+            let ride = pass.isPermittedToAccessRides()
+            
+            if ride.hasAccess == true {
+                
                 //Entrant has access to ride. Check for too soon access.
-                let isSwipedRecently: Bool = entrantTryingToCheatUsing(pass: pass as! AccessDataSource)
+                
+                let isSwipedRecently: Bool = entrantTryingToCheatUsing(pass: pass)
                 if isSwipedRecently == true {
                     throw ParkError.requestingAccessTooSoon
                 }
                 else {
-                    store(pass: pass as! AccessDataSource, withTimeLimitInSeconds: 5)
-                    return (hasAccess: true, canSkipLine: pass.ridePrivileges.contains(.skipRideLines))
+                    store(pass: pass, withTimeLimitInSeconds: 5)
+                    return (hasAccess: true, canSkipLine: ride.canSkipLines)
                 }
             }
+            else {
+                //No access to rides. No question of skipping lines.
+                return (hasAccess: false, canSkipLine: false)
+                
+            }
+            
         }
         
     }
     
+    
+    //Can handle access to a food counter for any kind of pass.
+    func swipeForFoodWith(pass: AccessDataSource) throws -> Int? {
         
-    func swipeForFoodWith(pass: DiscountAccessDataSource) throws -> Int? {
-        
-        if  pass.discountPrivileges.isEmpty == true || pass as? AccessDataSource == nil {
+        if  pass.hasValidDiscountAccess == false {
             throw ParkError.passGenerationError
         }
-        
-        var discountValue: Int? = nil
-        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
-            
-            switch discount {
-                
-                case let .food(value): discountValue = value
-                                       return true
-                case .undefined: throw ParkError.passGenerationError
-                default: return false
-                
-            }
-        }))
-        
-        return discountValue
+        else {
+            return pass.discountAtFoodCounter()
+        }
         
     }
     
     
-    func swipeForMerchandiseWith(pass: DiscountAccessDataSource) throws -> Int? {
+    //Can handle access to a merchandise counter for any kind of pass.
+    func swipeForMerchandiseWith(pass: AccessDataSource) throws -> Int? {
         
-        if pass.discountPrivileges.isEmpty == true || pass as? AccessDataSource == nil {
+        if  pass.hasValidDiscountAccess == false {
             throw ParkError.passGenerationError
         }
+        else {
+            return pass.discountAtFoodCounter()
+        }
         
-        var discountValue: Int? = nil
-        let _: Bool =  try pass.discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
-            
-            switch discount {
-                
-                case let .merchandise(value):
-                                    discountValue = value
-                                    return true
-                case .undefined: throw ParkError.passGenerationError
-                default: return false
-                
-            }
-        }))
-        
-        return discountValue
-
     }
     
 }
 
 
-//Birthday check
 extension AccessKioskManager {
     
+    //MARK:  Birthday check
+
+
     private func birthDateOfEntrant(withPass pass: PersonalInformationReminder) -> Date? {
         
         var birthDate:Date? = nil
@@ -176,10 +162,13 @@ extension AccessKioskManager {
 
 
 
-//Malpractice check
+
 extension AccessKioskManager {
     
-    func entrantTryingToCheatUsing(pass: AccessDataSource) -> Bool {
+    //MARK:  Malpractice check
+
+    
+    private func entrantTryingToCheatUsing(pass: AccessDataSource) -> Bool {
         
         let isRecentlySwiped: Bool = malpracticeChecker.isEntrantTryingToCheatUsingPass(withPassIdentifier: pass.uniqueIdentifier)
         return isRecentlySwiped
@@ -187,7 +176,7 @@ extension AccessKioskManager {
     }
     
     
-    func store(pass: AccessDataSource, withTimeLimitInSeconds time: Int) {
+    private func store(pass: AccessDataSource, withTimeLimitInSeconds time: Int) {
         
         malpracticeChecker.storePass(withIdentifier: pass.uniqueIdentifier, timeLimitInSeconds: time)
     }

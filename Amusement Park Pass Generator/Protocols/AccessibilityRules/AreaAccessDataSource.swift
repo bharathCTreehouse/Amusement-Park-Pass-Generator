@@ -40,9 +40,11 @@ protocol AreaAccessDataSource {
 }
 
 
-extension AreaAccessDataSource {
+
+
+/*extension AreaAccessDataSource {
     
     var isValid: Bool {
-        return !areasAccessible.isEmpty
+        return !areasAccessible.isEmpty || !areasAccessible.contains(.undefined)
     }
-}
+}*/
