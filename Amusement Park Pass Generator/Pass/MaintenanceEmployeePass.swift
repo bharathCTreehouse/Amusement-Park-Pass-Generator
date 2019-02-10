@@ -13,9 +13,7 @@ class MaintenanceEmployeePass: EmployeePass {
     
     override var areasAccessible: [AreaAccess] {
         var areasPermitted: [AreaAccess] = super.areasAccessible
-        areasPermitted.append(.kitchen)
-        areasPermitted.append(.rideControl)
-        areasPermitted.append(.maintenance)
+        areasPermitted.append(contentsOf: [.kitchen, .rideControl, .maintenance])
         return areasPermitted
     }
     

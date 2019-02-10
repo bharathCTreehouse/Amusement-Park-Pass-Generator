@@ -11,7 +11,7 @@ import Foundation
 
 class Pass: AccessDataSource {
     
-    var passNumber: PassIdentifier = 0  //Pass number should be assigned with entrant number.
+    var passNumber: PassIdentifier = 0
     
     let entrant: Entrant
     

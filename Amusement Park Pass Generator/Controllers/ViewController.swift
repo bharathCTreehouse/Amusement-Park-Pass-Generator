@@ -77,7 +77,7 @@ extension ViewController {
                 //let bDate: Date? = bDateFormatter.date(from: "Mar 20, 2010")
                 
                 //Today is his birthday.(Uncomment this and put today's date to see a birthday wish on swiping at a counter where he has access.)
-                let bDate: Date? = bDateFormatter.date(from: "Feb 10, 2017")
+                let bDate: Date? = bDateFormatter.date(from: "Feb 11, 2017")
 
                 typeOfEntrant = EntrantType.guest(.freeChild(dateOfBirth: bDate!))
             
@@ -91,7 +91,7 @@ extension ViewController {
             
             //Employee-ride services
             case 5:
-                let lName: String = (self.missingInfoSwitch.isOn == true) ? "$#&    ":"xxx"
+                let lName: String = (self.missingInfoSwitch.isOn == true) ? "$#&":"xxx"
                 typeOfEntrant = EntrantType.employee(.rideServices(PersonName(firstName:"ddd", lastName:lName), Address(streetAddress:"India", city:"BLR", state:nil, zipCode:nil)))
             
             

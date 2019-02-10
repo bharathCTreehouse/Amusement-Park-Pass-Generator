@@ -44,7 +44,8 @@ extension PersonName {
         if firstName.isEmpty == true {
             throw PersonNameError.missingFirstName
         }
-        else if firstName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
+        else if firstName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil || firstName.rangeOfCharacter(from: CharacterSet.symbols) != nil {
+            
             throw PersonNameError.invalidFirstName
             
         }
@@ -55,7 +56,8 @@ extension PersonName {
                 
                 //Last name has been entered.
                 
-                if lastName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
+                if lastName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil || lastName.rangeOfCharacter(from: CharacterSet.symbols) != nil {
+                    
                     throw PersonNameError.invalidLastName
                 }
             }
