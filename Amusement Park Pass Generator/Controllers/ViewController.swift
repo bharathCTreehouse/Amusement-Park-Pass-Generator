@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     var entrantPass: AccessDataSource? = nil {
         
         didSet {
-            updateSpecialMessageLabel(withText: nil)
-            accessStatusLabel.text = nil
+            //updateSpecialMessageLabel(withText: nil)
+            //accessStatusLabel.text = nil
         }
     }
 
@@ -29,6 +29,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //Table view here please.
+        let entrantInfoTableView: EntrantInformationTableView = EntrantInformationTableView(withTableViewStyle: .grouped)
+        entrantInfoTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(entrantInfoTableView)
+        entrantInfoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        entrantInfoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        entrantInfoTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        entrantInfoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+
         
     }
     

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="EntrantNameCellTableViewCell" customModule="Amusement_Park_Pass_Generator" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cw-6S-Nrn">
+                        <rect key="frame" x="32" y="16" width="113.5" height="23.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek0-Yo-qs4">
+                        <rect key="frame" x="174.5" y="16" width="113.5" height="23.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="Eut-mz-KR5">
+                        <rect key="frame" x="32" y="55.5" width="256" height="58"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W8d-SL-0jT">
+                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="58"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXe-Lu-OeI">
+                                <rect key="frame" x="142.5" y="0.0" width="113.5" height="58"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="58" id="urU-ow-2ac"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7cw-6S-Nrn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="9rU-vl-6Bm"/>
+                    <constraint firstItem="Eut-mz-KR5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="M0E-X7-4cm"/>
+                    <constraint firstItem="Eut-mz-KR5" firstAttribute="top" secondItem="7cw-6S-Nrn" secondAttribute="bottom" constant="16" id="RUG-FB-ZWo"/>
+                    <constraint firstItem="7cw-6S-Nrn" firstAttribute="leading" secondItem="W8d-SL-0jT" secondAttribute="leading" id="XRi-Lr-bAp"/>
+                    <constraint firstItem="Ek0-Yo-qs4" firstAttribute="leading" secondItem="wXe-Lu-OeI" secondAttribute="leading" id="dAf-3Z-K6b"/>
+                    <constraint firstItem="7cw-6S-Nrn" firstAttribute="trailing" secondItem="W8d-SL-0jT" secondAttribute="trailing" id="dTz-Bk-Laf"/>
+                    <constraint firstItem="Ek0-Yo-qs4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="q6i-Kh-3qG"/>
+                    <constraint firstAttribute="bottom" secondItem="Eut-mz-KR5" secondAttribute="bottom" constant="30" id="r0p-MT-nNd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Eut-mz-KR5" secondAttribute="trailing" constant="16" id="th1-67-lkI"/>
+                    <constraint firstItem="Ek0-Yo-qs4" firstAttribute="trailing" secondItem="wXe-Lu-OeI" secondAttribute="trailing" id="ycj-7N-Nhr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="55.664062499999993" y="58.418740849194727"/>
+        </tableViewCell>
+    </objects>
+</document>
