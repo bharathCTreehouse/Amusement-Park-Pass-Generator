@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var accessStatusLabel: UILabel!
     @IBOutlet weak var specialMessageLabel: UILabel!
 
+    var entrantInfoTableView: EntrantInformationTableView? = nil
     let kioskManager: AccessKioskManager = AccessKioskManager()
     let entranceManager: ParkEntranceManager = ParkEntranceManager()
     var entrantPass: AccessDataSource? = nil {
@@ -30,17 +31,37 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+        
+        
+        let passGenerationView: PassGenerationView = PassGenerationView { (option: PassGenerationOption) in
+            
+            print(option)
+        }
+        passGenerationView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(passGenerationView)
+        passGenerationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        passGenerationView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        passGenerationView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        
         //Table view here please.
-        let entrantInfoTableView: EntrantInformationTableView = EntrantInformationTableView(withTableViewStyle: .grouped)
-        entrantInfoTableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(entrantInfoTableView)
-        entrantInfoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        entrantInfoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        entrantInfoTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        entrantInfoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        entrantInfoTableView = EntrantInformationTableView(withTableViewStyle: .grouped)
+        entrantInfoTableView!.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(entrantInfoTableView!)
+        entrantInfoTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        entrantInfoTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        entrantInfoTableView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        entrantInfoTableView!.bottomAnchor.constraint(equalTo: passGenerationView.topAnchor).isActive = true
 
 
         
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     deinit {

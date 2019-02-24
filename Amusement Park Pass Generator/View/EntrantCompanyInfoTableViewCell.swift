@@ -1,14 +1,14 @@
 //
-//  EntrantAddressTableViewCell.swift
+//  EntrantCompanyInfoTableViewCell.swift
 //  Amusement Park Pass Generator
 //
-//  Created by Bharath Chandrashekar on 15/02/19.
+//  Created by Bharath Chandrashekar on 22/02/19.
 //  Copyright © 2019 Bharath Chandrashekar. All rights reserved.
 //
 
 import UIKit
 
-class EntrantAddressTableViewCell: UITableViewCell {
+class EntrantCompanyInfoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -16,8 +16,12 @@ class EntrantInformationTableView: UITableView {
         
         super.init(frame: .zero, style: style)
         dataSource = self
+        
         register(UINib.init(nibName: "EntrantNameTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantNameCell")
+        
         register(UINib.init(nibName: "EntrantAddressTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantAddressCell")
+        
+        register(UINib.init(nibName: "EntrantCompanyInfoTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantCompanyCell")
 
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 44.0
@@ -34,17 +38,12 @@ class EntrantInformationTableView: UITableView {
 extension EntrantInformationTableView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return 1
-        }
-        else {
-            return 1
-        }
+        return 1
     }
     
     
@@ -53,6 +52,11 @@ extension EntrantInformationTableView: UITableViewDataSource {
         if indexPath.section == 0 {
             
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "entrantNameCell", for: indexPath)
+            return cell
+        }
+        else if indexPath.section == 1 {
+            
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "entrantCompanyCell", for: indexPath)
             return cell
         }
         else {

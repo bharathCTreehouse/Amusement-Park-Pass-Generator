@@ -20,19 +20,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cw-6S-Nrn">
-                        <rect key="frame" x="32" y="16" width="113.5" height="23.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <rect key="frame" x="32" y="16" width="113.5" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek0-Yo-qs4">
-                        <rect key="frame" x="174.5" y="16" width="113.5" height="23.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <rect key="frame" x="174.5" y="16" width="113.5" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="Eut-mz-KR5">
-                        <rect key="frame" x="32" y="55.5" width="256" height="58"/>
+                        <rect key="frame" x="32" y="59.5" width="256" height="58"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W8d-SL-0jT">
                                 <rect key="frame" x="0.0" y="0.0" width="113.5" height="58"/>
