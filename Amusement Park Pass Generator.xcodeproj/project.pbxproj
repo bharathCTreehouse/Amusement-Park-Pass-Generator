@@ -23,6 +23,8 @@
 		4C15ACA72220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACA52220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift */; };
 		4C15ACA82220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */; };
 		4C15ACAC222079A500E6791D /* PassGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACAB222079A500E6791D /* PassGenerationView.swift */; };
+		4C15ACB12229B51200E6791D /* EntrantTypeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */; };
+		4C15ACB32229B91A00E6791D /* EntrantTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 		4C15ACA52220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantCompanyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntrantCompanyInfoTableViewCell.xib; sourceTree = "<group>"; };
 		4C15ACAB222079A500E6791D /* PassGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenerationView.swift; sourceTree = "<group>"; };
+		4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntrantTypeSelectionView.xib; sourceTree = "<group>"; };
+		4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantTypeSelectionView.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 		4C15AC9A22146D8200E6791D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C15ACAF2229B48800E6791D /* EntrantTypeSelectionViews */,
 				4C15ACAA2220733600E6791D /* PassGenerationViews */,
 				4C15ACA922206DD300E6791D /* EntrantInformationViews */,
 			);
@@ -229,6 +234,15 @@
 				4C15ACAB222079A500E6791D /* PassGenerationView.swift */,
 			);
 			name = PassGenerationViews;
+			sourceTree = "<group>";
+		};
+		4C15ACAF2229B48800E6791D /* EntrantTypeSelectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */,
+				4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */,
+			);
+			name = EntrantTypeSelectionViews;
 			sourceTree = "<group>";
 		};
 		4C9807BF21E0F4A300C67A86 = {
@@ -395,6 +409,7 @@
 				4C9807D321E0F4A700C67A86 /* Assets.xcassets in Resources */,
 				4C15ACA02214736700E6791D /* EntrantNameTableViewCell.xib in Resources */,
 				4C15ACA4221602CD00E6791D /* EntrantAddressTableViewCell.xib in Resources */,
+				4C15ACB12229B51200E6791D /* EntrantTypeSelectionView.xib in Resources */,
 				4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +447,7 @@
 				4C9807F621E3799D00C67A86 /* PersonName.swift in Sources */,
 				4C9807F221E3771200C67A86 /* AccessKioskManager.swift in Sources */,
 				4C98080B21E68C4700C67A86 /* ParkEntranceManager.swift in Sources */,
+				4C15ACB32229B91A00E6791D /* EntrantTypeSelectionView.swift in Sources */,
 				4C9807F421E3778600C67A86 /* Entrant.swift in Sources */,
 				4C9807F021E2853300C67A86 /* DiscountAccessDataSource.swift in Sources */,
 				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,

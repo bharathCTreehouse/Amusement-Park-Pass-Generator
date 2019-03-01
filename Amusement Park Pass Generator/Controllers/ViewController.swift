@@ -28,12 +28,22 @@ class ViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        //Entrant type selection view
+        let entrantTypeView: EntrantTypeSelectionView = Bundle.main.loadNibNamed("EntrantTypeSelectionView", owner: nil, options: nil)?.first as! EntrantTypeSelectionView
+        entrantTypeView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(entrantTypeView)
+        entrantTypeView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        entrantTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        entrantTypeView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0).isActive = true
+
         
         
+        //Pass generation/Data population view
         let passGenerationView: PassGenerationView = PassGenerationView { (option: PassGenerationOption) in
             
             print(option)
@@ -45,20 +55,18 @@ class ViewController: UIViewController {
         passGenerationView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         
-        //Table view here please.
+        //Table view
         entrantInfoTableView = EntrantInformationTableView(withTableViewStyle: .grouped)
         entrantInfoTableView!.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(entrantInfoTableView!)
         entrantInfoTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         entrantInfoTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        entrantInfoTableView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        entrantInfoTableView!.topAnchor.constraint(equalTo: entrantTypeView.bottomAnchor).isActive = true
         entrantInfoTableView!.bottomAnchor.constraint(equalTo: passGenerationView.topAnchor).isActive = true
-
-
-        
-
         
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
