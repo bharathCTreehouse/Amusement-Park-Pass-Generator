@@ -26,12 +26,20 @@ enum PersonNameError: Swift.Error {
 
 struct PersonName {
     
-    let firstName: String
-    let lastName: String
+    var firstName: String
+    var lastName: String
     
     
     func fullName() -> String {
         return "\(firstName) \(lastName)"
+    }
+    
+    mutating func updateFirstName(withString fName: String) {
+        firstName = fName
+    }
+    
+    mutating func updateLastName(withString lName: String) {
+        lastName = lName
     }
 }
 

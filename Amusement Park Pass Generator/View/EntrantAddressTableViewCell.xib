@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVB-7z-PyK">
-                        <rect key="frame" x="28" y="16" width="264" height="57"/>
+                        <rect key="frame" x="28" y="16" width="264" height="77"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-bQ-5Gs">
-                        <rect key="frame" x="28" y="89" width="264" height="58"/>
+                        <rect key="frame" x="28" y="109" width="264" height="58"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="58" id="GfN-dR-W0V"/>
                         </constraints>
@@ -35,25 +35,25 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFd-FJ-OAA">
-                        <rect key="frame" x="28" y="167" width="74.5" height="27.5"/>
+                        <rect key="frame" x="28" y="187" width="74.5" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K34-7c-Vfq">
-                        <rect key="frame" x="122.5" y="167" width="75" height="27.5"/>
+                        <rect key="frame" x="122.5" y="187" width="75" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA3-FO-v5q">
-                        <rect key="frame" x="217.5" y="167" width="74.5" height="27.5"/>
+                        <rect key="frame" x="217.5" y="187" width="74.5" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WB7-rt-x2V">
-                        <rect key="frame" x="28" y="202" width="264" height="58"/>
+                        <rect key="frame" x="28" y="222" width="264" height="58"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="toa-wU-zdU">
                                 <rect key="frame" x="0.0" y="0.0" width="74.5" height="58"/>
@@ -102,6 +102,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cityTextField" destination="toa-wU-zdU" id="sgK-Ov-gnQ"/>
+                <outlet property="stateTextField" destination="oaH-Kg-sKp" id="FGX-cz-JVZ"/>
+                <outlet property="streetAddressTextField" destination="g0M-bQ-5Gs" id="a9E-Qt-MzS"/>
+                <outlet property="zipCodeTextField" destination="DkW-gH-HCt" id="8B5-dV-Rb4"/>
+            </connections>
             <point key="canvasLocation" x="73.2421875" y="167.13030746705709"/>
         </tableViewCell>
     </objects>

@@ -34,8 +34,7 @@ class ViewController: UIViewController {
         
         
         //Entrant type selection view
-        let entrantTypeView: EntrantTypeSelectionView = Bundle.main.loadNibNamed("EntrantTypeSelectionView", owner: nil, options: nil)?.first as! EntrantTypeSelectionView
-        entrantTypeView.translatesAutoresizingMaskIntoConstraints = false
+        let entrantTypeView: EntrantTypeSelectionView = EntrantTypeSelectionView(withEntrantTypeSelectionDelegate: self)
         view.addSubview(entrantTypeView)
         entrantTypeView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         entrantTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -48,7 +47,6 @@ class ViewController: UIViewController {
             
             print(option)
         }
-        passGenerationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(passGenerationView)
         passGenerationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         passGenerationView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -56,12 +54,11 @@ class ViewController: UIViewController {
         
         
         //Table view
-        entrantInfoTableView = EntrantInformationTableView(withTableViewStyle: .grouped)
-        entrantInfoTableView!.translatesAutoresizingMaskIntoConstraints = false
+        entrantInfoTableView = EntrantInformationTableView(withTableViewStyle: .grouped, entrantType: .classicGuest)
         view.addSubview(entrantInfoTableView!)
         entrantInfoTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         entrantInfoTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        entrantInfoTableView!.topAnchor.constraint(equalTo: entrantTypeView.bottomAnchor).isActive = true
+        entrantInfoTableView!.topAnchor.constraint(equalTo: entrantTypeView.bottomAnchor, constant: 40.0).isActive = true
         entrantInfoTableView!.bottomAnchor.constraint(equalTo: passGenerationView.topAnchor).isActive = true
         
     }
@@ -81,6 +78,16 @@ class ViewController: UIViewController {
     }
     
 }
+
+
+extension ViewController: EntrantTypeSelectionProtocol {
+    
+    func didFinishSelectingEntrantType(_ type: EntrantTypeUIIdentifier) {
+        entrantInfoTableView?.entrantType = type
+    }
+
+}
+
 
 
 //Pass generation

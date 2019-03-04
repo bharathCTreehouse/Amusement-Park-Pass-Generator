@@ -28,7 +28,24 @@ struct Address {
     var state: String?
     var zipCode: String?
     
+    
+    mutating func updateStreetAddress(withString address: String) {
+        streetAddress = address
+    }
+    
+    mutating func updateCity(withString city: String) {
+        self.city = city
+    }
+    
+    mutating func updateState(withString state: String) {
+        self.state = state
+    }
+    
+    mutating func updateZipCode(withString zipCode: String) {
+        self.zipCode = zipCode
+    }
 }
+
 
 
 extension Address {

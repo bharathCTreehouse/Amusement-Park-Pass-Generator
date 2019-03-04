@@ -10,16 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EntrantTypeSelectionView" customModule="Amusement_Park_Pass_Generator" customModuleProvider="target">
+            <connections>
+                <outlet property="entrantSubTypeSelectionSegment" destination="2Jp-tA-5ov" id="uQL-2P-Dpx"/>
+                <outlet property="entrantTypeSelectionSegment" destination="Xyr-ho-Hd6" id="Ixh-jv-fkJ"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EntrantTypeSelectionView" customModule="Amusement_Park_Pass_Generator" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="1024" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Xyr-ho-Hd6">
-                    <rect key="frame" x="0.0" y="30" width="1024" height="29"/>
+                    <rect key="frame" x="0.0" y="40" width="1024" height="69"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="58" id="4xC-jc-gox"/>
+                        <constraint firstAttribute="height" constant="68" id="4xC-jc-gox"/>
                     </constraints>
                     <segments>
                         <segment title="Guest"/>
@@ -29,13 +34,13 @@
                     </segments>
                     <color key="tintColor" red="0.57647058823529407" green="0.38823529411764707" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="entrantTypeSegmentTapped" destination="iN0-l3-epB" eventType="valueChanged" id="Pxf-6l-Ine"/>
+                        <action selector="entrantTypeSegmentTapped" destination="-1" eventType="valueChanged" id="8aD-bT-P8y"/>
                     </connections>
                 </segmentedControl>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2Jp-tA-5ov">
-                    <rect key="frame" x="0.0" y="58" width="1024" height="49"/>
+                    <rect key="frame" x="0.0" y="108" width="1024" height="34"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="grk-xo-e2W"/>
+                        <constraint firstAttribute="height" constant="58" id="grk-xo-e2W"/>
                     </constraints>
                     <segments>
                         <segment title="Classic"/>
@@ -46,7 +51,7 @@
                     </segments>
                     <color key="tintColor" red="0.25882352941176467" green="0.20392156862745098" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="entrantSubTypeSegmentTapped" destination="iN0-l3-epB" eventType="valueChanged" id="XcZ-xS-Szs"/>
+                        <action selector="entrantSubTypeSegmentTapped" destination="-1" eventType="valueChanged" id="6Of-gJ-7FI"/>
                     </connections>
                 </segmentedControl>
             </subviews>
@@ -58,14 +63,10 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2Jp-tA-5ov" secondAttribute="bottom" constant="9" id="dRx-ot-I4Y"/>
                 <constraint firstItem="Xyr-ho-Hd6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lRj-QD-QQk"/>
                 <constraint firstItem="2Jp-tA-5ov" firstAttribute="top" secondItem="Xyr-ho-Hd6" secondAttribute="bottom" id="lbe-kv-Aa9"/>
-                <constraint firstItem="Xyr-ho-Hd6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="uY1-6a-UqC"/>
+                <constraint firstItem="Xyr-ho-Hd6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="uY1-6a-UqC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outlet property="entrantSubTypeSelectionSegment" destination="2Jp-tA-5ov" id="WfT-24-Sn2"/>
-                <outlet property="entrantTypeSelectionSegment" destination="Xyr-ho-Hd6" id="DO4-GX-tes"/>
-            </connections>
         </view>
     </objects>
 </document>

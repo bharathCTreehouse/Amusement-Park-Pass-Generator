@@ -23,6 +23,7 @@ class PassGenerationView: UIView {
     init(withPassGenerationCompletionHandler handler: @escaping (PassGenerationOption)->Void) {
         passGenerationCompletionHandler = handler
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         setupPassGenerationButtons()
     }
     
