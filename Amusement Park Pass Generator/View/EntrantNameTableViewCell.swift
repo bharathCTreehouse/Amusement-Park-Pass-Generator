@@ -8,12 +8,14 @@
 
 import UIKit
 
-class EntrantNameTableViewCell: UITableViewCell {
+class EntrantNameTableViewCell: EntrantInformationTableViewCell {
     
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     
-    private(set) var entrantName: PersonName? = PersonName(firstName:"", lastName: "") {
+    
+    
+    private(set) var entrantName: PersonName? = nil {
         
         didSet {
             if entrantName == nil {
@@ -32,29 +34,9 @@ class EntrantNameTableViewCell: UITableViewCell {
         lastNameTextField.delegate = self
     }
     
-    
-    
-    func resetEntrantName() {
+   
+    override func resetData() {
         entrantName = nil
-    }
-    
-    
-    
-    func enableNameCell(_ enable: Bool) {
-        
-        UIView.animate(withDuration: 0.6) {
-            
-            if enable == true {
-                self.contentView.alpha = 1.0
-            }
-            else {
-                self.contentView.alpha = 0.1
-            }
-            self.contentView.isUserInteractionEnabled = enable
-            self.resetEntrantName()
-        }
-        
-
     }
     
     
@@ -69,7 +51,19 @@ class EntrantNameTableViewCell: UITableViewCell {
 
 
 
+
 extension EntrantNameTableViewCell: UITextFieldDelegate {
+    
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if entrantName == nil {
+            entrantName = PersonName(firstName:"", lastName: "")
+        }
+        
+    }
+
+    
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
         
@@ -90,6 +84,5 @@ extension EntrantNameTableViewCell: UITextFieldDelegate {
         }
         
     }
-
     
 }

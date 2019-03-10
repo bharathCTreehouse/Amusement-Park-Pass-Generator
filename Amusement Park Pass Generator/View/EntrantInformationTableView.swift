@@ -79,11 +79,18 @@ enum EntrantTypeUIIdentifier {
 
 class EntrantInformationTableView: UITableView {
     
+    var shouldResetData: Bool = false
+
+    
     var entrantType: EntrantTypeUIIdentifier {
         didSet {
+            shouldResetData = true
+            endEditing(true)
             reloadData()
         }
     }
+    
+    
     
     init(withTableViewStyle style: Style, entrantType: EntrantTypeUIIdentifier) {
         
@@ -100,6 +107,8 @@ class EntrantInformationTableView: UITableView {
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 44.0
         translatesAutoresizingMaskIntoConstraints = false
+        
+        (self as UIScrollView).delegate = self
     }
     
     
@@ -125,28 +134,44 @@ extension EntrantInformationTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        var cell: EntrantInformationTableViewCell
+        
         if indexPath.row == 0 {
             
-            let cell: EntrantNameTableViewCell = tableView.dequeueReusableCell(withIdentifier: "entrantNameCell", for: indexPath) as! EntrantNameTableViewCell
-            cell.enableNameCell(entrantType.requiresName())
+            cell = tableView.dequeueReusableCell(withIdentifier: "entrantNameCell", for: indexPath) as! EntrantInformationTableViewCell
+            cell.enable(entrantType.requiresName(), view: cell.contentView)
            
-            return cell
         }
         else if indexPath.row == 1 {
             
-            let cell: EntrantCompanyInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "entrantCompanyCell", for: indexPath) as! EntrantCompanyInfoTableViewCell
-            cell.enableCompanyCell(entrantType.requiresCompanyName())
-            
-            return cell
+             cell = tableView.dequeueReusableCell(withIdentifier: "entrantCompanyCell", for: indexPath) as! EntrantInformationTableViewCell
+             cell.enable(entrantType.requiresCompanyName(), view: cell.contentView)
+        
         }
         else {
-            let cell: EntrantAddressTableViewCell = tableView.dequeueReusableCell(withIdentifier: "entrantAddressCell", for: indexPath) as! EntrantAddressTableViewCell
-            cell.enableAddressCell(entrantType.requiresAddress())
+            cell = tableView.dequeueReusableCell(withIdentifier: "entrantAddressCell", for: indexPath) as! EntrantInformationTableViewCell
+            cell.enable(entrantType.requiresAddress(), view: cell.contentView)
             
-            return cell
         }
+        
+        if shouldResetData == true {
+            cell.resetData()
+        }
+        
+        return cell
         
     }
     
+}
+
+
+
+
+extension EntrantInformationTableView: UIScrollViewDelegate {
     
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        shouldResetData = false
+
+    }
 }

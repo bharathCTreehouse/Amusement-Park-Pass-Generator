@@ -8,14 +8,14 @@
 
 import UIKit
 
-class EntrantAddressTableViewCell: UITableViewCell {
+class EntrantAddressTableViewCell: EntrantInformationTableViewCell {
     
     @IBOutlet var streetAddressTextField: UITextField!
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var stateTextField: UITextField!
     @IBOutlet var zipCodeTextField: UITextField!
     
-    private(set) var entrantAddress: Address? = Address(streetAddress:"", city:"", state:nil, zipCode: nil) {
+    private(set) var entrantAddress: Address? = nil {
         
         didSet {
             if entrantAddress == nil {
@@ -41,30 +41,12 @@ class EntrantAddressTableViewCell: UITableViewCell {
     }
     
     
-    
-    func resetAddress() {
+    override func resetData() {
         entrantAddress = nil
     }
     
     
-    func enableAddressCell(_ enable: Bool) {
-        
-        UIView.animate(withDuration: 0.6) {
-            
-            if enable == true {
-                self.contentView.alpha = 1.0
-            }
-            else {
-                self.contentView.alpha = 0.1
-            }
-            self.contentView.isUserInteractionEnabled = enable
-            self.resetAddress()
-        }
-        
-    }
-    
-    
-    
+   
     deinit {
         streetAddressTextField = nil
         cityTextField = nil
@@ -73,12 +55,22 @@ class EntrantAddressTableViewCell: UITableViewCell {
         entrantAddress = nil
     }
 
-    
-    
 }
 
 
+
+
 extension EntrantAddressTableViewCell: UITextFieldDelegate {
+    
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if entrantAddress == nil {
+            entrantAddress = Address(streetAddress:"", city:"", state:nil, zipCode: nil)
+        }
+        
+    }
+    
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
         

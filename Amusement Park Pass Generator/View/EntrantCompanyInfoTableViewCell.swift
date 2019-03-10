@@ -9,7 +9,7 @@
 import UIKit
 
 
-class EntrantCompanyInfoTableViewCell: UITableViewCell {
+class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
     @IBOutlet var companyTextField: UITextField!
     
@@ -34,27 +34,9 @@ class EntrantCompanyInfoTableViewCell: UITableViewCell {
     
     
     
-    func resetEntrantCompanyName() {
+    override func resetData() {
         entrantCompanyName = nil
     }
-    
-    
-    func enableCompanyCell(_ enable: Bool) {
-        
-        UIView.animate(withDuration: 0.6) {
-            
-            if enable == true {
-                self.contentView.alpha = 1.0
-            }
-            else {
-                self.contentView.alpha = 0.1
-            }
-            self.contentView.isUserInteractionEnabled = enable
-            self.resetEntrantCompanyName()
-        }
-        
-    }
-    
     
     
     deinit {
