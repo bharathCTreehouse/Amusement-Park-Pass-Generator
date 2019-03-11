@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Foundation
 
 
 class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
     @IBOutlet var companyTextField: UITextField!
+    let listOfCompanies: [String] = [CompaniesRegistered.acme.displayString, CompaniesRegistered.orkin.displayString, CompaniesRegistered.fedex.displayString, CompaniesRegistered.nwElectrical.displayString]
+    
     
     var entrantCompanyName: String? = nil {
         
@@ -29,7 +32,26 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
         // Initialization code
         
         companyTextField.delegate = self
+        
+        companyTextField.inputView = SelectionPickerView(withPickerList: listOfCompanies)
+        
+        let toolBar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0.0, y: 0.0, width: frame.size.width, height: 55.0))
+        let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
+        toolBar.setItems([space,doneButton], animated: false)
+        
+        companyTextField.inputAccessoryView = toolBar
 
+    }
+    
+    
+    
+    @objc func doneButtonTapped(_ sender: UIBarButtonItem) {
+        
+        endEditing(true)
+
+        let picker: UIPickerView = (companyTextField.inputView as! SelectionPickerView).picker!
+        companyTextField.text = listOfCompanies[picker.selectedRow(inComponent: 0)]
     }
     
     

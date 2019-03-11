@@ -8,6 +8,25 @@
 
 import Foundation
 
+enum CompaniesRegistered {
+    
+    case acme
+    case orkin
+    case fedex
+    case nwElectrical
+    
+    var displayString: String {
+        
+        switch self {
+            case .acme: return "Acme"
+            case .orkin: return "Orkin"
+            case .fedex: return "Fedex"
+            case .nwElectrical: return "NW Electrical"
+            
+        }
+    }
+}
+
 
 class VendorPass: ReminderPass {
     

@@ -26,6 +26,7 @@
 		4C15ACB12229B51200E6791D /* EntrantTypeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */; };
 		4C15ACB32229B91A00E6791D /* EntrantTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */; };
 		4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */; };
+		4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntrantTypeSelectionView.xib; sourceTree = "<group>"; };
 		4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantTypeSelectionView.swift; sourceTree = "<group>"; };
 		4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
+		4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				4C15ACA52220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift */,
 				4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */,
 				4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */,
+				4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */,
 			);
 			name = EntrantInformationViews;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
 				4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
+				4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */,
 				4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */,
 				4C9807EE21E284FC00C67A86 /* RideAccessDataSource.swift in Sources */,
 				4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */,
