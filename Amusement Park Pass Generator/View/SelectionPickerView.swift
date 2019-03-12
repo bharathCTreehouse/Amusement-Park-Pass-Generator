@@ -12,24 +12,40 @@ import UIKit
 
 class SelectionPickerView: UIView {
     
-    var picker: UIPickerView? = nil
-    var listOfOptions: [String] = []
+    private var picker: UIPickerView = UIPickerView()
+    private var listOfOptions: [String] = []
+    private var completionHandler: ((Int) -> Void)? = nil
     
     
-    required init(withPickerList list: [String]) {
+    required init(withPickerList list: [String],  completionHandler: @escaping ((Int) -> Void)) {
         
         listOfOptions = list
-        picker = UIPickerView()
-        picker!.translatesAutoresizingMaskIntoConstraints = false
+        self.completionHandler = completionHandler
+        picker.translatesAutoresizingMaskIntoConstraints = false
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(picker!)
-        picker!.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        picker!.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        picker!.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        picker!.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        picker!.dataSource = self
-        picker!.delegate = self
+        
+        let toolBar: UIToolbar = UIToolbar(frame:.zero)
+        toolBar.barStyle = .blackOpaque
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(toolBar)
+        toolBar.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        toolBar.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        toolBar.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        toolBar.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
+        toolBar.setItems([space,doneButton], animated: false)
+        
+        
+        addSubview(picker)
+        picker.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        picker.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: toolBar.bottomAnchor, constant: 8.0).isActive = true
+        picker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        picker.dataSource = self
+        picker.delegate = self
+        picker.backgroundColor = UIColor.clear
     }
     
     
@@ -38,8 +54,18 @@ class SelectionPickerView: UIView {
     }
     
     
+    @objc private func doneButtonTapped(_ sender: UIBarButtonItem) {
+        completionHandler?(picker.selectedRow(inComponent: 0))
+    }
+    
+    
+    func closeSelectionPickerView() {
+        completionHandler?(picker.selectedRow(inComponent: 0))
+    }
+    
+    
     deinit {
-        picker = nil
+        completionHandler = nil
     }
     
 }
@@ -71,7 +97,7 @@ extension SelectionPickerView: UIPickerViewDelegate {
             return listOfOptions[row]
         }
         else {
-            return ""
+            return nil
         }
         
     }

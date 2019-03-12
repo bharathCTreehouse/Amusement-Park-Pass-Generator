@@ -13,56 +13,45 @@ import Foundation
 class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
     @IBOutlet var companyTextField: UITextField!
-    let listOfCompanies: [String] = [CompaniesRegistered.acme.displayString, CompaniesRegistered.orkin.displayString, CompaniesRegistered.fedex.displayString, CompaniesRegistered.nwElectrical.displayString]
     
     
-    var entrantCompanyName: String? = nil {
+    private var entrantCompany: CompaniesRegistered? = nil {
         
         didSet {
-            
-            if entrantCompanyName == nil {
-                companyTextField.text = nil
-            }
+            companyTextField.text = entrantCompany?.displayString
         }
     }
 
 
     override func awakeFromNib() {
+        
         super.awakeFromNib()
-        // Initialization code
         
         companyTextField.delegate = self
-        
-        companyTextField.inputView = SelectionPickerView(withPickerList: listOfCompanies)
-        
-        let toolBar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0.0, y: 0.0, width: frame.size.width, height: 55.0))
-        let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
-        toolBar.setItems([space,doneButton], animated: false)
-        
-        companyTextField.inputAccessoryView = toolBar
 
-    }
-    
-    
-    
-    @objc func doneButtonTapped(_ sender: UIBarButtonItem) {
+        companyTextField.inputView = SelectionPickerView(withPickerList: CompaniesRegistered.orderedDisplayableCompanyList(), completionHandler:
+            
+            { [unowned self] (selectedIndex: Int)  in
+            
+                self.companyTextField.delegate = nil
+                self.entrantCompany = CompaniesRegistered.orderedCompanyList()[selectedIndex]
+                self.endEditing(true)
+                self.companyTextField.delegate = self
+                
+        })
         
-        endEditing(true)
-
-        let picker: UIPickerView = (companyTextField.inputView as! SelectionPickerView).picker!
-        companyTextField.text = listOfCompanies[picker.selectedRow(inComponent: 0)]
     }
     
     
     
     override func resetData() {
-        entrantCompanyName = nil
+        entrantCompany = nil
     }
     
     
+    
     deinit {
-        entrantCompanyName = nil
+        entrantCompany = nil
         companyTextField = nil
     }
 
@@ -75,12 +64,11 @@ extension EntrantCompanyInfoTableViewCell: UITextFieldDelegate {
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
         
-        guard let newText = textField.text else {
-            return
-        }
         
-        if textField == companyTextField {
-            entrantCompanyName = newText
+        let selectionView: SelectionPickerView? = (companyTextField?.inputView) as? SelectionPickerView
+        
+        if let selectionView = selectionView {
+            selectionView.closeSelectionPickerView()
         }
         
     }

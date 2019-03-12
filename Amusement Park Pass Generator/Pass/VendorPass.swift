@@ -25,6 +25,15 @@ enum CompaniesRegistered {
             
         }
     }
+    
+    
+    static func orderedDisplayableCompanyList() -> [String] {
+        return ["Acme", "Orkin", "Fedex", "NW Electrical"]
+    }
+    
+    static func orderedCompanyList() -> [CompaniesRegistered] {
+        return [.acme, orkin, fedex, nwElectrical]
+    }
 }
 
 
