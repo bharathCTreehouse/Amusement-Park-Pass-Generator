@@ -39,7 +39,7 @@ enum CompaniesRegistered {
 
 class VendorPass: ReminderPass {
     
-    let company: String
+    let company: String    //Has to be changed to one of the company enum values.
     let dateOfLastVisit: Date
     
     init(withPassNumber passNumber: Int, lastVisitDate: Date, entrant: Entrant, nameOfCompany: String, dateOfBirth: Date) {

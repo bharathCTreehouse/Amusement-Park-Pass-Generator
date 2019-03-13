@@ -27,6 +27,10 @@
 		4C15ACB32229B91A00E6791D /* EntrantTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */; };
 		4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */; };
 		4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */; };
+		4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */; };
+		4C5734FD2239517400100E7B /* MiscEntrantInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5734FB2239517400100E7B /* MiscEntrantInformationTableViewCell.xib */; };
+		4C5734FF22397ED600100E7B /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734FE22397ED600100E7B /* DatePickerView.swift */; };
+		4C5735012239875D00100E7B /* ContractEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5735002239875D00100E7B /* ContractEmployeePass.swift */; };
 		4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */; };
 		4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9807CD21E0F4A300C67A86 /* ViewController.swift */; };
 		4C9807D121E0F4A300C67A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9807CF21E0F4A300C67A86 /* Main.storyboard */; };
@@ -81,6 +85,10 @@
 		4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantTypeSelectionView.swift; sourceTree = "<group>"; };
 		4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
+		4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscEntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
+		4C5734FB2239517400100E7B /* MiscEntrantInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscEntrantInformationTableViewCell.xib; sourceTree = "<group>"; };
+		4C5734FE22397ED600100E7B /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		4C5735002239875D00100E7B /* ContractEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEmployeePass.swift; sourceTree = "<group>"; };
 		4C9807C821E0F4A300C67A86 /* Amusement Park Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9807CB21E0F4A300C67A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9807CD21E0F4A300C67A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 				4C9807FF21E38BE500C67A86 /* FoodServiceEmployeePass.swift */,
 				4C98080121E38CAC00C67A86 /* RideServiceEmployeePass.swift */,
 				4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */,
+				4C5735002239875D00100E7B /* ContractEmployeePass.swift */,
 			);
 			name = Employee;
 			sourceTree = "<group>";
@@ -230,6 +239,9 @@
 				4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */,
 				4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */,
 				4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */,
+				4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */,
+				4C5734FB2239517400100E7B /* MiscEntrantInformationTableViewCell.xib */,
+				4C5734FE22397ED600100E7B /* DatePickerView.swift */,
 			);
 			name = EntrantInformationViews;
 			sourceTree = "<group>";
@@ -411,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C15ACA82220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib in Resources */,
+				4C5734FD2239517400100E7B /* MiscEntrantInformationTableViewCell.xib in Resources */,
 				4C9807D621E0F4A700C67A86 /* LaunchScreen.storyboard in Resources */,
 				4C9807D321E0F4A700C67A86 /* Assets.xcassets in Resources */,
 				4C15ACA02214736700E6791D /* EntrantNameTableViewCell.xib in Resources */,
@@ -445,8 +458,10 @@
 				4C15ACA3221602CD00E6791D /* EntrantAddressTableViewCell.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C15ACAC222079A500E6791D /* PassGenerationView.swift in Sources */,
+				4C5734FF22397ED600100E7B /* DatePickerView.swift in Sources */,
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
 				4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */,
+				4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
 				4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */,
 				4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */,
@@ -466,6 +481,7 @@
 				4C15ACA72220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift in Sources */,
 				4C15AC962209E43300E6791D /* RideKioskMalpracticeChecker.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,
+				4C5735012239875D00100E7B /* ContractEmployeePass.swift in Sources */,
 				4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

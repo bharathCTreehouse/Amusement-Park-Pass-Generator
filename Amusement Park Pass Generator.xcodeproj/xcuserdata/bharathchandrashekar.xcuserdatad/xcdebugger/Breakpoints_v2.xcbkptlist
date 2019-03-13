@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Amusement Park Pass Generator/Controllers/ViewController.swift"
-            timestampString = "574109886.440167"
+            filePath = "Amusement Park Pass Generator/View/EntrantAddressTableViewCell.swift"
+            timestampString = "574197895.800163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "didFinishSelectingEntrantType(_:)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Amusement Park Pass Generator/View/EntrantTypeSelectionView.swift"
-            timestampString = "574109886.442549"
+            filePath = "Amusement Park Pass Generator/View/EntrantCompanyInfoTableViewCell.swift"
+            timestampString = "574197895.808104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "entrantSubTypeSegmentTapped()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "resetData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,14 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Amusement Park Pass Generator/View/EntrantTypeSelectionView.swift"
-            timestampString = "574109886.443114"
+            filePath = "Amusement Park Pass Generator/View/EntrantCompanyInfoTableViewCell.swift"
+            timestampString = "574197895.809749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "init(withEntrantTypeSelectionDelegate:)"
-            landmarkType = "7">
+            landmarkName = "entrantCompany"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

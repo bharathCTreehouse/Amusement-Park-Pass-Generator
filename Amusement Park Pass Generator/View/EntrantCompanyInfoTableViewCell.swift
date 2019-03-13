@@ -12,9 +12,16 @@ import Foundation
 
 class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
-    @IBOutlet var companyTextField: UITextField!
+    @IBOutlet private(set) var companyTextField: UITextField!
+    @IBOutlet private(set) var dateOfVisitStaticLabel: UILabel!
+    @IBOutlet private(set) var dateOfVisitLabel: UILabel!
     
-    
+    @IBOutlet private(set) var companyTextFieldBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) var dateOfVisitStaticLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) var dateOfVisitLabelBottomConstraint: NSLayoutConstraint!
+
+
+
     private var entrantCompany: CompaniesRegistered? = nil {
         
         didSet {
@@ -27,6 +34,7 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
         
         super.awakeFromNib()
         
+       
         companyTextField.delegate = self
 
         companyTextField.inputView = SelectionPickerView(withPickerList: CompaniesRegistered.orderedDisplayableCompanyList(), completionHandler:
@@ -50,9 +58,45 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
     
     
+    override func performAdditionalCustomization() {
+        
+        if state == .inActive {
+            
+            dateOfVisitLabelBottomConstraint.isActive = false
+            dateOfVisitStaticLabelBottomConstraint.isActive = false
+            companyTextFieldBottomConstraint.isActive = true
+            
+            dateOfVisitStaticLabel.isHidden = true
+            dateOfVisitLabel.isHidden = true
+        }
+        else if state == .active {
+            
+            dateOfVisitLabelBottomConstraint.isActive = true
+            dateOfVisitStaticLabelBottomConstraint.isActive = true
+            companyTextFieldBottomConstraint.isActive = false
+            
+            dateOfVisitStaticLabel.isHidden = false
+            dateOfVisitLabel.isHidden = false
+            
+            
+            //Set current date
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            dateOfVisitLabel.text = dateFormatter.string(from: Date())
+        }
+        
+    }
+    
+    
+    
     deinit {
         entrantCompany = nil
         companyTextField = nil
+        dateOfVisitStaticLabel = nil
+        dateOfVisitLabel = nil
+        companyTextFieldBottomConstraint = nil
+        dateOfVisitStaticLabelBottomConstraint = nil
+        dateOfVisitLabelBottomConstraint = nil
     }
 
 }

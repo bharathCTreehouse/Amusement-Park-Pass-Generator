@@ -96,26 +96,42 @@ class EntrantInformationTableView: UITableView {
         
         self.entrantType = entrantType
         super.init(frame: .zero, style: style)
-        dataSource = self
+        translatesAutoresizingMaskIntoConstraints = false
+
+        configureTableView()
+        setupKeyPadObservers()
         
+        (self as UIScrollView).delegate = self
+        
+    }
+    
+    
+    func configureTableView() {
+        
+        dataSource = self
+
         register(UINib.init(nibName: "EntrantNameTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantNameCell")
         
         register(UINib.init(nibName: "EntrantAddressTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantAddressCell")
         
         register(UINib.init(nibName: "EntrantCompanyInfoTableViewCell", bundle: .main), forCellReuseIdentifier: "entrantCompanyCell")
+        
+        register(UINib.init(nibName: "MiscEntrantInformationTableViewCell", bundle: .main), forCellReuseIdentifier: "miscEntrantInfoCell")
 
+        
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 44.0
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        (self as UIScrollView).delegate = self
+        keyboardDismissMode = .onDrag
+
     }
     
     
+   
     required init?(coder aDecoder: NSCoder) {
         entrantType = .classicGuest
         super.init(coder: aDecoder)
     }
+    
 }
 
 
@@ -128,7 +144,7 @@ extension EntrantInformationTableView: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return 4
     }
     
     
@@ -136,13 +152,23 @@ extension EntrantInformationTableView: UITableViewDataSource {
         
         var cell: EntrantInformationTableViewCell
         
+        
         if indexPath.row == 0 {
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: "miscEntrantInfoCell", for: indexPath) as! EntrantInformationTableViewCell
+            let miscCell:MiscEntrantInformationTableViewCell = cell as! MiscEntrantInformationTableViewCell
+            cell.enable(entrantType.requiresDateOfBirth(), view: miscCell.dateOfBirthTextField)
+            cell.enable(entrantType.requiresProjectNumber(), view: miscCell.projectNumberTextField)
+
+        }
+        
+        else if indexPath.row == 1 {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "entrantNameCell", for: indexPath) as! EntrantInformationTableViewCell
             cell.enable(entrantType.requiresName(), view: cell.contentView)
            
         }
-        else if indexPath.row == 1 {
+        else if indexPath.row == 2 {
             
              cell = tableView.dequeueReusableCell(withIdentifier: "entrantCompanyCell", for: indexPath) as! EntrantInformationTableViewCell
              cell.enable(entrantType.requiresCompanyName(), view: cell.contentView)
@@ -166,12 +192,40 @@ extension EntrantInformationTableView: UITableViewDataSource {
 
 
 
-
 extension EntrantInformationTableView: UIScrollViewDelegate {
     
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         shouldResetData = false
-
     }
+
+}
+
+
+
+extension EntrantInformationTableView {
+    
+    
+    func setupKeyPadObservers() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillDisplay(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    @objc func keyBoardWillDisplay(_ notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+        
+    }
+    
+    
+    @objc func keyBoardWillHide(_ notification: NSNotification) {
+        
+        self.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
 }

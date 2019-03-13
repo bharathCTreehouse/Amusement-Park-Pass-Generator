@@ -15,7 +15,28 @@ protocol EntrantInformationViewProtocol {
 }
 
 
+enum EntrantInfoCellState {
+    
+    case active
+    case inActive
+    
+    static func state(fromBool state: Bool) -> EntrantInfoCellState {
+        
+        if state == true {
+            return .active
+        }
+        else {
+            return .inActive
+        }
+    }
+}
+
+
 class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewProtocol {
+    
+    var state: EntrantInfoCellState = .active
+    
+    
     
     override func awakeFromNib() {
         selectionStyle = .none
@@ -24,21 +45,32 @@ class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewPr
     
     func enable(_ shouldEnable: Bool, view: UIView) {
         
+        
+        state = EntrantInfoCellState.state(fromBool: shouldEnable)
+        
         UIView.animate(withDuration: 0.6) {
             
             if shouldEnable == true {
-                self.contentView.alpha = 1.0
+                view.alpha = 1.0
             }
             else {
-                self.contentView.alpha = 0.1
+                view.alpha = 0.1
             }
-            self.contentView.isUserInteractionEnabled = shouldEnable
+            view.isUserInteractionEnabled = shouldEnable
         }
+        
+        performAdditionalCustomization()
         
     }
     
     
     func resetData() {
+        
+    }
+    
+    
+    
+    func performAdditionalCustomization() {
         
     }
     
