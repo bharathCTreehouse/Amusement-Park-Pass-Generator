@@ -238,19 +238,10 @@
 		4C15ACA922206DD300E6791D /* EntrantInformationViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C9FE426223C4CF100FAFA38 /* TableViewCells */,
+				4C9FE425223C4CC400FAFA38 /* SelectionPickerViews */,
 				4C9FE41E223BC22D00FAFA38 /* DataSourceForCells */,
 				4C15AC9B2214703E00E6791D /* EntrantInformationTableView.swift */,
-				4C15AC9D2214736700E6791D /* EntrantNameTableViewCell.swift */,
-				4C15AC9E2214736700E6791D /* EntrantNameTableViewCell.xib */,
-				4C15ACA1221602CD00E6791D /* EntrantAddressTableViewCell.swift */,
-				4C15ACA2221602CD00E6791D /* EntrantAddressTableViewCell.xib */,
-				4C15ACA52220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift */,
-				4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */,
-				4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */,
-				4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */,
-				4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */,
-				4C5734FB2239517400100E7B /* MiscEntrantInformationTableViewCell.xib */,
-				4C5734FE22397ED600100E7B /* DatePickerView.swift */,
 			);
 			name = EntrantInformationViews;
 			sourceTree = "<group>";
@@ -359,6 +350,31 @@
 				4C9FE423223BC2E200FAFA38 /* EntrantAddressDataSource.swift */,
 			);
 			name = DataSourceForCells;
+			sourceTree = "<group>";
+		};
+		4C9FE425223C4CC400FAFA38 /* SelectionPickerViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */,
+				4C5734FE22397ED600100E7B /* DatePickerView.swift */,
+			);
+			name = SelectionPickerViews;
+			sourceTree = "<group>";
+		};
+		4C9FE426223C4CF100FAFA38 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4C15AC9D2214736700E6791D /* EntrantNameTableViewCell.swift */,
+				4C15AC9E2214736700E6791D /* EntrantNameTableViewCell.xib */,
+				4C15ACA1221602CD00E6791D /* EntrantAddressTableViewCell.swift */,
+				4C15ACA2221602CD00E6791D /* EntrantAddressTableViewCell.xib */,
+				4C15ACA52220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift */,
+				4C15ACA62220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib */,
+				4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */,
+				4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */,
+				4C5734FB2239517400100E7B /* MiscEntrantInformationTableViewCell.xib */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
