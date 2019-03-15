@@ -18,30 +18,44 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
     @IBOutlet private(set) var projectNumberLabel: UILabel!
     
     
-    private var dateOfBirth: Date? = nil {
+    private(set) var miscInformationDataSource: MiscEntrantInfoDataSource? = nil {
         
         didSet {
-            if dateOfBirth == nil {
+            
+            if miscInformationDataSource == nil {
+                
                 dateOfBirthTextField.text = nil
+                projectNumberTextField.text = nil
+
             }
             else {
-                let dateFormatter: DateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yyyy"
-                dateOfBirthTextField.text = dateFormatter.string(from: dateOfBirth!)
+                
+                if miscInformationDataSource!.dateOfBirth == nil {
+                    dateOfBirthTextField.text = nil
+                }
+                else {
+                    let dateFormatter: DateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM/dd/yyyy"
+                    dateOfBirthTextField.text = dateFormatter.string(from: miscInformationDataSource!.dateOfBirth!)
+                }
+                
+                if miscInformationDataSource!.project == nil {
+                    projectNumberTextField.text = nil
+                }
+                else {
+                    projectNumberTextField.text = miscInformationDataSource!.project!.displayString
+                }
             }
+            
         }
     }
     
     
-    
-    private var projectNumber: ProjectRegistered? = nil {
-        
-        didSet {
-            projectNumberTextField.text = projectNumber?.displayString
-        }
+    func updateDataSource(with dataSource: MiscEntrantInfoDataSource) {
+        miscInformationDataSource = dataSource
     }
     
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,11 +63,15 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
         dateOfBirthTextField.delegate = self
         projectNumberTextField.delegate = self
         
-        dateOfBirthTextField.inputView = DatePickerView(withCompletionHandler: { (selectedDate: Date) in
+        dateOfBirthTextField.inputView = DatePickerView(withCompletionHandler: { [unowned self] (selectedDate: Date) in
             
             self.dateOfBirthTextField.delegate = nil
-            self.dateOfBirth = selectedDate
+            
+            self.miscInformationDataSource?.updateBirthDate(with: selectedDate)
+            self.updateDataSource(with: self.miscInformationDataSource!)
+            
             self.endEditing(true)
+            
             self.dateOfBirthTextField.delegate = self
             
         })
@@ -64,12 +82,18 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
             { [unowned self] (selectedIndex: Int)  in
                 
                 self.projectNumberTextField.delegate = nil
-                self.projectNumber = ProjectRegistered.orderedProjectList()[selectedIndex]
+                
+                let projectRegistered: ProjectRegistered = ProjectRegistered.orderedProjectList()[selectedIndex]
+                self.miscInformationDataSource?.updateProject(with: projectRegistered)
+                self.updateDataSource(with: self.miscInformationDataSource!)
+                
                 self.endEditing(true)
+                
                 self.projectNumberTextField.delegate = self
                 
         })
     }
+    
     
     
     override func enable(_ shouldEnable: Bool, view: UIView) {
@@ -88,12 +112,6 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
     }
     
     
-    override func resetData() {
-        dateOfBirth = nil
-        projectNumber = nil
-    }
-    
-    
     
     deinit {
         dateOfBirthTextField = nil
@@ -102,8 +120,7 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
         dateOfBirthLabel = nil
         ssnNumberLabel = nil
         projectNumberLabel = nil
-        dateOfBirth = nil
-        projectNumber = nil
+        miscInformationDataSource = nil
     }
 
 }

@@ -79,14 +79,26 @@ enum EntrantTypeUIIdentifier {
 
 class EntrantInformationTableView: UITableView {
     
-    var shouldResetData: Bool = false
+    
+    var miscInformationDataSource: MiscEntrantInfoDataSource = MiscEntrantInfoDataSource()
+    var nameDataSource: EntrantNameDataSource = EntrantNameDataSource()
+    var companyDataSource: EntrantCompanyDataSource = EntrantCompanyDataSource()
+    var addressDataSource: EntrantAddressDataSource = EntrantAddressDataSource()
 
     
     var entrantType: EntrantTypeUIIdentifier {
+        
         didSet {
-            shouldResetData = true
+            
             endEditing(true)
+            
+            miscInformationDataSource.reset()
+            nameDataSource.reset()
+            companyDataSource.reset()
+            addressDataSource.reset()
+            
             reloadData()
+
         }
     }
     
@@ -101,7 +113,6 @@ class EntrantInformationTableView: UITableView {
         configureTableView()
         setupKeyPadObservers()
         
-        (self as UIScrollView).delegate = self
         
     }
     
@@ -142,6 +153,7 @@ extension EntrantInformationTableView: UITableViewDataSource {
         return 1
     }
 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 4
@@ -159,6 +171,8 @@ extension EntrantInformationTableView: UITableViewDataSource {
             let miscCell:MiscEntrantInformationTableViewCell = cell as! MiscEntrantInformationTableViewCell
             cell.enable(entrantType.requiresDateOfBirth(), view: miscCell.dateOfBirthTextField)
             cell.enable(entrantType.requiresProjectNumber(), view: miscCell.projectNumberTextField)
+            
+            miscCell.updateDataSource(with: miscInformationDataSource)
 
         }
         
@@ -166,38 +180,35 @@ extension EntrantInformationTableView: UITableViewDataSource {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "entrantNameCell", for: indexPath) as! EntrantInformationTableViewCell
             cell.enable(entrantType.requiresName(), view: cell.contentView)
+            
+            let nameCell:EntrantNameTableViewCell = cell as! EntrantNameTableViewCell
+            nameCell.updateDataSource(with: nameDataSource)
+
            
         }
         else if indexPath.row == 2 {
             
              cell = tableView.dequeueReusableCell(withIdentifier: "entrantCompanyCell", for: indexPath) as! EntrantInformationTableViewCell
              cell.enable(entrantType.requiresCompanyName(), view: cell.contentView)
+            
+            let companyCell:EntrantCompanyInfoTableViewCell = cell as! EntrantCompanyInfoTableViewCell
+            companyCell.updateDataSource(with: companyDataSource)
         
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: "entrantAddressCell", for: indexPath) as! EntrantInformationTableViewCell
             cell.enable(entrantType.requiresAddress(), view: cell.contentView)
             
+            let addressCell:EntrantAddressTableViewCell = cell as! EntrantAddressTableViewCell
+            addressCell.updateDataSource(with: addressDataSource)
+            
         }
         
-        if shouldResetData == true {
-            cell.resetData()
-        }
         
         return cell
         
     }
     
-}
-
-
-
-extension EntrantInformationTableView: UIScrollViewDelegate {
-    
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        shouldResetData = false
-    }
-
 }
 
 

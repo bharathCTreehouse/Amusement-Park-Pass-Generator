@@ -10,22 +10,26 @@ import UIKit
 
 class EntrantNameTableViewCell: EntrantInformationTableViewCell {
     
-    @IBOutlet var firstNameTextField: UITextField!
-    @IBOutlet var lastNameTextField: UITextField!
+    @IBOutlet private(set) var firstNameTextField: UITextField!
+    @IBOutlet private(set) var lastNameTextField: UITextField!
     
-    
-    
-    private(set) var entrantName: PersonName? = nil {
+    private(set) var entrantNameDataSource: EntrantNameDataSource? = nil {
         
         didSet {
-            if entrantName == nil {
-                firstNameTextField.text = nil
-                lastNameTextField.text = nil
-            }
+            
+            firstNameTextField.text = entrantNameDataSource?.entrantName?.firstName
+            lastNameTextField.text = entrantNameDataSource?.entrantName?.lastName
+            
         }
     }
     
-
+    
+    
+    func updateDataSource(with dataSource: EntrantNameDataSource) {
+        entrantNameDataSource = dataSource
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,16 +39,11 @@ class EntrantNameTableViewCell: EntrantInformationTableViewCell {
     }
     
    
-    override func resetData() {
-        entrantName = nil
-    }
-    
-    
-    
+   
     deinit {
         firstNameTextField = nil
         lastNameTextField = nil
-        entrantName = nil
+        entrantNameDataSource = nil
     }
     
 }
@@ -53,16 +52,6 @@ class EntrantNameTableViewCell: EntrantInformationTableViewCell {
 
 
 extension EntrantNameTableViewCell: UITextFieldDelegate {
-    
-    
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if entrantName == nil {
-            entrantName = PersonName(firstName:"", lastName: "")
-        }
-        
-    }
-
     
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
@@ -74,13 +63,13 @@ extension EntrantNameTableViewCell: UITextFieldDelegate {
         if textField == firstNameTextField {
             
             //First name
-            entrantName?.updateFirstName(withString: newText)
+            entrantNameDataSource?.updateFirstName(with: newText)
         }
         else {
             
             //Last name
-            entrantName?.updateLastName(withString: newText)
-
+            entrantNameDataSource?.updateLastName(with: newText)
+            
         }
         
     }

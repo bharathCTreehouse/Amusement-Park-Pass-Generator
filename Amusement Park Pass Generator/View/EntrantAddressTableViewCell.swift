@@ -10,25 +10,30 @@ import UIKit
 
 class EntrantAddressTableViewCell: EntrantInformationTableViewCell {
     
-    @IBOutlet var streetAddressTextField: UITextField!
-    @IBOutlet var cityTextField: UITextField!
-    @IBOutlet var stateTextField: UITextField!
-    @IBOutlet var zipCodeTextField: UITextField!
+    @IBOutlet private(set) var streetAddressTextField: UITextField!
+    @IBOutlet private(set) var cityTextField: UITextField!
+    @IBOutlet private(set) var stateTextField: UITextField!
+    @IBOutlet private(set) var zipCodeTextField: UITextField!
     
-    private(set) var entrantAddress: Address? = nil {
+    private(set) var entrantAddressDataSource: EntrantAddressDataSource? = nil {
         
         didSet {
-            if entrantAddress == nil {
-                streetAddressTextField.text = nil
-                stateTextField.text = nil
-                cityTextField.text = nil
-                zipCodeTextField.text = nil
-            }
+            
+            streetAddressTextField.text = entrantAddressDataSource?.address?.streetAddress
+            cityTextField.text = entrantAddressDataSource?.address?.city
+            stateTextField.text = entrantAddressDataSource?.address?.state
+            zipCodeTextField.text = entrantAddressDataSource?.address?.zipCode
+            
         }
     }
-
-
-
+    
+    
+    
+    func updateDataSource(with dataSource: EntrantAddressDataSource) {
+        entrantAddressDataSource = dataSource
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,18 +46,13 @@ class EntrantAddressTableViewCell: EntrantInformationTableViewCell {
     }
     
     
-    override func resetData() {
-        entrantAddress = nil
-    }
     
-    
-   
     deinit {
         streetAddressTextField = nil
         cityTextField = nil
         stateTextField = nil
         zipCodeTextField = nil
-        entrantAddress = nil
+        entrantAddressDataSource = nil
     }
 
 }
@@ -63,15 +63,6 @@ class EntrantAddressTableViewCell: EntrantInformationTableViewCell {
 extension EntrantAddressTableViewCell: UITextFieldDelegate {
     
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if entrantAddress == nil {
-            entrantAddress = Address(streetAddress:"", city:"", state:nil, zipCode: nil)
-        }
-        
-    }
-    
-    
     public func textFieldDidEndEditing(_ textField: UITextField) {
         
         guard let newText = textField.text else {
@@ -79,17 +70,18 @@ extension EntrantAddressTableViewCell: UITextFieldDelegate {
         }
         
         if textField == streetAddressTextField {
-            entrantAddress?.updateStreetAddress(withString: newText)
+            entrantAddressDataSource?.updateStreetAddress(withString: newText)
         }
         else if textField == cityTextField {
-            entrantAddress?.updateCity(withString: newText)
+            entrantAddressDataSource?.updateCity(withString: newText)
         }
         else if textField == stateTextField {
-            entrantAddress?.updateState(withString: newText)
+            entrantAddressDataSource?.updateState(withString: newText)
         }
         else if textField == zipCodeTextField {
-            entrantAddress?.updateZipCode(withString: newText)
+            entrantAddressDataSource?.updateZipCode(withString: newText)
         }
         
     }
+    
 }

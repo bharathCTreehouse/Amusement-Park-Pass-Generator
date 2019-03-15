@@ -52,6 +52,10 @@
 		4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */; };
 		4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080521E39E9600C67A86 /* ManagerPass.swift */; };
 		4C98080B21E68C4700C67A86 /* ParkEntranceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */; };
+		4C9FE41D223BC1EF00FAFA38 /* MiscEntrantInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE41C223BC1EF00FAFA38 /* MiscEntrantInfoDataSource.swift */; };
+		4C9FE420223BC26F00FAFA38 /* EntrantNameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE41F223BC26F00FAFA38 /* EntrantNameDataSource.swift */; };
+		4C9FE422223BC2A100FAFA38 /* EntrantCompanyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE421223BC2A100FAFA38 /* EntrantCompanyDataSource.swift */; };
+		4C9FE424223BC2E200FAFA38 /* EntrantAddressDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE423223BC2E200FAFA38 /* EntrantAddressDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,10 @@
 		4C98080321E38CF200C67A86 /* MaintenanceEmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceEmployeePass.swift; sourceTree = "<group>"; };
 		4C98080521E39E9600C67A86 /* ManagerPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPass.swift; sourceTree = "<group>"; };
 		4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkEntranceManager.swift; sourceTree = "<group>"; };
+		4C9FE41C223BC1EF00FAFA38 /* MiscEntrantInfoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscEntrantInfoDataSource.swift; sourceTree = "<group>"; };
+		4C9FE41F223BC26F00FAFA38 /* EntrantNameDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantNameDataSource.swift; sourceTree = "<group>"; };
+		4C9FE421223BC2A100FAFA38 /* EntrantCompanyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantCompanyDataSource.swift; sourceTree = "<group>"; };
+		4C9FE423223BC2E200FAFA38 /* EntrantAddressDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantAddressDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +238,7 @@
 		4C15ACA922206DD300E6791D /* EntrantInformationViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C9FE41E223BC22D00FAFA38 /* DataSourceForCells */,
 				4C15AC9B2214703E00E6791D /* EntrantInformationTableView.swift */,
 				4C15AC9D2214736700E6791D /* EntrantNameTableViewCell.swift */,
 				4C15AC9E2214736700E6791D /* EntrantNameTableViewCell.xib */,
@@ -341,6 +350,17 @@
 			path = Pass;
 			sourceTree = "<group>";
 		};
+		4C9FE41E223BC22D00FAFA38 /* DataSourceForCells */ = {
+			isa = PBXGroup;
+			children = (
+				4C9FE41C223BC1EF00FAFA38 /* MiscEntrantInfoDataSource.swift */,
+				4C9FE41F223BC26F00FAFA38 /* EntrantNameDataSource.swift */,
+				4C9FE421223BC2A100FAFA38 /* EntrantCompanyDataSource.swift */,
+				4C9FE423223BC2E200FAFA38 /* EntrantAddressDataSource.swift */,
+			);
+			name = DataSourceForCells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -449,16 +469,19 @@
 			files = (
 				4C15AC7E21FF7FB800E6791D /* PersonalInformationDataSource.swift in Sources */,
 				4C15AC9F2214736700E6791D /* EntrantNameTableViewCell.swift in Sources */,
+				4C9FE422223BC2A100FAFA38 /* EntrantCompanyDataSource.swift in Sources */,
 				4C98080221E38CAC00C67A86 /* RideServiceEmployeePass.swift in Sources */,
 				4C9807FE21E38B1300C67A86 /* EmployeePass.swift in Sources */,
 				4C15AC802200B19800E6791D /* PersonalInformationReminder.swift in Sources */,
 				4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
 				4C15AC942207642100E6791D /* DateValidator.swift in Sources */,
+				4C9FE420223BC26F00FAFA38 /* EntrantNameDataSource.swift in Sources */,
 				4C15ACA3221602CD00E6791D /* EntrantAddressTableViewCell.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C15ACAC222079A500E6791D /* PassGenerationView.swift in Sources */,
 				4C5734FF22397ED600100E7B /* DatePickerView.swift in Sources */,
+				4C9FE424223BC2E200FAFA38 /* EntrantAddressDataSource.swift in Sources */,
 				4C9807FC21E385CB00C67A86 /* VIPPass.swift in Sources */,
 				4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */,
 				4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */,
@@ -483,6 +506,7 @@
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,
 				4C5735012239875D00100E7B /* ContractEmployeePass.swift in Sources */,
 				4C15AC892200D8A500E6791D /* ReminderPass.swift in Sources */,
+				4C9FE41D223BC1EF00FAFA38 /* MiscEntrantInfoDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

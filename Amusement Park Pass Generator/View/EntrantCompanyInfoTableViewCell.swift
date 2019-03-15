@@ -19,17 +19,23 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     @IBOutlet private(set) var companyTextFieldBottomConstraint: NSLayoutConstraint!
     @IBOutlet private(set) var dateOfVisitStaticLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet private(set) var dateOfVisitLabelBottomConstraint: NSLayoutConstraint!
-
-
-
-    private var entrantCompany: CompaniesRegistered? = nil {
+    
+    
+    private(set) var entrantCompanyDataSource: EntrantCompanyDataSource? = nil {
         
         didSet {
-            companyTextField.text = entrantCompany?.displayString
+            companyTextField.text = entrantCompanyDataSource?.company?.displayString
         }
     }
 
 
+    
+    func updateDataSource(with dataSource: EntrantCompanyDataSource) {
+        entrantCompanyDataSource = dataSource
+    }
+
+
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -42,7 +48,9 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
             { [unowned self] (selectedIndex: Int)  in
             
                 self.companyTextField.delegate = nil
-                self.entrantCompany = CompaniesRegistered.orderedCompanyList()[selectedIndex]
+                let companySelected: CompaniesRegistered = CompaniesRegistered.orderedCompanyList()[selectedIndex]
+                self.entrantCompanyDataSource?.updateCompany(with: companySelected)
+                self.updateDataSource(with: self.entrantCompanyDataSource!)
                 self.endEditing(true)
                 self.companyTextField.delegate = self
                 
@@ -51,16 +59,16 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     }
     
     
-    
-    override func resetData() {
-        entrantCompany = nil
+    override func enable(_ shouldEnable: Bool, view: UIView) {
+        super.enable(shouldEnable, view: view)
+        performAdditionalCustomization(forEnabledState: shouldEnable)
     }
     
     
     
-    override func performAdditionalCustomization() {
+    func performAdditionalCustomization(forEnabledState enabled: Bool) {
         
-        if state == .inActive {
+        if enabled == false {
             
             dateOfVisitLabelBottomConstraint.isActive = false
             dateOfVisitStaticLabelBottomConstraint.isActive = false
@@ -69,7 +77,7 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
             dateOfVisitStaticLabel.isHidden = true
             dateOfVisitLabel.isHidden = true
         }
-        else if state == .active {
+        else {
             
             dateOfVisitLabelBottomConstraint.isActive = true
             dateOfVisitStaticLabelBottomConstraint.isActive = true
@@ -90,7 +98,7 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
     
     
     deinit {
-        entrantCompany = nil
+        entrantCompanyDataSource = nil
         companyTextField = nil
         dateOfVisitStaticLabel = nil
         dateOfVisitLabel = nil

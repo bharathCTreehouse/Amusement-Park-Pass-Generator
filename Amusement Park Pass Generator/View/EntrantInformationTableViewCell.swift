@@ -11,31 +11,11 @@ import UIKit
 
 protocol EntrantInformationViewProtocol {
     func enable(_ shouldEnable: Bool, view: UIView)
-    func resetData()
 }
 
-
-enum EntrantInfoCellState {
-    
-    case active
-    case inActive
-    
-    static func state(fromBool state: Bool) -> EntrantInfoCellState {
-        
-        if state == true {
-            return .active
-        }
-        else {
-            return .inActive
-        }
-    }
-}
 
 
 class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewProtocol {
-    
-    var state: EntrantInfoCellState = .active
-    
     
     
     override func awakeFromNib() {
@@ -44,9 +24,6 @@ class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewPr
    
     
     func enable(_ shouldEnable: Bool, view: UIView) {
-        
-        
-        state = EntrantInfoCellState.state(fromBool: shouldEnable)
         
         UIView.animate(withDuration: 0.6) {
             
@@ -58,19 +35,6 @@ class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewPr
             }
             view.isUserInteractionEnabled = shouldEnable
         }
-        
-        performAdditionalCustomization()
-        
-    }
-    
-    
-    func resetData() {
-        
-    }
-    
-    
-    
-    func performAdditionalCustomization() {
         
     }
     
