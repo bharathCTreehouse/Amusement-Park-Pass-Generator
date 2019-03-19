@@ -16,9 +16,9 @@ enum PersonNameError: Swift.Error {
     func userDisplayString() -> String {
         
         switch self {
-            case .missingFirstName: return "First name can't be blank."
-            case .invalidFirstName: return "First name entered is invalid."
-            case .invalidLastName: return "Last name entered is invalid."
+            case .missingFirstName: return "First name can't be blank"
+            case .invalidFirstName: return "First name entered is invalid"
+            case .invalidLastName: return "Last name entered is invalid"
         }
     }
 }

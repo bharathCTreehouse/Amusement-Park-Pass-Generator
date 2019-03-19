@@ -39,23 +39,23 @@ enum CompaniesRegistered {
 
 class VendorPass: ReminderPass {
     
-    let company: String    //Has to be changed to one of the company enum values.
-    let dateOfLastVisit: Date
+    //let company: String    //Has to be changed to one of the company enum values.
+    //let dateOfLastVisit: Date
     
-    init(withPassNumber passNumber: Int, lastVisitDate: Date, entrant: Entrant, nameOfCompany: String, dateOfBirth: Date) {
+    /*init(withPassNumber passNumber: Int, lastVisitDate: Date, entrant: Entrant, nameOfCompany: String, dateOfBirth: Date) {
         
         company = nameOfCompany
         dateOfLastVisit = lastVisitDate
         super.init(withPassNumber: passNumber, dateOfBirth: dateOfBirth, entrant: entrant)
-    }
+    }*/
     
     
-    override var reminders: [InformationReminder] {
+    /*override var reminders: [InformationReminder] {
         
         var reminderCollection: [InformationReminder] = super.reminders
         reminderCollection.append(InformationReminder.dateOfLastVisit(dateOfLastVisit))
         return reminderCollection
-    }
+    }*/
     
     
     override var areasAccessible: [AreaAccess] {

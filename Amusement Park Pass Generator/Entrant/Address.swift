@@ -15,8 +15,8 @@ enum AddressError: Swift.Error {
     func userDisplayString() -> String {
         
         switch self {
-            case .missingStreetDetails: return "Street details can't be blank."
-            case .missingCity: return "City can't be blank."
+            case .missingStreetDetails: return "Street details can't be blank"
+            case .missingCity: return "City can't be blank"
         }
     }
 }
