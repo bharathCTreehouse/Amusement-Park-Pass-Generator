@@ -25,6 +25,9 @@
 		4C15ACAC222079A500E6791D /* PassGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACAB222079A500E6791D /* PassGenerationView.swift */; };
 		4C15ACB12229B51200E6791D /* EntrantTypeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */; };
 		4C15ACB32229B91A00E6791D /* EntrantTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */; };
+		4C19F4F022429A3F00AFE4FF /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */; };
+		4C19F4F22242CF9900AFE4FF /* NewPassButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */; };
+		4C19F4F422463AC400AFE4FF /* AccessTestResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */; };
 		4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */; };
 		4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */; };
 		4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */; };
@@ -94,6 +97,9 @@
 		4C15ACAB222079A500E6791D /* PassGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenerationView.swift; sourceTree = "<group>"; };
 		4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntrantTypeSelectionView.xib; sourceTree = "<group>"; };
 		4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantTypeSelectionView.swift; sourceTree = "<group>"; };
+		4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
+		4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassButtonView.swift; sourceTree = "<group>"; };
+		4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTestResultData.swift; sourceTree = "<group>"; };
 		4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
 		4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscEntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -241,6 +247,7 @@
 		4C15AC9A22146D8200E6791D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C19F4EE224299EC00AFE4FF /* Misc */,
 				4C15ACAF2229B48800E6791D /* EntrantTypeSelectionViews */,
 				4C15ACAA2220733600E6791D /* PassGenerationViews */,
 				4C15ACA922206DD300E6791D /* EntrantInformationViews */,
@@ -274,6 +281,14 @@
 				4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */,
 			);
 			name = EntrantTypeSelectionViews;
+			sourceTree = "<group>";
+		};
+		4C19F4EE224299EC00AFE4FF /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		4C9807BF21E0F4A300C67A86 = {
@@ -410,6 +425,8 @@
 				4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */,
 				4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */,
 				4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */,
+				4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */,
+				4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */,
 			);
 			name = AccessKioskControllers;
 			sourceTree = "<group>";
@@ -531,10 +548,12 @@
 				4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
 				4C15AC942207642100E6791D /* DateValidator.swift in Sources */,
+				4C19F4F22242CF9900AFE4FF /* NewPassButtonView.swift in Sources */,
 				4C9FE420223BC26F00FAFA38 /* EntrantNameDataSource.swift in Sources */,
 				4C15ACA3221602CD00E6791D /* EntrantAddressTableViewCell.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
 				4C9FE428223D6CE600FAFA38 /* SeasonPass.swift in Sources */,
+				4C19F4F022429A3F00AFE4FF /* ViewUtilities.swift in Sources */,
 				4C15ACAC222079A500E6791D /* PassGenerationView.swift in Sources */,
 				4C5734FF22397ED600100E7B /* DatePickerView.swift in Sources */,
 				4C9FE424223BC2E200FAFA38 /* EntrantAddressDataSource.swift in Sources */,
@@ -549,6 +568,7 @@
 				4C9807EE21E284FC00C67A86 /* RideAccessDataSource.swift in Sources */,
 				4C98080421E38CF200C67A86 /* MaintenanceEmployeePass.swift in Sources */,
 				4C9807F621E3799D00C67A86 /* PersonName.swift in Sources */,
+				4C19F4F422463AC400AFE4FF /* AccessTestResultData.swift in Sources */,
 				4C9807F221E3771200C67A86 /* AccessKioskManager.swift in Sources */,
 				4C98080B21E68C4700C67A86 /* ParkEntranceManager.swift in Sources */,
 				4C9FE43422401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift in Sources */,

@@ -15,6 +15,7 @@ class AccessKioskViewController: UIViewController {
     let kioskManager: AccessKioskManager = AccessKioskManager()
     var entrantPass: AccessDataSource? = nil
     var accessKioskTableView: AccessKioskTableView? = nil
+    var createNewPassView: NewPassButtonView? = nil
     
     
     init(withEntrantPass pass: AccessDataSource) {
@@ -27,16 +28,25 @@ class AccessKioskViewController: UIViewController {
         
         self.view = UIView()
         
-        accessKioskTableView = AccessKioskTableView(withAccessTestingCompletionHandler: { (kioskIdentifier: Int) in
+        createNewPassView =  NewPassButtonView(withButtonTitle: "Create New Pass", buttonActionHandler: { [unowned self] () -> () in
             
-            print(kioskIdentifier)
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        view.addSubview(createNewPassView!)
+        createNewPassView!.configure(withConstraints: [.leading(referenceConstraint: view.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: view.bottomAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: view.trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .height(constantOffSet: 80.0, equalityType: .equalTo)])
+        
+        
+        
+        accessKioskTableView = AccessKioskTableView(withAccessTestingCompletionHandler: { [unowned self] (kiosk: KioskType) in
+            
+            self.swipePass(atKiosk: kiosk)
+            
         }, displayableDataSource: entrantPass as! PersonalInformationDataSource)
         
         view.addSubview(accessKioskTableView!)
-        accessKioskTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        accessKioskTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        accessKioskTableView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        accessKioskTableView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        accessKioskTableView!.configure(withConstraints: [.leading(referenceConstraint: view.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: view.trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: view.topAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: createNewPassView!.topAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         
     }
     
@@ -49,6 +59,7 @@ class AccessKioskViewController: UIViewController {
     deinit {
         entrantPass = nil
         accessKioskTableView = nil
+        createNewPassView = nil
     }
     
     
@@ -59,7 +70,7 @@ class AccessKioskViewController: UIViewController {
 extension AccessKioskViewController {
     
     
-    @IBAction func swipeButtonTapped(_ sender: UIButton) {
+    func swipePass(atKiosk kiosk: KioskType) {
         
         
         if entrantPass == nil {
@@ -68,43 +79,43 @@ extension AccessKioskViewController {
         
         
         do {
-            switch sender.tag {
+            switch kiosk {
                 
-            case 8:
+            case .amusement:
                 let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .amusement)
                 handleAccess(toArea: .amusement, withPermissionGrant: hasAccess)
                 
-            case 9:
+            case .kitchen:
                 let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .kitchen)
                 handleAccess(toArea: .kitchen, withPermissionGrant: hasAccess)
+               
                 
-            case 10:
+            case .rideControl:
                 let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .rideControl)
                 handleAccess(toArea: .rideControl, withPermissionGrant: hasAccess)
                 
-            case 11:
+            case .maintenance:
                 let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .maintenance)
                 handleAccess(toArea: .maintenance, withPermissionGrant: hasAccess)
                 
-            case 12:
+            case .office:
                 let hasAccess = try kioskManager.swipe(pass: entrantPass!, atArea: .office)
                 handleAccess(toArea: .office, withPermissionGrant: hasAccess)
                 
                 
-                
-            case 13:
+            case .ride:
                 let rideAccess: (Bool,Bool) = try kioskManager.swipeForRideWith(pass: entrantPass!)
                 handleAccessToRide(withPermsissionDetails: rideAccess)
                 
-            case 14:
+                
+            case .food:
                 let foodDiscount: Int? = try kioskManager.swipeForFoodWith(pass: entrantPass!)
                 handleAccessToFoodCounter(withDiscountPrivilege: foodDiscount)
                 
-            case 15:
+            case .merchandise:
                 let merchandiseDiscount: Int? = try kioskManager.swipeForMerchandiseWith(pass: entrantPass!)
                 handleAccessToMerchandiseCounter(withDiscountPrivilege: merchandiseDiscount)
                 
-            default: break
                 
             }
             

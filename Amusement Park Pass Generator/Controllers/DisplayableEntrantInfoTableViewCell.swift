@@ -32,10 +32,8 @@ class DisplayableEntrantInfoTableViewCell: UITableViewCell {
             
             displayableEntrantInfoView = DisplayableEntrantInformationView(withDisplayableDataSource: dataSource)
             contentView.addSubview(displayableEntrantInfoView!)
-            displayableEntrantInfoView!.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0).isActive = true
-            displayableEntrantInfoView!.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0).isActive = true
-            displayableEntrantInfoView!.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.0).isActive = true
-            displayableEntrantInfoView!.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30.0).isActive = true
+            
+            displayableEntrantInfoView!.configure(withConstraints: [.leading(referenceConstraint: contentView.leadingAnchor, constantOffSet: 16.0, equalityType: .equalTo), .trailing(referenceConstraint: contentView.trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .top(referenceConstraint: contentView.topAnchor, constantOffSet: 16.0, equalityType: .equalTo), .bottom(referenceConstraint: contentView.bottomAnchor, constantOffSet: -30.0, equalityType: .equalTo)])
             
         }
         else {

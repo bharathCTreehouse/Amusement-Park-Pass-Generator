@@ -41,6 +41,9 @@
                                 <state key="normal" title="Amusement">
                                     <color key="titleColor" red="0.24313725490196078" green="0.59607843137254901" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="amusementKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="abW-8z-nZf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-KE-fnc">
                                 <rect key="frame" x="119" y="0.0" width="63" height="58"/>
@@ -49,6 +52,9 @@
                                 <state key="normal" title="Kitchen">
                                     <color key="titleColor" red="0.24313725490196078" green="0.59607843137254901" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="kitchenKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ywa-rH-SVz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phu-s5-6yW">
                                 <rect key="frame" x="202" y="0.0" width="86" height="58"/>
@@ -57,6 +63,9 @@
                                 <state key="normal" title="Ride control">
                                     <color key="titleColor" red="0.24313725490196078" green="0.59607843137254901" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="rideControlKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sxY-y0-Rgs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -73,6 +82,9 @@
                                 <state key="normal" title="Maintenance">
                                     <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="maintenanceKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fNA-i1-DAN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49W-y1-F2n">
                                 <rect key="frame" x="157.5" y="0.0" width="66.5" height="58"/>
@@ -81,6 +93,9 @@
                                 <state key="normal" title="Office">
                                     <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="officeKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VMc-GI-OpF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFt-6w-KYg">
                                 <rect key="frame" x="244" y="0.0" width="44" height="58"/>
@@ -89,6 +104,9 @@
                                 <state key="normal" title="Ride">
                                     <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="rideKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="K2K-at-8AQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -105,6 +123,9 @@
                                 <state key="normal" title="Food">
                                     <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="foodKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BeT-5w-J0i"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-4p-cfC">
                                 <rect key="frame" x="154" y="0.0" width="134" height="58"/>
@@ -113,6 +134,9 @@
                                 <state key="normal" title="Merchandise">
                                     <color key="titleColor" red="0.24313725489999999" green="0.59607843140000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="merchandiseKioskTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RdJ-0k-Xy2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -121,9 +145,39 @@
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mme-DY-G0T">
                         <rect key="frame" x="16" y="946" width="288" height="150"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Test result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElO-6r-GV0">
+                                <rect key="frame" x="16" y="30" width="256" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-u6-A9B">
+                                <rect key="frame" x="16" y="65.5" width="256" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ed5-5d-bdb">
+                                <rect key="frame" x="16" y="75.5" width="256" height="24"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                <color key="textColor" red="0.93437178970000001" green="0.3052304039" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="RUX-u6-A9B" firstAttribute="top" secondItem="ElO-6r-GV0" secondAttribute="bottom" constant="10" id="4Fg-d0-u02"/>
+                            <constraint firstItem="RUX-u6-A9B" firstAttribute="centerX" secondItem="mme-DY-G0T" secondAttribute="centerX" id="COd-LL-51p"/>
                             <constraint firstAttribute="height" constant="150" id="Ech-5k-U56"/>
+                            <constraint firstItem="ElO-6r-GV0" firstAttribute="top" secondItem="mme-DY-G0T" secondAttribute="top" constant="30" id="FhE-Sb-8M5"/>
+                            <constraint firstAttribute="trailing" secondItem="ElO-6r-GV0" secondAttribute="trailing" constant="16" id="J3A-hZ-yfc"/>
+                            <constraint firstItem="ElO-6r-GV0" firstAttribute="centerX" secondItem="mme-DY-G0T" secondAttribute="centerX" id="QHM-ZO-cdr"/>
+                            <constraint firstAttribute="trailing" secondItem="ed5-5d-bdb" secondAttribute="trailing" constant="16" id="iW7-kC-Bmx"/>
+                            <constraint firstItem="ed5-5d-bdb" firstAttribute="top" secondItem="RUX-u6-A9B" secondAttribute="bottom" constant="10" id="jpN-Ci-roV"/>
+                            <constraint firstAttribute="bottom" secondItem="ed5-5d-bdb" secondAttribute="bottom" constant="10" id="qJA-6h-muE"/>
+                            <constraint firstAttribute="trailing" secondItem="RUX-u6-A9B" secondAttribute="trailing" constant="16" id="u3H-Kc-jFq"/>
+                            <constraint firstItem="ed5-5d-bdb" firstAttribute="centerX" secondItem="mme-DY-G0T" secondAttribute="centerX" id="xEs-UR-zZx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -154,6 +208,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="specialMessageLabel" destination="ed5-5d-bdb" id="0yB-a8-afv"/>
+                <outlet property="testDetailLabel" destination="RUX-u6-A9B" id="8yX-Db-v5x"/>
+                <outlet property="testResultLabel" destination="ElO-6r-GV0" id="i7F-3w-nwX"/>
+            </connections>
             <point key="canvasLocation" x="28.710937499999996" y="300.65885797950216"/>
         </tableViewCell>
     </objects>

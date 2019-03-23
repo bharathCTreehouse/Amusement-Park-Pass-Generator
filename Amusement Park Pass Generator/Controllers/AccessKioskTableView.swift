@@ -10,13 +10,26 @@ import Foundation
 import UIKit
 
 
+enum KioskType {
+    
+    case amusement
+    case kitchen
+    case rideControl
+    case maintenance
+    case office
+    case ride
+    case food
+    case merchandise
+}
+
+
 class AccessKioskTableView: UITableView {
     
-    var accessTestingCompletionHandler: ((Int) -> Void)? = nil
+    var accessTestingCompletionHandler: ((KioskType) -> Void)? = nil
     var displayableDataSource: PersonalInformationDataSource? = nil
     
     
-    init(withAccessTestingCompletionHandler handler: @escaping ((Int) -> Void), displayableDataSource: PersonalInformationDataSource ) {
+    init(withAccessTestingCompletionHandler handler: @escaping ((KioskType) -> Void), displayableDataSource: PersonalInformationDataSource ) {
         
         accessTestingCompletionHandler = handler
         self.displayableDataSource = displayableDataSource
@@ -64,10 +77,18 @@ extension AccessKioskTableView: UITableViewDataSource {
         }
         else {
             let cell: AccessTestingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "accessTestingCell", for: indexPath) as! AccessTestingTableViewCell
+            cell.delegate = self
             return cell
         }
         
     }
+}
+
+
+
+extension AccessKioskTableView: AccessTestingCellProtocol {
     
-    
+    func testAccess(forKiosk kiosk: KioskType) {
+        accessTestingCompletionHandler?(kiosk)
+    }
 }

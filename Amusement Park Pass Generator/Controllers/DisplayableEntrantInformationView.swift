@@ -35,7 +35,6 @@ class DisplayableEntrantInformationView: UIView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         update(withDisplayableDataSource: dataSource)
-        //backgroundColor = UIColor.yellow
     }
     
     
@@ -69,106 +68,94 @@ extension DisplayableEntrantInformationView {
     
     func setupSubViews() {
         
-        //The imageView
+        //The entrant image view
         if entrantImageView == nil {
             
             entrantImageView = UIImageView()
-            entrantImageView!.translatesAutoresizingMaskIntoConstraints = false
             addSubview(entrantImageView!)
-            entrantImageView!.topAnchor.constraint(equalTo: topAnchor, constant: 40.0).isActive = true
-            entrantImageView!.widthAnchor.constraint(equalToConstant: 290.0).isActive = true
-            entrantImageView!.heightAnchor.constraint(equalToConstant: 260.0).isActive = true
-            entrantImageView!.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -90.0).isActive = true
+            
+            entrantImageView!.configure(withConstraints: [.top(referenceConstraint: topAnchor, constantOffSet: 40.0, equalityType: .equalTo),  .width(constantOffSet: 290.0, equalityType: .equalTo),  .height(constantOffSet: 260.0, equalityType: .equalTo),  .centerX(referenceConstraint: centerXAnchor, constantOffSet: -90.0, equalityType: .equalTo)])
+            
             entrantImageView!.image = UIImage(named: "FaceImage")
         }
         
+        //Entrant name label
         if entrantNameLabel == nil {
             
             entrantNameLabel = UILabel()
-            entrantNameLabel!.translatesAutoresizingMaskIntoConstraints = false
             entrantNameLabel!.numberOfLines = 0
             entrantNameLabel!.font = UIFont.boldSystemFont(ofSize: 37.0)
             addSubview(entrantNameLabel!)
-            entrantNameLabel!.topAnchor.constraint(equalTo: topAnchor, constant: 40.0).isActive = true
-            entrantNameLabel!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            entrantNameLabel!.leadingAnchor.constraint(equalTo: entrantImageView!.trailingAnchor, constant: 65.0).isActive = true
+            
+            entrantNameLabel!.configure(withConstraints: [.top(referenceConstraint: topAnchor, constantOffSet: 40.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantImageView!.trailingAnchor, constantOffSet: 65.0, equalityType: .equalTo)])
+            
         }
-        entrantNameLabel!.text = "Gundu"
+        entrantNameLabel!.text = " "
         
         
         for (_, data) in displayableDataSource!.informationCollected.enumerated() {
             
-            print(data)
             switch data {
                 
-            case let .firstName(name): entrantNameLabel!.text = name
-            case let .lastName(name): entrantNameLabel!.text = "\(entrantNameLabel!.text ?? "") \(name)"
-            default: break
+                case let .firstName(name): entrantNameLabel!.text = name
+                case let .lastName(name): entrantNameLabel!.text = "\(entrantNameLabel!.text ?? "") \(name)"
+                default: break
             }
         }
         
         
-        
+        //Pass type label
         if passTypeLabel == nil {
             
             passTypeLabel = UILabel()
-            passTypeLabel!.translatesAutoresizingMaskIntoConstraints = false
             passTypeLabel!.numberOfLines = 0
             passTypeLabel!.font = UIFont.boldSystemFont(ofSize: 31.0)
             passTypeLabel!.textColor = UIColor.lightGray
             addSubview(passTypeLabel!)
-            passTypeLabel!.topAnchor.constraint(equalTo: entrantNameLabel!.bottomAnchor, constant: 8.0).isActive = true
-            passTypeLabel!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            passTypeLabel!.leadingAnchor.constraint(equalTo: entrantNameLabel!.leadingAnchor).isActive = true
+            
+            passTypeLabel!.configure(withConstraints: [.top(referenceConstraint: entrantNameLabel!.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo),  .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo),  .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         }
         passTypeLabel!.text = displayableDataSource?.passTypeDescription
         
         
-        
+        //Ride access label
         if rideLabel == nil {
             
             rideLabel = UILabel()
-            rideLabel!.translatesAutoresizingMaskIntoConstraints = false
             rideLabel!.numberOfLines = 0
             rideLabel!.font = UIFont.boldSystemFont(ofSize: 26.0)
             rideLabel!.textColor = UIColor.lightGray
             addSubview(rideLabel!)
-            rideLabel!.topAnchor.constraint(equalTo: passTypeLabel!.bottomAnchor, constant: 32.0).isActive = true
-            rideLabel!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            rideLabel!.leadingAnchor.constraint(equalTo: entrantNameLabel!.leadingAnchor).isActive = true
+            
+            rideLabel!.configure(withConstraints: [.top(referenceConstraint: passTypeLabel!.bottomAnchor, constantOffSet: 32.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         }
         rideLabel!.text = "Unlimited rides"
         
         
-        
+        //Food discount label
         if foodLabel == nil {
             
             foodLabel = UILabel()
-            foodLabel!.translatesAutoresizingMaskIntoConstraints = false
             foodLabel!.numberOfLines = 0
             foodLabel!.font = UIFont.boldSystemFont(ofSize: 26.0)
             foodLabel!.textColor = UIColor.lightGray
             addSubview(foodLabel!)
-            foodLabel!.topAnchor.constraint(equalTo: rideLabel!.bottomAnchor, constant: 8.0).isActive = true
-            foodLabel!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            foodLabel!.leadingAnchor.constraint(equalTo: entrantNameLabel!.leadingAnchor).isActive = true
+            
+            foodLabel!.configure(withConstraints: [.top(referenceConstraint: rideLabel!.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         }
         foodLabel!.text = "10% Food Discount"
         
         
-        
+        //Merchandise discount label
         if merchandiseLabel == nil {
             
             merchandiseLabel = UILabel()
-            merchandiseLabel!.translatesAutoresizingMaskIntoConstraints = false
             merchandiseLabel!.numberOfLines = 0
             merchandiseLabel!.font = UIFont.boldSystemFont(ofSize: 26.0)
             merchandiseLabel!.textColor = UIColor.lightGray
             addSubview(merchandiseLabel!)
-            merchandiseLabel!.topAnchor.constraint(equalTo: foodLabel!.bottomAnchor, constant: 8.0).isActive = true
-            merchandiseLabel!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            merchandiseLabel!.leadingAnchor.constraint(equalTo: entrantNameLabel!.leadingAnchor).isActive = true
-             merchandiseLabel!.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40.0).isActive = true
+            
+            merchandiseLabel!.configure(withConstraints: [.top(referenceConstraint: foodLabel!.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: bottomAnchor, constantOffSet: -40.0, equalityType: .equalTo)])
         }
         merchandiseLabel!.text = "20% Merch Discount"
         

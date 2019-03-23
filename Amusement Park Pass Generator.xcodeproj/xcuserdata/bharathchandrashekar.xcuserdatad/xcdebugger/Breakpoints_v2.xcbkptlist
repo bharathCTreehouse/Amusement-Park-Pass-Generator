@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Amusement Park Pass Generator/Controllers/DisplayableEntrantInformationView.swift"
-            timestampString = "574723260.058334"
+            filePath = "Amusement Park Pass Generator/Controllers/AccessKioskViewController.swift"
+            timestampString = "575063795.710349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "setupSubViews()"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "deinit"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
