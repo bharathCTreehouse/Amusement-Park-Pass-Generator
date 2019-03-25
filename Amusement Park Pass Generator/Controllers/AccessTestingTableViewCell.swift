@@ -77,3 +77,20 @@ extension AccessTestingTableViewCell {
         delegate?.testAccess(forKiosk: .merchandise)
     }
 }
+
+
+
+
+extension AccessTestingTableViewCell {
+    
+    
+    func update(withTestData testData: AccessTestResultProtocol) {
+        
+        visualTestResultView.backgroundColor = testData.accessTestIndicationColor
+        testResultLabel.text = testData.primaryResultText
+        testDetailLabel.text = testData.secondaryResultText
+        specialMessageLabel.text = testData.specialMessageText
+        
+    }
+    
+}

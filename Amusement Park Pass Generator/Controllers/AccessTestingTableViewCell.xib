@@ -212,6 +212,7 @@
                 <outlet property="specialMessageLabel" destination="ed5-5d-bdb" id="0yB-a8-afv"/>
                 <outlet property="testDetailLabel" destination="RUX-u6-A9B" id="8yX-Db-v5x"/>
                 <outlet property="testResultLabel" destination="ElO-6r-GV0" id="i7F-3w-nwX"/>
+                <outlet property="visualTestResultView" destination="mme-DY-G0T" id="hbW-vT-H4O"/>
             </connections>
             <point key="canvasLocation" x="28.710937499999996" y="300.65885797950216"/>
         </tableViewCell>

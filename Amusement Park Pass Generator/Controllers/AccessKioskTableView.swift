@@ -92,3 +92,22 @@ extension AccessKioskTableView: AccessTestingCellProtocol {
         accessTestingCompletionHandler?(kiosk)
     }
 }
+
+
+
+
+extension AccessKioskTableView {
+    
+    
+    func update(withTestResultData testData: AccessTestResultData) {
+        
+        let cell: AccessTestingTableViewCell? = cellForRow(at: IndexPath(row: 1, section: 0)) as? AccessTestingTableViewCell
+        
+        guard let unwrappedCell = cell else {
+            return
+        }
+        
+        unwrappedCell.update(withTestData: testData)
+    }
+    
+}
