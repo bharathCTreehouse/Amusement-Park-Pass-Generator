@@ -22,7 +22,7 @@ class SeasonPass: Pass {
     
     override var discountPrivileges: [Discount] {
         
-        return [.food(10), .merchandise(10)]
+        return [.food(10), .merchandise(20)]
     }
     
 }

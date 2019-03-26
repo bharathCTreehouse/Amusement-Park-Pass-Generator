@@ -135,22 +135,18 @@ extension AccessKioskViewController {
         
         if granted ==  true {
             
+            //Permission granted. User has access.
+            //Check for birthday only when entrant has access to the requested area.
+
             let message: String? = (isBirthDayOfEntrant() == true
                 ) ? "A very happy birthday to you !" : nil
             
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: "Access granted"), secondaryResultText: nil, specialMessageText: message)
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: "Access granted"), secondaryResultText: area.areaAccessString(), specialMessageText: message)
             accessKioskTableView?.update(withTestResultData: accessData)
-            
-            //Permission granted. User has access.
-            //self.accessStatusLabel.text = "Access granted! \(area.areaAccessString())"
-            
-            //Check for birthday only when entrant has access to the requested area.
-            //checkForBirthday()
             
         }
         else {
             //No permission.
-            //self.accessStatusLabel.text = "Access denied! \(AreaAccess.undefined.areaAccessString())"
             
             let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"), secondaryResultText: nil, specialMessageText: nil)
             accessKioskTableView?.update(withTestResultData: accessData)
@@ -165,18 +161,25 @@ extension AccessKioskViewController {
         if details.hasAccess == true {
             
             //Access granted.
-            var userText: String = "Access granted! \(RideAccess.all.rideAccessString())"
+            
+            var userText: String = "\(RideAccess.all.rideAccessString())"
             if details.canSkipLines == true {
                 userText = userText + ". \(RideAccess.skipRideLines.rideAccessString())"
             }
-            //self.accessStatusLabel.text = userText
             
-            //Check for birthday only when entrant has access to the requested area.
-            //checkForBirthday()
+            //Check for birthday only when entrant has access to rides.
+            let message: String? = (isBirthDayOfEntrant() == true
+                ) ? "A very happy birthday to you !" : nil
+            
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: "Access granted"), secondaryResultText: userText, specialMessageText: message)
+            accessKioskTableView?.update(withTestResultData: accessData)
+            print("\(accessData.primaryResultText)")
         }
         else {
+            
             //No access to rides.
-            //self.accessStatusLabel.text = "Access denied! \(RideAccess.undefined.rideAccessString())"
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"), secondaryResultText: nil, specialMessageText: nil)
+            accessKioskTableView?.update(withTestResultData: accessData)
             
         }
         
@@ -187,12 +190,11 @@ extension AccessKioskViewController {
         
         if percentage != nil {
             //Entrant has a discount on food.
-            handleAccessTo(discountArea: .food(percentage!))
-           // checkForBirthday()
+            handleAccessTo(discountArea: .food(percentage!), hasDiscount: true)
         }
         else {
             //No discount on food.
-            handleAccessTo(discountArea: .none)
+            handleAccessTo(discountArea: .none, hasDiscount: false)
             
         }
     }
@@ -202,19 +204,31 @@ extension AccessKioskViewController {
         
         if percentage != nil {
             //Entrant has a discount on merchandise.
-            handleAccessTo(discountArea: .merchandise(percentage!))
-            //checkForBirthday()
+            handleAccessTo(discountArea: .merchandise(percentage!), hasDiscount: true)
         }
         else {
             //No discount on merchandise.
-            handleAccessTo(discountArea: .none)
+            handleAccessTo(discountArea: .none, hasDiscount: false)
             
         }
     }
     
     
-    func handleAccessTo(discountArea area: Discount) {
-        //self.accessStatusLabel.text = area.discountString()
+    func handleAccessTo(discountArea area: Discount, hasDiscount: Bool) {
+        
+        if hasDiscount == true {
+            
+            let message: String? = (isBirthDayOfEntrant() == true
+                ) ? "A very happy birthday to you !" : nil
+            
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: area.discountString()), secondaryResultText: nil, specialMessageText: message)
+            accessKioskTableView?.update(withTestResultData: accessData)
+        }
+        else {
+            
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: area.discountString()), secondaryResultText: nil, specialMessageText: nil)
+            accessKioskTableView?.update(withTestResultData: accessData)
+        }
     }
     
     
@@ -222,7 +236,7 @@ extension AccessKioskViewController {
 
 
 
-//Birthday related UI updates.
+//Birthday check
 extension AccessKioskViewController {
     
     
