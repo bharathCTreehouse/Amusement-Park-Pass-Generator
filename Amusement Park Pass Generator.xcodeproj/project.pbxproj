@@ -66,6 +66,7 @@
 		4C9FE432223E774F00FAFA38 /* AccessTestingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */; };
 		4C9FE43422401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */; };
 		4C9FE436224020E500FAFA38 /* DisplayableEntrantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */; };
+		4CB7FC51224CC1B600DC6E76 /* AmusementParkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessTestingTableViewCell.xib; sourceTree = "<group>"; };
 		4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableEntrantInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableEntrantInformationView.swift; sourceTree = "<group>"; };
+		4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmusementParkAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 		4C15AC902202385C00E6791D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4CB7FC4F224CC10900DC6E76 /* AlertControllers */,
 				4C9FE42C223E5A9700FAFA38 /* AccessKioskControllers */,
 				4C9FE42B223E5A6000FAFA38 /* ParkEntranceControllers */,
 			);
@@ -431,6 +434,14 @@
 			name = AccessKioskControllers;
 			sourceTree = "<group>";
 		};
+		4CB7FC4F224CC10900DC6E76 /* AlertControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */,
+			);
+			name = AlertControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,6 +559,7 @@
 				4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */,
 				4C9807EC21E284B900C67A86 /* AreaAccessDataSource.swift in Sources */,
 				4C15AC942207642100E6791D /* DateValidator.swift in Sources */,
+				4CB7FC51224CC1B600DC6E76 /* AmusementParkAlertController.swift in Sources */,
 				4C19F4F22242CF9900AFE4FF /* NewPassButtonView.swift in Sources */,
 				4C9FE420223BC26F00FAFA38 /* EntrantNameDataSource.swift in Sources */,
 				4C15ACA3221602CD00E6791D /* EntrantAddressTableViewCell.swift in Sources */,

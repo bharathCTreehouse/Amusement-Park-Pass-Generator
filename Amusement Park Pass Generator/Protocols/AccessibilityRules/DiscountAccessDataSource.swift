@@ -20,8 +20,8 @@ enum Discount {
     func discountString() -> String {
         
         switch self {
-            case let .food(value): return "\(value) percent discount on food"
-            case let .merchandise(value): return "\(value) percent discount on merchandise"
+            case let .food(value): return "\(value) % discount on food"
+            case let .merchandise(value): return "\(value) % discount on merchandise"
             default:
                 return "No discount. Sorry!"
         }

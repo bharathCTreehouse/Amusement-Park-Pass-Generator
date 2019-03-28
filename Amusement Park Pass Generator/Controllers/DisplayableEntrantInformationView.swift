@@ -24,7 +24,7 @@ class DisplayableEntrantInformationView: UIView {
         didSet {
             
             //Perform UI updates here.
-            setupSubViews()
+            setupAndConfigureSubViews()
         }
     }
     
@@ -66,7 +66,30 @@ class DisplayableEntrantInformationView: UIView {
 extension DisplayableEntrantInformationView {
     
     
-    func setupSubViews() {
+    func setupAndConfigureSubViews() {
+        
+        //The entrant image view
+        configureEntrantImageView()
+        
+        //Entrant name label
+        configureEntrantNameLabel()
+        
+        //Pass type label
+        configurePassTypeLabel()
+        
+        //Ride access label
+        configureRideLabel()
+        
+        //Food discount label
+        configureFoodDiscountLabel()
+        
+        //Merchandise discount label
+        configureMerchandiseDiscountLabel()
+    }
+    
+    
+    
+    func configureEntrantImageView() {
         
         //The entrant image view
         if entrantImageView == nil {
@@ -78,6 +101,10 @@ extension DisplayableEntrantInformationView {
             
             entrantImageView!.image = UIImage(named: "FaceImage")
         }
+    }
+    
+    
+    func configureEntrantNameLabel() {
         
         //Entrant name label
         if entrantNameLabel == nil {
@@ -103,6 +130,11 @@ extension DisplayableEntrantInformationView {
             }
         }
         
+    }
+    
+    
+    
+    func configurePassTypeLabel() {
         
         //Pass type label
         if passTypeLabel == nil {
@@ -117,6 +149,10 @@ extension DisplayableEntrantInformationView {
         }
         passTypeLabel!.text = displayableDataSource?.passTypeDescription
         
+    }
+    
+    
+    func configureRideLabel() {
         
         //Ride access label
         if rideLabel == nil {
@@ -129,8 +165,20 @@ extension DisplayableEntrantInformationView {
             
             rideLabel!.configure(withConstraints: [.top(referenceConstraint: passTypeLabel!.bottomAnchor, constantOffSet: 32.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         }
-        rideLabel!.text = "Unlimited rides"
+        rideLabel!.text = " "
         
+        let rideAccess: RideAccessDataSource? = displayableDataSource as? RideAccessDataSource
+        if let rideAccess = rideAccess {
+            if rideAccess.ridePrivileges.contains(.all) ==  true {
+                rideLabel!.text = "*  \(RideAccess.all.rideAccessString())"
+            }
+        }
+        
+    }
+    
+    
+    
+    func configureFoodDiscountLabel() {
         
         //Food discount label
         if foodLabel == nil {
@@ -143,8 +191,27 @@ extension DisplayableEntrantInformationView {
             
             foodLabel!.configure(withConstraints: [.top(referenceConstraint: rideLabel!.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         }
-        foodLabel!.text = "10% Food Discount"
+        foodLabel!.text = " "
         
+        let foodCounterDiscount: DiscountAccessDataSource? = displayableDataSource as? DiscountAccessDataSource
+        
+        if let foodCounterDiscount = foodCounterDiscount {
+            
+            for discountPrivilege in foodCounterDiscount.discountPrivileges {
+                
+                switch discountPrivilege {
+                    
+                    case .food(_): foodLabel!.text = "*  \(discountPrivilege.discountString())"
+                    default: break
+                }
+            }
+            
+        }
+        
+    }
+    
+    
+    func configureMerchandiseDiscountLabel() {
         
         //Merchandise discount label
         if merchandiseLabel == nil {
@@ -157,8 +224,24 @@ extension DisplayableEntrantInformationView {
             
             merchandiseLabel!.configure(withConstraints: [.top(referenceConstraint: foodLabel!.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantNameLabel!.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: bottomAnchor, constantOffSet: -40.0, equalityType: .equalTo)])
         }
-        merchandiseLabel!.text = "20% Merch Discount"
+        merchandiseLabel!.text = " "
         
+        
+        let merchandiseCounterDiscount: DiscountAccessDataSource? = displayableDataSource as? DiscountAccessDataSource
+        
+        if let merchandiseCounterDiscount = merchandiseCounterDiscount {
+            
+            for discountPrivilege in merchandiseCounterDiscount.discountPrivileges {
+                
+                switch discountPrivilege {
+                    
+                    case .merchandise(_): merchandiseLabel!.text = "*  \(discountPrivilege.discountString())"
+                    default: break
+                    
+                }
+            }
+            
+        }
         
     }
     

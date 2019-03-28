@@ -50,7 +50,7 @@ class AccessKioskViewController: UIViewController {
         
     }
     
-    
+   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -122,10 +122,13 @@ extension AccessKioskViewController {
         }
             
         catch let error as ParkError {
-            //self.accessStatusLabel.text = error.userDisplayString()
+            if error == .requestingAccessTooSoon {
+                handleMalpractice()
+            }
+            showAlert(withMessage: error.userDisplayString())
         }
         catch {
-            //self.accessStatusLabel.text = ParkError.unknown.userDisplayString()
+            showAlert(withMessage: ParkError.unknown.userDisplayString())
         }
         
     }
@@ -148,7 +151,7 @@ extension AccessKioskViewController {
         else {
             //No permission.
             
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"), secondaryResultText: nil, specialMessageText: nil)
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"))
             accessKioskTableView?.update(withTestResultData: accessData)
             
         }
@@ -173,12 +176,11 @@ extension AccessKioskViewController {
             
             let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: "Access granted"), secondaryResultText: userText, specialMessageText: message)
             accessKioskTableView?.update(withTestResultData: accessData)
-            print("\(accessData.primaryResultText)")
         }
         else {
             
             //No access to rides.
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"), secondaryResultText: nil, specialMessageText: nil)
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "Access denied"))
             accessKioskTableView?.update(withTestResultData: accessData)
             
         }
@@ -226,9 +228,17 @@ extension AccessKioskViewController {
         }
         else {
             
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: area.discountString()), secondaryResultText: nil, specialMessageText: nil)
+            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: area.discountString()))
             accessKioskTableView?.update(withTestResultData: accessData)
         }
+    }
+    
+    
+    
+    func handleMalpractice() {
+        
+        let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .initial(color: UIColor.groupTableViewBackground, primaryResultText: "Test Results"))
+        accessKioskTableView?.update(withTestResultData: accessData)
     }
     
     
@@ -256,6 +266,17 @@ extension AccessKioskViewController {
         
         return false
         
+    }
+    
+}
+
+
+//Alert controllers
+extension AccessKioskViewController {
+    
+    func showAlert(withMessage alertMessage: String) {
+        
+        AmusementParkAlertController.showAlertController(forViewController: self, handler: nil, listOfButtonTitles: ["OK"], alertTitle: "Error", alertMessage: alertMessage)
     }
     
 }
