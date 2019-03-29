@@ -15,6 +15,8 @@ enum PersonalInfo {
     case city(String)
     case state(String)
     case zipCode(String)
+    case company(CompaniesRegistered)
+    case project(ProjectRegistered)
 }
 
 

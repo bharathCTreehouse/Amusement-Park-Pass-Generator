@@ -129,13 +129,18 @@ class ParkEntranceManager {
                 entrantPass = ManagerPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             
-            case let .vendor(name, company, dateOfBirth: birthDate):
+        case let .vendor(name, company, dateOfBirth: birthDate, dateOfVisit: visitDate):
+            
+                //TODO: Validate date of birth just like how it is done for senior and child entrants.
                 try validate(name: name)
                 if company == nil {
                     throw PassGenerationFailure.passGenerationFailed("Company information is missing")
                 }
                 else if birthDate == nil {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
+                }
+                else if visitDate == nil {
+                    throw PassGenerationFailure.passGenerationFailed("Failed to generate date of visit")
                 }
                 entrantPass = VendorPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate!, entrant: entrant)
             

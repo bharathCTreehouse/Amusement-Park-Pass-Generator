@@ -13,7 +13,7 @@ enum EntrantType {
     case guest (GuestType)
     case employee (EmployeeType)
     case manager (PersonName?, Address?)
-    case vendor (PersonName?, CompaniesRegistered?, dateOfBirth: Date?)
+    case vendor (PersonName?, CompaniesRegistered?, dateOfBirth: Date?, dateOfVisit: Date?)
     
     func nameOfEntrant() -> PersonName? {
         
@@ -24,7 +24,7 @@ enum EntrantType {
             case let .employee(.maintenance(name, _)):  return name
             case let .employee(.contract(name, _, _)): return name
             case let .manager((name, _)): return name
-            case let .vendor((name, _, _)): return name
+            case let .vendor((name, _, _, _)): return name
             case let .guest(.seasonPassGuest(name, _)): return name
             case let .guest(.seniorGuest(name, dateOfBirth: _)): return name
 
@@ -63,11 +63,47 @@ enum EntrantType {
             case .guest(.seasonPassGuest(_, _)): return "Season guest pass"
             case .guest(.seniorGuest(_, dateOfBirth: _)): return "Senior guest pass"
             case .guest(.freeChild): return "Child guest pass"
-            case .vendor(_, _, dateOfBirth: _): return "Vendor pass"
+            case .vendor(_, _, dateOfBirth: _, dateOfVisit: _): return "Vendor pass"
            
 
 
         }
+    }
+    
+    func dateOfBirthOfEntrant() -> Date? {
+        
+        switch self {
+            
+            case let .vendor(_, _, dateOfBirth: dob, dateOfVisit: _): return dob
+            case let .guest(.seniorGuest(_, dateOfBirth: dob)): return dob
+            case let .guest(.freeChild(dateOfBirth: dob)): return dob
+            default: return nil
+            
+        }
+    }
+    
+    
+    func companyEntrantBelongsTo() -> CompaniesRegistered? {
+        
+        switch self {
+            
+            case let .vendor((_, company, _, _)): return company
+            default: return nil
+
+        }
+        
+    }
+    
+    
+    func projectEntrantIsWorkingOn() -> ProjectRegistered? {
+        
+        switch self {
+            
+            case let .employee(.contract(_, _, project)): return project
+            default: return nil
+
+        }
+        
     }
 }
 

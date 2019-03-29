@@ -88,6 +88,7 @@ extension ViewController {
         let project: ProjectRegistered? = entrantInfoTableView?.miscInformationDataSource.project
         let name: PersonName? = entrantInfoTableView?.nameDataSource.entrantName
         let company: CompaniesRegistered? = entrantInfoTableView?.companyDataSource.company
+        let dateOfVisit: Date? = entrantInfoTableView?.companyDataSource.dateOfVisit
         let address: Address? = entrantInfoTableView?.addressDataSource.address
         
         
@@ -148,7 +149,7 @@ extension ViewController {
             
             //Vendor
             case .vendor:
-                typeOfEntrant = EntrantType.vendor(name, company, dateOfBirth: dateOfBirth)
+                typeOfEntrant = EntrantType.vendor(name, company, dateOfBirth: dateOfBirth, dateOfVisit: dateOfVisit)
             
             
         }

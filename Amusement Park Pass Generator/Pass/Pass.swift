@@ -72,6 +72,13 @@ extension Pass: PersonalInformationDataSource {
             data.append(PersonalInfo.state(address.city))
             
         }
+        if let company = self.entrant.type.companyEntrantBelongsTo() {
+            data.append(PersonalInfo.company(company))
+        }
+        if let project = self.entrant.type.projectEntrantIsWorkingOn() {
+            data.append(PersonalInfo.project(project))
+        }
+        
         return data
     }
     

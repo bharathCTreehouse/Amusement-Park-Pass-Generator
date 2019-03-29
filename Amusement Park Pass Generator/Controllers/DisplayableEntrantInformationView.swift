@@ -12,6 +12,7 @@ import UIKit
 
 class DisplayableEntrantInformationView: UIView {
     
+    var occupationInfoLabel: UILabel? = nil
     var entrantImageView: UIImageView? = nil
     var entrantNameLabel: UILabel? = nil
     var passTypeLabel: UILabel? = nil
@@ -68,6 +69,9 @@ extension DisplayableEntrantInformationView {
     
     func setupAndConfigureSubViews() {
         
+        //The entrant's occupational details label
+        configureOccupationInfoLabel()
+        
         //The entrant image view
         configureEntrantImageView()
         
@@ -88,6 +92,32 @@ extension DisplayableEntrantInformationView {
     }
     
     
+    func configureOccupationInfoLabel() {
+        
+        if occupationInfoLabel == nil {
+            
+            occupationInfoLabel = UILabel()
+            occupationInfoLabel!.font = UIFont.boldSystemFont(ofSize: 31.0)
+            occupationInfoLabel!.numberOfLines = 0
+            occupationInfoLabel!.textColor = UIColor.lightGray
+            occupationInfoLabel!.textAlignment = .center
+            addSubview(occupationInfoLabel!)
+            
+            occupationInfoLabel!.configure(withConstraints: [.centerX(referenceConstraint: centerXAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: topAnchor, constantOffSet: 40.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -20.0, equalityType: .equalTo)])
+        }
+        occupationInfoLabel!.text = "Company/Project: NA"
+        
+        for (_, data) in displayableDataSource!.informationCollected.enumerated() {
+            
+            switch data {
+                
+                case let .company(companyRegistered): occupationInfoLabel!.text = "Company: \(companyRegistered.displayString)"
+                case let .project(projectRegistered): occupationInfoLabel!.text = "Project: \(projectRegistered.displayString)"
+                default: break
+            }
+        }
+    }
+    
     
     func configureEntrantImageView() {
         
@@ -97,7 +127,7 @@ extension DisplayableEntrantInformationView {
             entrantImageView = UIImageView()
             addSubview(entrantImageView!)
             
-            entrantImageView!.configure(withConstraints: [.top(referenceConstraint: topAnchor, constantOffSet: 40.0, equalityType: .equalTo),  .width(constantOffSet: 290.0, equalityType: .equalTo),  .height(constantOffSet: 260.0, equalityType: .equalTo),  .centerX(referenceConstraint: centerXAnchor, constantOffSet: -90.0, equalityType: .equalTo)])
+            entrantImageView!.configure(withConstraints: [.top(referenceConstraint: occupationInfoLabel!.bottomAnchor, constantOffSet: 40.0, equalityType: .equalTo),  .width(constantOffSet: 290.0, equalityType: .equalTo),  .height(constantOffSet: 260.0, equalityType: .equalTo),  .centerX(referenceConstraint: centerXAnchor, constantOffSet: -90.0, equalityType: .equalTo)])
             
             entrantImageView!.image = UIImage(named: "FaceImage")
         }
@@ -114,7 +144,7 @@ extension DisplayableEntrantInformationView {
             entrantNameLabel!.font = UIFont.boldSystemFont(ofSize: 37.0)
             addSubview(entrantNameLabel!)
             
-            entrantNameLabel!.configure(withConstraints: [.top(referenceConstraint: topAnchor, constantOffSet: 40.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantImageView!.trailingAnchor, constantOffSet: 65.0, equalityType: .equalTo)])
+            entrantNameLabel!.configure(withConstraints: [.top(referenceConstraint: occupationInfoLabel!.bottomAnchor, constantOffSet: 40.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -16.0, equalityType: .equalTo), .leading(referenceConstraint: entrantImageView!.trailingAnchor, constantOffSet: 65.0, equalityType: .equalTo)])
             
         }
         entrantNameLabel!.text = " "

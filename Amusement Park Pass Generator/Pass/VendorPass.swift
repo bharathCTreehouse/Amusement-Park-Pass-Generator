@@ -34,6 +34,19 @@ enum CompaniesRegistered {
     static func orderedCompanyList() -> [CompaniesRegistered] {
         return [.acme, orkin, fedex, nwElectrical]
     }
+    
+    
+    func areasPermittedToAccess() -> [AreaAccess] {
+        
+        switch self {
+            
+            case .acme: return [.kitchen]
+            case .orkin: return [.amusement, .rideControl, .kitchen]
+            case .fedex: return [.maintenance, .office]
+            case .nwElectrical: return [.amusement, .rideControl, .kitchen, .maintenance, .office]
+        }
+        
+    }
 }
 
 
@@ -50,21 +63,21 @@ class VendorPass: ReminderPass {
     }*/
     
     
-    /*override var reminders: [InformationReminder] {
-        
-        var reminderCollection: [InformationReminder] = super.reminders
-        reminderCollection.append(InformationReminder.dateOfLastVisit(dateOfLastVisit))
-        return reminderCollection
-    }*/
-    
     
     override var areasAccessible: [AreaAccess] {
         
-        var areas: [AreaAccess] = super.areasAccessible
-        areas.append(.kitchen)
-        return areas
-
+        if let company = self.entrant.type.companyEntrantBelongsTo() {
+            return company.areasPermittedToAccess()
+        }
+        else {
+            return super.areasAccessible
+        }
         
+    }
+    
+    
+    override var ridePrivileges: [RideAccess] {
+        return [.undefined]
     }
 }
 
