@@ -51,7 +51,7 @@ class EntrantNameTableViewCell: EntrantInformationTableViewCell {
 
 
 
-extension EntrantNameTableViewCell: UITextFieldDelegate {
+extension EntrantNameTableViewCell {
     
     
     public func textFieldDidEndEditing(_ textField: UITextField) {

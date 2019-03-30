@@ -45,11 +45,7 @@ class AccessKioskManager {
     //Can handle access to all kinds of area for any kind of pass.
     func swipe(pass: AccessDataSource, atArea area: AreaAccess) throws -> Bool {
         
-        if area == .undefined {
-            //You are requesting access to an unknown/undefined location.
-            throw ParkError.requestingUnknownLocationAccess
-        }
-        else if pass.hasValidAreaAccess == false {
+        if pass.hasValidAreaAccess == false {
             //Your pass does not seem to have proper access. Pass not generated properly.
             throw ParkError.passGenerationError
 

@@ -10,16 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
     var entrantInfoTableView: EntrantInformationTableView? = nil
     let entranceManager: ParkEntranceManager = ParkEntranceManager()
-    var entrantPass: AccessDataSource? = nil {
-        
-        didSet {
-            //updateSpecialMessageLabel(withText: nil)
-            //accessStatusLabel.text = nil
-        }
-    }
+    var entrantPass: AccessDataSource? = nil
 
     
     override func viewDidLoad() {
@@ -84,6 +77,7 @@ extension ViewController {
     func generatePass() {
         
         
+        //Gather data from the UI.
         let dateOfBirth: Date? = entrantInfoTableView?.miscInformationDataSource.dateOfBirth
         let project: ProjectRegistered? = entrantInfoTableView?.miscInformationDataSource.project
         let name: PersonName? = entrantInfoTableView?.nameDataSource.entrantName
@@ -170,18 +164,27 @@ extension ViewController {
         var pass: AccessDataSource? = nil
         do {
             pass = try entranceManager.pass(forEntrantType: type)
-            print("Pass generated successfully")
-            print("\(String(describing: ((pass as? PersonalInformationDataSource)?.passTypeDescription)))")
         }
         catch let PassGenerationFailure.passGenerationFailed(reason) {
-            print("Failed to generate pass: \(reason).")
+            showAlert(withMessage: "Failed to generate pass: \(reason).")
         }
         catch {
-            print("Failed to generate pass: An unknown error has occurred. Please try generating again.")
+            showAlert(withMessage: "Failed to generate pass: An unknown error has occurred. Please try generating again.")
         }
         return pass
         
     }
+}
+
+
+
+extension ViewController {
+    
+    func showAlert(withMessage alertMessage: String) {
+        
+        AmusementParkAlertController.showAlertController(forViewController: self, handler: nil, listOfButtonTitles: ["OK"], alertTitle: "Error", alertMessage: alertMessage)
+    }
+    
 }
 
 

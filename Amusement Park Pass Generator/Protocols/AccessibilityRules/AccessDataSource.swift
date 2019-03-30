@@ -21,20 +21,22 @@ protocol AccessDataSource: AreaAccessDataSource, RideAccessDataSource, DiscountA
 extension AccessDataSource {
     
     var hasValidAreaAccess: Bool {
-        return !areasAccessible.isEmpty && !areasAccessible.contains(.undefined) && uniqueIdentifier.isValid
+        return !areasAccessible.isEmpty && uniqueIdentifier.isValid
     }
     
     
     var hasValidRideAccess: Bool {
-        return !ridePrivileges.isEmpty && !ridePrivileges.contains(.undefined) && uniqueIdentifier.isValid
+        return uniqueIdentifier.isValid
     }
     
     
     var hasValidDiscountAccess: Bool {
         
-        var hasFailed: Bool = discountPrivileges.isEmpty == true ||  !uniqueIdentifier.isValid
+        return uniqueIdentifier.isValid
         
-        if hasFailed == false {
+        //var hasFailed: Bool = discountPrivileges.isEmpty == true ||  !uniqueIdentifier.isValid
+        
+        /*if hasFailed == false {
             
             let _: Bool =  discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
                 
@@ -51,7 +53,7 @@ extension AccessDataSource {
         }
         else {
             return !hasFailed
-        }
+        }*/
         
     }
 }

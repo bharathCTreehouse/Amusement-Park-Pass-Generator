@@ -60,7 +60,7 @@ class EntrantAddressTableViewCell: EntrantInformationTableViewCell {
 
 
 
-extension EntrantAddressTableViewCell: UITextFieldDelegate {
+extension EntrantAddressTableViewCell {
     
     
     public func textFieldDidEndEditing(_ textField: UITextField) {

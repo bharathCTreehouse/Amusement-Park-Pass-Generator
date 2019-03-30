@@ -16,7 +16,6 @@ enum AreaAccess {
     case rideControl
     case maintenance
     case office
-    case undefined
     
     func areaAccessString() -> String {
         
@@ -26,10 +25,7 @@ enum AreaAccess {
             case .rideControl: return "You have access to ride control areas"
             case .maintenance: return "You have access to maintenance area"
             case .office: return "You have access to office area"
-
-
-            default:
-                return "You have no access"
+            
         }
     }
 }

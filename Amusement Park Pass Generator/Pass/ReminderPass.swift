@@ -10,15 +10,14 @@ import Foundation
 
 class ReminderPass: Pass, PersonalInformationReminder {
     
-    let dateOfBirth: Date
-    
-    init(withPassNumber passNumber: Int, dateOfBirth: Date, entrant: Entrant) {
-        self.dateOfBirth = dateOfBirth
-        super.init(withPassNumber: passNumber, entrant: entrant)
-    }
-    
     var reminders: [InformationReminder] {
-        return [InformationReminder.dataOfBirth(dateOfBirth)]
+        
+        if let dob = entrant.type.dateOfBirthOfEntrant() {
+            return [InformationReminder.dataOfBirth(dob)]
+        }
+        else {
+            return []
+        }
     }
 }
 

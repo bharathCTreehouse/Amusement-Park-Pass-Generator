@@ -127,7 +127,7 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
 
 
 
-extension MiscEntrantInformationTableViewCell: UITextFieldDelegate {
+extension MiscEntrantInformationTableViewCell {
     
     
     public func textFieldDidEndEditing(_ textField: UITextField) {

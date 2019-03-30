@@ -58,7 +58,7 @@ enum ProjectRegistered {
 class ContractEmployeePass: EmployeePass {
     
     override var discountPrivileges: [Discount] {
-        return [.none]
+        return []
     }
     
     override var areasAccessible: [AreaAccess] {
@@ -73,7 +73,17 @@ class ContractEmployeePass: EmployeePass {
     
     
     override var ridePrivileges: [RideAccess] {
-        return [.undefined]
+        return []
+    }
+    
+    
+    override var informationCollected: [PersonalInfo] {
+        
+        var data: [PersonalInfo] = super.informationCollected
+        if let project = self.entrant.type.projectEntrantIsWorkingOn() {
+            data.append(PersonalInfo.project(project))
+        }
+        return data
     }
     
 }

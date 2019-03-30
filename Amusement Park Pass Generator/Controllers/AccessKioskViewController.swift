@@ -192,12 +192,11 @@ extension AccessKioskViewController {
         
         if percentage != nil {
             //Entrant has a discount on food.
-            handleAccessTo(discountArea: .food(percentage!), hasDiscount: true)
+            handleAccessTo(discountArea: .food(percentage!))
         }
         else {
             //No discount on food.
-            handleAccessTo(discountArea: .none, hasDiscount: false)
-            
+            handleNoDiscountScenarioOnFood()
         }
     }
     
@@ -206,31 +205,37 @@ extension AccessKioskViewController {
         
         if percentage != nil {
             //Entrant has a discount on merchandise.
-            handleAccessTo(discountArea: .merchandise(percentage!), hasDiscount: true)
+            handleAccessTo(discountArea: .merchandise(percentage!))
         }
         else {
             //No discount on merchandise.
-            handleAccessTo(discountArea: .none, hasDiscount: false)
-            
+            handleNoDiscountScenarioOnMerchandise()
         }
     }
     
     
-    func handleAccessTo(discountArea area: Discount, hasDiscount: Bool) {
+    func handleAccessTo(discountArea area: Discount) {
         
-        if hasDiscount == true {
-            
-            let message: String? = (isBirthDayOfEntrant() == true
-                ) ? "A very happy birthday to you !" : nil
-            
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: area.discountString()), secondaryResultText: nil, specialMessageText: message)
-            accessKioskTableView?.update(withTestResultData: accessData)
-        }
-        else {
-            
-            let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: area.discountString()))
-            accessKioskTableView?.update(withTestResultData: accessData)
-        }
+        let message: String? = (isBirthDayOfEntrant() == true
+            ) ? "A very happy birthday to you !" : nil
+        
+        let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.green, primaryResultText: area.discountString()), secondaryResultText: nil, specialMessageText: message)
+        accessKioskTableView?.update(withTestResultData: accessData)
+    }
+    
+    
+    func handleNoDiscountScenarioOnFood() {
+        
+        let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "No discount on food. Sorry !"))
+        accessKioskTableView?.update(withTestResultData: accessData)
+    }
+    
+    
+    
+    func handleNoDiscountScenarioOnMerchandise() {
+        
+        let accessData: AccessTestResultData =  AccessTestResultData(withAccessStatus: .granted(color: UIColor.red, primaryResultText: "No discount on merchandise. Sorry !"))
+        accessKioskTableView?.update(withTestResultData: accessData)
     }
     
     

@@ -118,7 +118,7 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
 
 
 
-extension EntrantCompanyInfoTableViewCell: UITextFieldDelegate {
+extension EntrantCompanyInfoTableViewCell {
     
     
     public func textFieldDidEndEditing(_ textField: UITextField) {

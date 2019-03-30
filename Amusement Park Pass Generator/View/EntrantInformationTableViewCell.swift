@@ -39,3 +39,14 @@ class EntrantInformationTableViewCell: UITableViewCell, EntrantInformationViewPr
     }
     
 }
+
+
+extension EntrantInformationTableViewCell: UITextFieldDelegate {
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}

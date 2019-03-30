@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Pass: AccessDataSource {
+class Pass: AccessDataSource, PersonalInformationDataSource {
     
     var passNumber: PassIdentifier = 0
     
@@ -35,7 +35,7 @@ class Pass: AccessDataSource {
     
     //MARK: DiscountAccessDataSource
     var discountPrivileges: [Discount] {
-        return [.none]
+        return []
     }
     
     
@@ -43,11 +43,10 @@ class Pass: AccessDataSource {
     var uniqueIdentifier: PassIdentifier {
         return passNumber
     }
-}
-
-
-
-extension Pass: PersonalInformationDataSource {
+    
+    
+    
+    //MARK: PersonalInformationDataSource
     
     /*Information collected here will be used to display on the pass*/
     
@@ -72,21 +71,14 @@ extension Pass: PersonalInformationDataSource {
             data.append(PersonalInfo.state(address.city))
             
         }
-        if let company = self.entrant.type.companyEntrantBelongsTo() {
-            data.append(PersonalInfo.company(company))
-        }
-        if let project = self.entrant.type.projectEntrantIsWorkingOn() {
-            data.append(PersonalInfo.project(project))
-        }
-        
         return data
     }
     
     
     /*Information collected here will be used to display on the pass*/
-
+    
     var passTypeDescription: String {
         return self.entrant.type.passTypeString()
     }
-
 }
+

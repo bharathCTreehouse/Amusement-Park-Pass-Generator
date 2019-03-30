@@ -68,7 +68,7 @@ class ParkEntranceManager {
                 }
                 do {
                     try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.under(age: 5)))
-                    entrantPass = ReminderPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate!, entrant: entrant)
+                    entrantPass = ReminderPass(withPassNumber: (entrantCount + 1), entrant: entrant)
                 }
                 catch DateError.invalidDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
@@ -94,7 +94,7 @@ class ParkEntranceManager {
                 }
                 do {
                     try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.above(age: 59)))
-                    entrantPass = SeniorCitizenPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate!, entrant: entrant)
+                    entrantPass = SeniorCitizenPass(withPassNumber: (entrantCount + 1), entrant: entrant)
                 }
                 catch DateError.invalidDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
@@ -142,12 +142,12 @@ class ParkEntranceManager {
                 else if visitDate == nil {
                     throw PassGenerationFailure.passGenerationFailed("Failed to generate date of visit")
                 }
-                entrantPass = VendorPass(withPassNumber: (entrantCount + 1), dateOfBirth: birthDate!, entrant: entrant)
+                entrantPass = VendorPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
         }
         
         
-       if entrantPass?.areasAccessible.isEmpty == true || entrantPass?.discountPrivileges.isEmpty == true || entrantPass?.ridePrivileges.isEmpty == true {
+       if entrantPass?.areasAccessible.isEmpty == true {
             
             throw PassGenerationFailure.passGenerationFailed("Unable to provide required access.")
         }

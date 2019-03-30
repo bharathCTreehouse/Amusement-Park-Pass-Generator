@@ -52,18 +52,6 @@ enum CompaniesRegistered {
 
 class VendorPass: ReminderPass {
     
-    //let company: String    //Has to be changed to one of the company enum values.
-    //let dateOfLastVisit: Date
-    
-    /*init(withPassNumber passNumber: Int, lastVisitDate: Date, entrant: Entrant, nameOfCompany: String, dateOfBirth: Date) {
-        
-        company = nameOfCompany
-        dateOfLastVisit = lastVisitDate
-        super.init(withPassNumber: passNumber, dateOfBirth: dateOfBirth, entrant: entrant)
-    }*/
-    
-    
-    
     override var areasAccessible: [AreaAccess] {
         
         if let company = self.entrant.type.companyEntrantBelongsTo() {
@@ -72,12 +60,21 @@ class VendorPass: ReminderPass {
         else {
             return super.areasAccessible
         }
-        
     }
     
     
     override var ridePrivileges: [RideAccess] {
-        return [.undefined]
+        return []
+    }
+    
+    
+    override var informationCollected: [PersonalInfo] {
+        
+        var data: [PersonalInfo] = super.informationCollected
+        if let company = self.entrant.type.companyEntrantBelongsTo() {
+            data.append(PersonalInfo.company(company))
+        }
+        return data
     }
 }
 
