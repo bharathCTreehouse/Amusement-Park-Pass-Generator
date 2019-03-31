@@ -63,9 +63,6 @@ class ParkEntranceManager {
             
             case let .guest(.freeChild(dateOfBirth: birthDate)):
                 
-                if birthDate == nil {
-                    throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
-                }
                 do {
                     try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.under(age: 5)))
                     entrantPass = ReminderPass(withPassNumber: (entrantCount + 1), entrant: entrant)
@@ -89,9 +86,6 @@ class ParkEntranceManager {
                 
                 try validate(name: name)
                 
-                if birthDate == nil {
-                    throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
-                }
                 do {
                     try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.above(age: 59)))
                     entrantPass = SeniorCitizenPass(withPassNumber: (entrantCount + 1), entrant: entrant)
@@ -131,18 +125,27 @@ class ParkEntranceManager {
             
         case let .vendor(name, company, dateOfBirth: birthDate, dateOfVisit: visitDate):
             
-                //TODO: Validate date of birth just like how it is done for senior and child entrants.
                 try validate(name: name)
                 if company == nil {
                     throw PassGenerationFailure.passGenerationFailed("Company information is missing")
                 }
-                else if birthDate == nil {
-                    throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
-                }
                 else if visitDate == nil {
                     throw PassGenerationFailure.passGenerationFailed("Failed to generate date of visit")
                 }
-                entrantPass = VendorPass(withPassNumber: (entrantCount + 1), entrant: entrant)
+                
+                //Have set the criteria for a vendor to be above the age of 13 - Child Labour law in India :)
+                do {
+                    try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.above(age: 13)))
+                    
+                    entrantPass = VendorPass(withPassNumber: (entrantCount + 1), entrant: entrant)
+                    
+                }
+                catch DateError.invalidDate {
+                    throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
+                }
+                catch DateError.missingDate {
+                    throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
+                }
             
         }
         

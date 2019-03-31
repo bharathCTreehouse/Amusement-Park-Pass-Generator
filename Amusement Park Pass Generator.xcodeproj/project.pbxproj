@@ -28,6 +28,9 @@
 		4C19F4F022429A3F00AFE4FF /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */; };
 		4C19F4F22242CF9900AFE4FF /* NewPassButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */; };
 		4C19F4F422463AC400AFE4FF /* AccessTestResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */; };
+		4C4EA7C52251195B00F2D951 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C32251195B00F2D951 /* AccessDenied.wav */; };
+		4C4EA7C62251195B00F2D951 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C42251195B00F2D951 /* AccessGranted.wav */; };
+		4C4EA7C822511B9300F2D951 /* AccessKioskSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */; };
 		4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */; };
 		4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */; };
 		4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */; };
@@ -101,6 +104,9 @@
 		4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassButtonView.swift; sourceTree = "<group>"; };
 		4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTestResultData.swift; sourceTree = "<group>"; };
+		4C4EA7C32251195B00F2D951 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
+		4C4EA7C42251195B00F2D951 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
+		4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskSoundManager.swift; sourceTree = "<group>"; };
 		4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
 		4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscEntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +300,15 @@
 			name = Misc;
 			sourceTree = "<group>";
 		};
+		4C4EA7C22251193900F2D951 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				4C4EA7C32251195B00F2D951 /* AccessDenied.wav */,
+				4C4EA7C42251195B00F2D951 /* AccessGranted.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		4C9807BF21E0F4A300C67A86 = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +330,7 @@
 		4C9807CA21E0F4A300C67A86 /* Amusement Park Pass Generator */ = {
 			isa = PBXGroup;
 			children = (
+				4C4EA7C22251193900F2D951 /* Sounds */,
 				4C15AC9A22146D8200E6791D /* View */,
 				4C15AC92220763EB00E6791D /* Validators */,
 				4C15AC91220238AB00E6791D /* Protocols */,
@@ -430,6 +446,7 @@
 				4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */,
 				4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */,
 				4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */,
+				4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */,
 			);
 			name = AccessKioskControllers;
 			sourceTree = "<group>";
@@ -526,6 +543,8 @@
 				4C9FE432223E774F00FAFA38 /* AccessTestingTableViewCell.xib in Resources */,
 				4C15ACA82220434C00E6791D /* EntrantCompanyInfoTableViewCell.xib in Resources */,
 				4C5734FD2239517400100E7B /* MiscEntrantInformationTableViewCell.xib in Resources */,
+				4C4EA7C52251195B00F2D951 /* AccessDenied.wav in Resources */,
+				4C4EA7C62251195B00F2D951 /* AccessGranted.wav in Resources */,
 				4C9807D621E0F4A700C67A86 /* LaunchScreen.storyboard in Resources */,
 				4C9807D321E0F4A700C67A86 /* Assets.xcassets in Resources */,
 				4C15ACA02214736700E6791D /* EntrantNameTableViewCell.xib in Resources */,
@@ -592,6 +611,7 @@
 				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */,
+				4C4EA7C822511B9300F2D951 /* AccessKioskSoundManager.swift in Sources */,
 				4C15ACA72220434C00E6791D /* EntrantCompanyInfoTableViewCell.swift in Sources */,
 				4C15AC962209E43300E6791D /* RideKioskMalpracticeChecker.swift in Sources */,
 				4C9807CC21E0F4A300C67A86 /* AppDelegate.swift in Sources */,

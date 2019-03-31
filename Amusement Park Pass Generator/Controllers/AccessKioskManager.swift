@@ -41,16 +41,23 @@ class AccessKioskManager {
     
     lazy var malpracticeChecker: RideKioskMalpracticeChecker = RideKioskMalpracticeChecker()
     
+    var accessSoundManager: AccessKioskSoundManager = AccessKioskSoundManager()
+    
     
     //Can handle access to all kinds of area for any kind of pass.
     func swipe(pass: AccessDataSource, atArea area: AreaAccess) throws -> Bool {
         
         if pass.hasValidAreaAccess == false {
             //Your pass does not seem to have proper access. Pass not generated properly.
+            //Play access denied sound.
+            accessSoundManager.playSound(forAccessGrant: false)
             throw ParkError.passGenerationError
 
         }
-        return pass.isPermitted(toArea: area)
+        
+        let accessGranted: Bool = pass.isPermitted(toArea: area)
+        accessSoundManager.playSound(forAccessGrant: accessGranted)
+        return accessGranted
         
     }
     
@@ -59,6 +66,7 @@ class AccessKioskManager {
     func swipeForRideWith(pass: AccessDataSource) throws -> (hasAccess: Bool, canSkipLine: Bool) {
         
         if pass.hasValidRideAccess == false {
+            accessSoundManager.playSound(forAccessGrant: false)
             throw ParkError.passGenerationError
         }
         else {
@@ -67,18 +75,30 @@ class AccessKioskManager {
             
             if ride.hasAccess == true {
                 
-                //Entrant has access to ride. Check for too soon access.
+                //Entrant has access to ride.
                 
+                //Check for too soon access.
                 let isSwipedRecently: Bool = entrantTryingToCheatUsing(pass: pass)
+                
                 if isSwipedRecently == true {
+                    
+                    //Play access denied sound.
+                    accessSoundManager.playSound(forAccessGrant: false)
                     throw ParkError.requestingAccessTooSoon
                 }
                 else {
+                    //Play access granted sound.
+                    accessSoundManager.playSound(forAccessGrant: true)
+                    
                     store(pass: pass, withTimeLimitInSeconds: 5)
                     return (hasAccess: true, canSkipLine: ride.canSkipLines)
                 }
             }
             else {
+                
+                //Play access denied sound.
+                accessSoundManager.playSound(forAccessGrant: false)
+
                 //No access to rides. No question of skipping lines.
                 return (hasAccess: false, canSkipLine: false)
                 
@@ -93,10 +113,17 @@ class AccessKioskManager {
     func swipeForFoodWith(pass: AccessDataSource) throws -> Int? {
         
         if  pass.hasValidDiscountAccess == false {
+            accessSoundManager.playSound(forAccessGrant: false)
             throw ParkError.passGenerationError
         }
         else {
-            return pass.discountAtFoodCounter()
+            
+            guard let foodDiscount = pass.discountAtFoodCounter() else {
+                accessSoundManager.playSound(forAccessGrant: false)
+                return nil
+            }
+            accessSoundManager.playSound(forAccessGrant: true)
+            return foodDiscount
         }
         
     }
@@ -106,15 +133,23 @@ class AccessKioskManager {
     func swipeForMerchandiseWith(pass: AccessDataSource) throws -> Int? {
         
         if  pass.hasValidDiscountAccess == false {
+            accessSoundManager.playSound(forAccessGrant: false)
             throw ParkError.passGenerationError
         }
         else {
-            return pass.discountAtMerchandiseCounter()
+            guard let merchDiscount = pass.discountAtMerchandiseCounter() else {
+                accessSoundManager.playSound(forAccessGrant: false)
+                return nil
+            }
+            accessSoundManager.playSound(forAccessGrant: true)
+            return merchDiscount
+            
         }
         
     }
     
 }
+
 
 
 extension AccessKioskManager {

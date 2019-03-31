@@ -33,7 +33,16 @@ class DateValidator {
         }
         
         
-       let currentDate: Date = Date()
+        let df: DateFormatter = DateFormatter()
+        df.dateFormat = "MM/dd/yyyy"
+        var currentDate: Date = Date()
+        let dString: String? = df.string(from: currentDate)
+        currentDate = df.date(from: dString!)!
+        
+        let givenDateString: String? = df.string(from: date!)
+        if givenDateString == dString {
+            throw DateError.invalidDate
+        }
 
         
         switch type {
