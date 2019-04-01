@@ -174,14 +174,8 @@ class ParkEntranceManager {
         do {
             try entrant.validate()
         }
-        catch PersonNameError.invalidFirstName {
-            return PersonNameError.invalidFirstName
-        }
-        catch PersonNameError.missingFirstName {
-            return PersonNameError.missingFirstName
-        }
-        catch PersonNameError.invalidLastName {
-            return PersonNameError.invalidLastName
+        catch let error as PersonNameError {
+            return error
         }
         catch {
             
@@ -197,11 +191,8 @@ class ParkEntranceManager {
         do {
             try address.validate()
         }
-        catch AddressError.missingStreetDetails {
-            return AddressError.missingStreetDetails
-        }
-        catch AddressError.missingCity {
-            return AddressError.missingCity
+        catch let error as AddressError {
+            return error
         }
         catch {
             

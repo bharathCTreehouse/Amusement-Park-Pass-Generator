@@ -61,12 +61,8 @@ class Pass: AccessDataSource, PersonalInformationDataSource {
         }
         if let address = self.entrant.type.addressOfEntrant() {
             
-            if let state = address.state {
-                data.append(PersonalInfo.state(state))
-            }
-            if let zipCode = address.zipCode {
-                data.append(PersonalInfo.state(zipCode))
-            }
+            data.append(PersonalInfo.state(address.state))
+            data.append(PersonalInfo.state(address.zipCode))
             data.append(PersonalInfo.state(address.streetAddress))
             data.append(PersonalInfo.state(address.city))
             

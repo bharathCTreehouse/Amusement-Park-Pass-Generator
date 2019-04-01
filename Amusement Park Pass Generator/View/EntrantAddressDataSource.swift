@@ -11,7 +11,7 @@ import Foundation
 
 class EntrantAddressDataSource {
     
-    private(set) var address: Address? = Address(streetAddress: "", city: "", state: nil, zipCode: nil)
+    private(set) var address: Address? = Address(streetAddress: "", city: "", state: "", zipCode: "")
     
     
     func reset() {
@@ -53,7 +53,7 @@ extension EntrantAddressDataSource {
     func createAddressDataIfRequired() {
         
         if address == nil {
-            address = Address(streetAddress: "", city: "", state: nil, zipCode: nil)
+            address = Address(streetAddress: "", city: "", state: "", zipCode: "")
         }
     }
 }
