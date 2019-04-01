@@ -33,7 +33,12 @@ class ViewController: UIViewController {
         //Pass generation/Data population view
         let passGenerationView: PassGenerationView = PassGenerationView { [unowned self] (option: PassGenerationOption) in
             
-            self.generatePass()
+            if option == .generatePass {
+                self.generatePass()
+            }
+            else if option == .populateData {
+                self.populateData()
+            }
         }
         view.addSubview(passGenerationView)
         passGenerationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -174,6 +179,23 @@ extension ViewController {
         return pass
         
     }
+}
+
+
+
+//Date population
+extension ViewController {
+    
+    func populateData() {
+        
+        guard let _ =  entrantInfoTableView?.entrantType else {
+            return
+        }
+        EntrantInformationFiller.populateEntrantInfo(onTableView: entrantInfoTableView!)
+        
+    }
+    
+    
 }
 
 

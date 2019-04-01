@@ -20,6 +20,7 @@ enum Criteria {
 enum DateError: Swift.Error {
     case invalidDate
     case missingDate
+    case failedToValidate
 }
 
 
@@ -27,20 +28,17 @@ class DateValidator {
     
     static func validate(date: Date?, forDateType type: TypeOfDate) throws {
         
-        guard let _ = date else {
-            //When no date is entered.
+        
+        let currentDate: Date? = Date().formatted(usingFormat: "MM/dd/yyyy")
+        let givenDate: Date? = date?.formatted(usingFormat: "MM/dd/yyyy")
+        
+        if currentDate == nil {
+            throw DateError.failedToValidate
+        }
+        if givenDate == nil {
             throw DateError.missingDate
         }
-        
-        
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "MM/dd/yyyy"
-        var currentDate: Date = Date()
-        let dString: String? = df.string(from: currentDate)
-        currentDate = df.date(from: dString!)!
-        
-        let givenDateString: String? = df.string(from: date!)
-        if givenDateString == dString {
+        if givenDate! == currentDate! {
             throw DateError.invalidDate
         }
 
@@ -51,13 +49,13 @@ class DateValidator {
             case let .dateOfBirth(withCriteria: Criteria.under(age: value)):
                     let numberOfDays: Double = 365 * Double(value)
                     let numberOfSeconds: Double = numberOfDays * 86400
-                    if currentDate.timeIntervalSince(date!) > numberOfSeconds ||  date! > currentDate {
+                    if currentDate!.timeIntervalSince(givenDate!) > numberOfSeconds ||  givenDate! > currentDate! {
                         throw DateError.invalidDate
                     }
             case let .dateOfBirth(withCriteria: Criteria.above(age: value)):
                     let numberOfDays: Double = 365 * Double(value)
                     let numberOfSeconds: Double = numberOfDays * 86400
-                    if currentDate.timeIntervalSince(date!) < numberOfSeconds ||  date! > currentDate{
+                    if currentDate!.timeIntervalSince(givenDate!) < numberOfSeconds ||  givenDate! > currentDate!{
                         throw DateError.invalidDate
                     }
             }

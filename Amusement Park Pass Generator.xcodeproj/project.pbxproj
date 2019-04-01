@@ -31,6 +31,8 @@
 		4C4EA7C52251195B00F2D951 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C32251195B00F2D951 /* AccessDenied.wav */; };
 		4C4EA7C62251195B00F2D951 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C42251195B00F2D951 /* AccessGranted.wav */; };
 		4C4EA7C822511B9300F2D951 /* AccessKioskSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */; };
+		4C4EA7CA2252291900F2D951 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EA7C92252291900F2D951 /* DateUtilities.swift */; };
+		4C4EA7CC2252463400F2D951 /* EntrantInformationFiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4EA7CB2252463400F2D951 /* EntrantInformationFiller.swift */; };
 		4C5734F72234EF5400100E7B /* EntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */; };
 		4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */; };
 		4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */; };
@@ -107,6 +109,8 @@
 		4C4EA7C32251195B00F2D951 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		4C4EA7C42251195B00F2D951 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
 		4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskSoundManager.swift; sourceTree = "<group>"; };
+		4C4EA7C92252291900F2D951 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		4C4EA7CB2252463400F2D951 /* EntrantInformationFiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationFiller.swift; sourceTree = "<group>"; };
 		4C5734F62234EF5300100E7B /* EntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4C5734F82236DAAF00100E7B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
 		4C5734FA2239517400100E7B /* MiscEntrantInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscEntrantInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				4C15AC932207642100E6791D /* DateValidator.swift */,
+				4C4EA7C92252291900F2D951 /* DateUtilities.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			children = (
 				4C98080A21E68C4700C67A86 /* ParkEntranceManager.swift */,
 				4C9807CD21E0F4A300C67A86 /* ViewController.swift */,
+				4C4EA7CB2252463400F2D951 /* EntrantInformationFiller.swift */,
 			);
 			name = ParkEntranceControllers;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 				4C15AC942207642100E6791D /* DateValidator.swift in Sources */,
 				4CB7FC51224CC1B600DC6E76 /* AmusementParkAlertController.swift in Sources */,
 				4C19F4F22242CF9900AFE4FF /* NewPassButtonView.swift in Sources */,
+				4C4EA7CA2252291900F2D951 /* DateUtilities.swift in Sources */,
 				4C9FE420223BC26F00FAFA38 /* EntrantNameDataSource.swift in Sources */,
 				4C15ACA3221602CD00E6791D /* EntrantAddressTableViewCell.swift in Sources */,
 				4C98080021E38BE500C67A86 /* FoodServiceEmployeePass.swift in Sources */,
@@ -592,6 +599,7 @@
 				4C15AC8F2202378600E6791D /* AccessDataSource.swift in Sources */,
 				4C5734FC2239517400100E7B /* MiscEntrantInformationTableViewCell.swift in Sources */,
 				4C9807CE21E0F4A300C67A86 /* ViewController.swift in Sources */,
+				4C4EA7CC2252463400F2D951 /* EntrantInformationFiller.swift in Sources */,
 				4C5734F92236DAAF00100E7B /* SelectionPickerView.swift in Sources */,
 				4C9FE42E223E74B700FAFA38 /* AccessKioskTableView.swift in Sources */,
 				4C15AC8B2200DA0600E6791D /* SeniorCitizenPass.swift in Sources */,

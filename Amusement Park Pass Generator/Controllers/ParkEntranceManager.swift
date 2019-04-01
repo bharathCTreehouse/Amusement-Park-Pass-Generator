@@ -73,6 +73,9 @@ class ParkEntranceManager {
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
                 }
+                catch DateError.failedToValidate {
+                    throw PassGenerationFailure.passGenerationFailed("Could not validate date of birth. Please try again")
+                }
             
             
             case .guest(.vip):
@@ -95,7 +98,10 @@ class ParkEntranceManager {
                 }
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
-            }
+                }
+                catch DateError.failedToValidate {
+                    throw PassGenerationFailure.passGenerationFailed("Could not validate date of birth. Please try again")
+                }
             
 
             case let .employee(.foodServices(name, address)):
@@ -123,7 +129,7 @@ class ParkEntranceManager {
                 entrantPass = ManagerPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             
-        case let .vendor(name, company, dateOfBirth: birthDate, dateOfVisit: visitDate):
+            case let .vendor(name, company, dateOfBirth: birthDate, dateOfVisit: visitDate):
             
                 try validate(name: name)
                 if company == nil {
@@ -145,6 +151,9 @@ class ParkEntranceManager {
                 }
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
+                }
+                catch DateError.failedToValidate {
+                    throw PassGenerationFailure.passGenerationFailed("Could not validate date of birth. Please try again")
                 }
             
         }
