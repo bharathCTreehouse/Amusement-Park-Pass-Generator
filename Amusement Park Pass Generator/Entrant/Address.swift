@@ -43,6 +43,26 @@ enum AddressError: Swift.Error {
     }
 }
 
+
+enum AddressDetail {
+    case street
+    case city
+    case state
+    case zipCode
+    
+    var validationLength: Int {
+        
+        switch self {
+            case .street: return 45
+            case .city: return 18
+            case .state: return 20
+            case .zipCode: return 15
+        }
+    }
+}
+
+
+
 struct Address {
     
     var streetAddress: String
@@ -74,19 +94,45 @@ extension Address {
     
     func validate() throws {
         
-        if streetAddress.isEmpty == true {
-            throw AddressError.missingStreetDetails
-        }
-        else if streetAddress.count > 45 {
-            throw AddressError.lengthError_StreetDetails
+        if let streetAddressError = errorInStreetAddress() {
+            throw streetAddressError
         }
         
-        
-        if city.isEmpty == true {
-            throw AddressError.missingCity
+        if let cityError = errorInCityDetails() {
+            throw cityError
         }
-        else if city.count > 18 {
-            throw AddressError.lengthError_City
+        
+        if let stateError = errorInStateDetails() {
+            throw stateError
+        }
+        
+        if let zipCodeError = errorInZipCode() {
+            throw zipCodeError
+        }
+        
+    }
+    
+    
+    func errorInStreetAddress() -> AddressError? {
+        
+        if streetAddress.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+            return AddressError.missingStreetDetails
+        }
+        else if streetAddress.count > AddressDetail.street.validationLength {
+            return AddressError.lengthError_StreetDetails
+        }
+        return nil
+    }
+    
+    
+    
+    func errorInCityDetails() -> AddressError? {
+        
+        if city.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+            return AddressError.missingCity
+        }
+        else if city.count > AddressDetail.city.validationLength {
+            return AddressError.lengthError_City
         }
         else  {
             
@@ -96,19 +142,25 @@ extension Address {
                 
                 if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
                     
-                    throw AddressError.invalidCity
+                    return AddressError.invalidCity
                     
                 }
             }
             
         }
         
+        return nil
+    }
+    
+    
+    
+    func errorInStateDetails() -> AddressError? {
         
-        if state.isEmpty == true {
-            throw AddressError.missingState
+        if state.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+            return AddressError.missingState
         }
-        else if state.count > 20 {
-            throw AddressError.lengthError_State
+        else if state.count > AddressDetail.state.validationLength {
+            return AddressError.lengthError_State
         }
         else {
             
@@ -118,22 +170,29 @@ extension Address {
                 
                 if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
                     
-                    throw AddressError.invalidState
+                    return AddressError.invalidState
                     
                 }
             }
         }
         
+        return nil
+    }
+    
+    
+    
+    func errorInZipCode() -> AddressError? {
         
         if  zipCode.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
-            throw AddressError.missingZipCode
+            return AddressError.missingZipCode
         }
-        else if zipCode.count > 15 {
-            throw AddressError.lengthError_ZipCode
+        else if zipCode.count > AddressDetail.zipCode.validationLength {
+            return AddressError.lengthError_ZipCode
         }
         else if Int(zipCode) == nil {
-            throw AddressError.invalidZipCode
+            return AddressError.invalidZipCode
         }
-        
+        return nil
     }
+    
 }

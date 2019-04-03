@@ -9,16 +9,21 @@
 import Foundation
 
 enum PersonNameError: Swift.Error {
+    
     case missingFirstName
     case invalidFirstName
+    case missingLastName
     case invalidLastName
+    case lengthError
     
     func userDisplayString() -> String {
         
         switch self {
             case .missingFirstName: return "First name can't be blank"
             case .invalidFirstName: return "First name entered is invalid"
+            case .missingLastName: return "Last name can't be blank"
             case .invalidLastName: return "Last name entered is invalid"
+            case .lengthError: return "The first/last name can't be more than 35 characters in length"
         }
     }
 }
@@ -49,27 +54,67 @@ extension PersonName {
     
     func validate() throws {
         
-        if firstName.isEmpty == true {
-            throw PersonNameError.missingFirstName
+        if let firstNameError = errorInFirstName() {
+            throw firstNameError
         }
-        else if firstName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil || firstName.rangeOfCharacter(from: CharacterSet.symbols) != nil {
-            
-            throw PersonNameError.invalidFirstName
-            
+        
+        if let lastNameError = errorInLastName() {
+            throw lastNameError
         }
-        else {
-            //Validate the last name now.
+        
+    }
+    
+    
+    func errorInFirstName() -> PersonNameError? {
+        
+        if firstName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+            return PersonNameError.missingFirstName
+        }
+        else if firstName.count > 35 {
+            return PersonNameError.lengthError
+        }
+        else  {
             
-            if lastName.isEmpty == false {
+            for (_, data) in firstName.enumerated() {
                 
-                //Last name has been entered.
+                let str: String? = String(data)
                 
-                if lastName.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil || lastName.rangeOfCharacter(from: CharacterSet.symbols) != nil {
+                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil {
                     
-                    throw PersonNameError.invalidLastName
+                    return PersonNameError.invalidFirstName
+                    
                 }
             }
+            
         }
+        
+        return nil
+    }
+    
+    
+    func errorInLastName() -> PersonNameError? {
+        
+        if lastName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+            return PersonNameError.missingLastName
+        }
+        else if lastName.count > 35 {
+            return PersonNameError.lengthError
+        }
+        else  {
+            
+            for (_, data) in lastName.enumerated() {
+                
+                let str: String? = String(data)
+                
+                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
+                    
+                    return PersonNameError.invalidLastName
+                    
+                }
+            }
+            
+        }
+        return nil
         
     }
     
