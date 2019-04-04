@@ -21,28 +21,20 @@ class SelectionPickerView: UIView {
         
         listOfOptions = list
         self.completionHandler = completionHandler
-        picker.translatesAutoresizingMaskIntoConstraints = false
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
         let toolBar: UIToolbar = UIToolbar(frame:.zero)
         toolBar.barStyle = .blackOpaque
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
         addSubview(toolBar)
-        toolBar.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        toolBar.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        toolBar.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        toolBar.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        toolBar.configure(withConstraints: [.leading(referenceConstraint: leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: topAnchor, constantOffSet: 0.0, equalityType: .equalTo), .height(constantOffSet: 60.0, equalityType: .equalTo)])
         let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
         toolBar.setItems([space,doneButton], animated: false)
         
         
         addSubview(picker)
-        picker.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        picker.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        picker.topAnchor.constraint(equalTo: toolBar.bottomAnchor, constant: 8.0).isActive = true
-        picker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        picker.configure(withConstraints: [.leading(referenceConstraint: leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: toolBar.bottomAnchor, constantOffSet: 8.0, equalityType: .equalTo), .bottom(referenceConstraint: bottomAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         picker.dataSource = self
         picker.delegate = self
         picker.backgroundColor = UIColor.clear

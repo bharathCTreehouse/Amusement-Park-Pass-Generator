@@ -29,12 +29,9 @@ class EntrantTypeSelectionView: UIView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         entrantSelectionView = Bundle.main.loadNibNamed("EntrantTypeSelectionView", owner: self, options: nil)?.first as? UIView
-        entrantSelectionView?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(entrantSelectionView!)
-        entrantSelectionView?.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        entrantSelectionView?.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        entrantSelectionView?.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        entrantSelectionView?.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        entrantSelectionView?.configure(withConstraints: [.leading(referenceConstraint: leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: topAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: bottomAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         
         entrantTypeSelectionSegment.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 23)], for: .normal)
         entrantSubTypeSelectionSegment.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 23)], for: .normal)

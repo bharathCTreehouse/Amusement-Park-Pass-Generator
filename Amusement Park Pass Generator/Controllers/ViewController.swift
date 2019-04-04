@@ -24,12 +24,10 @@ class ViewController: UIViewController {
         //Entrant type selection view
         let entrantTypeView: EntrantTypeSelectionView = EntrantTypeSelectionView(withEntrantTypeSelectionDelegate: self)
         view.addSubview(entrantTypeView)
-        entrantTypeView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        entrantTypeView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        entrantTypeView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0).isActive = true
+        entrantTypeView.configure(withConstraints: [.leading(referenceConstraint: view.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: view.trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: view.topAnchor, constantOffSet: 44.0, equalityType: .equalTo)])
+        
+       
 
-        
-        
         //Pass generation/Data population view
         let passGenerationView: PassGenerationView = PassGenerationView { [unowned self] (option: PassGenerationOption) in
             
@@ -41,18 +39,13 @@ class ViewController: UIViewController {
             }
         }
         view.addSubview(passGenerationView)
-        passGenerationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        passGenerationView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        passGenerationView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        passGenerationView.configure(withConstraints: [.leading(referenceConstraint: view.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: view.trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .bottom(referenceConstraint: view.bottomAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         
-        
+       
         //Table view
         entrantInfoTableView = EntrantInformationTableView(withTableViewStyle: .grouped, entrantType: .classicGuest)
         view.addSubview(entrantInfoTableView!)
-        entrantInfoTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        entrantInfoTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        entrantInfoTableView!.topAnchor.constraint(equalTo: entrantTypeView.bottomAnchor, constant: 40.0).isActive = true
-        entrantInfoTableView!.bottomAnchor.constraint(equalTo: passGenerationView.topAnchor).isActive = true
+        entrantInfoTableView!.configure(withConstraints: [.leading(referenceConstraint: view.leadingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .trailing(referenceConstraint: view.trailingAnchor, constantOffSet: 0.0, equalityType: .equalTo), .top(referenceConstraint: entrantTypeView.bottomAnchor, constantOffSet: 40.0, equalityType: .equalTo), .bottom(referenceConstraint: passGenerationView.topAnchor, constantOffSet: 0.0, equalityType: .equalTo)])
         
     }
     

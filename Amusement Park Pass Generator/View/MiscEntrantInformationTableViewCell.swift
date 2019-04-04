@@ -34,9 +34,7 @@ class MiscEntrantInformationTableViewCell: EntrantInformationTableViewCell {
                     dateOfBirthTextField.text = nil
                 }
                 else {
-                    let dateFormatter: DateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MM/dd/yyyy"
-                    dateOfBirthTextField.text = dateFormatter.string(from: miscInformationDataSource!.dateOfBirth!)
+                    dateOfBirthTextField.text = miscInformationDataSource!.dateOfBirth!.string(withDateFormat: "MM/dd/yyyy")
                 }
                 
                 if miscInformationDataSource!.project == nil {

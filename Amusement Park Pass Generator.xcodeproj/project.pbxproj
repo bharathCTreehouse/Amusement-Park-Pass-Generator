@@ -104,8 +104,8 @@
 		4C15ACB02229B51200E6791D /* EntrantTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntrantTypeSelectionView.xib; sourceTree = "<group>"; };
 		4C15ACB22229B91A00E6791D /* EntrantTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantTypeSelectionView.swift; sourceTree = "<group>"; };
 		4C19F4EF22429A3F00AFE4FF /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
-		4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassButtonView.swift; sourceTree = "<group>"; };
-		4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTestResultData.swift; sourceTree = "<group>"; };
+		4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewPassButtonView.swift; path = ../Controllers/NewPassButtonView.swift; sourceTree = "<group>"; };
+		4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessTestResultData.swift; path = ../Controllers/AccessTestResultData.swift; sourceTree = "<group>"; };
 		4C4EA7C32251195B00F2D951 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		4C4EA7C42251195B00F2D951 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
 		4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskSoundManager.swift; sourceTree = "<group>"; };
@@ -148,11 +148,11 @@
 		4C9FE423223BC2E200FAFA38 /* EntrantAddressDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantAddressDataSource.swift; sourceTree = "<group>"; };
 		4C9FE427223D6CE600FAFA38 /* SeasonPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonPass.swift; sourceTree = "<group>"; };
 		4C9FE429223E594300FAFA38 /* AccessKioskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskViewController.swift; sourceTree = "<group>"; };
-		4C9FE42D223E74B700FAFA38 /* AccessKioskTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKioskTableView.swift; sourceTree = "<group>"; };
-		4C9FE42F223E774F00FAFA38 /* AccessTestingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTestingTableViewCell.swift; sourceTree = "<group>"; };
-		4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessTestingTableViewCell.xib; sourceTree = "<group>"; };
-		4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableEntrantInfoTableViewCell.swift; sourceTree = "<group>"; };
-		4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableEntrantInformationView.swift; sourceTree = "<group>"; };
+		4C9FE42D223E74B700FAFA38 /* AccessKioskTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessKioskTableView.swift; path = ../Controllers/AccessKioskTableView.swift; sourceTree = "<group>"; };
+		4C9FE42F223E774F00FAFA38 /* AccessTestingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessTestingTableViewCell.swift; path = ../Controllers/AccessTestingTableViewCell.swift; sourceTree = "<group>"; };
+		4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccessTestingTableViewCell.xib; path = ../Controllers/AccessTestingTableViewCell.xib; sourceTree = "<group>"; };
+		4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisplayableEntrantInfoTableViewCell.swift; path = ../Controllers/DisplayableEntrantInfoTableViewCell.swift; sourceTree = "<group>"; };
+		4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisplayableEntrantInformationView.swift; path = ../Controllers/DisplayableEntrantInformationView.swift; sourceTree = "<group>"; };
 		4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmusementParkAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +261,7 @@
 		4C15AC9A22146D8200E6791D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C50C2BB2256811D009ECD88 /* EntrantPassAndAccessKioskViews */,
 				4C19F4EE224299EC00AFE4FF /* Misc */,
 				4C15ACAF2229B48800E6791D /* EntrantTypeSelectionViews */,
 				4C15ACAA2220733600E6791D /* PassGenerationViews */,
@@ -312,6 +313,36 @@
 				4C4EA7C42251195B00F2D951 /* AccessGranted.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		4C50C2BB2256811D009ECD88 /* EntrantPassAndAccessKioskViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C50C2BD225682F3009ECD88 /* DataSourceForCells */,
+				4C9FE42D223E74B700FAFA38 /* AccessKioskTableView.swift */,
+				4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */,
+				4C50C2BC22568163009ECD88 /* TableViewCells */,
+			);
+			name = EntrantPassAndAccessKioskViews;
+			sourceTree = "<group>";
+		};
+		4C50C2BC22568163009ECD88 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */,
+				4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */,
+				4C9FE42F223E774F00FAFA38 /* AccessTestingTableViewCell.swift */,
+				4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		4C50C2BD225682F3009ECD88 /* DataSourceForCells */ = {
+			isa = PBXGroup;
+			children = (
+				4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */,
+			);
+			name = DataSourceForCells;
 			sourceTree = "<group>";
 		};
 		4C9807BF21E0F4A300C67A86 = {
@@ -445,13 +476,6 @@
 				4C9807F121E3771200C67A86 /* AccessKioskManager.swift */,
 				4C15AC952209E43300E6791D /* RideKioskMalpracticeChecker.swift */,
 				4C9FE429223E594300FAFA38 /* AccessKioskViewController.swift */,
-				4C9FE42D223E74B700FAFA38 /* AccessKioskTableView.swift */,
-				4C9FE42F223E774F00FAFA38 /* AccessTestingTableViewCell.swift */,
-				4C9FE430223E774F00FAFA38 /* AccessTestingTableViewCell.xib */,
-				4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */,
-				4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */,
-				4C19F4F12242CF9900AFE4FF /* NewPassButtonView.swift */,
-				4C19F4F322463AC300AFE4FF /* AccessTestResultData.swift */,
 				4C4EA7C722511B9300F2D951 /* AccessKioskSoundManager.swift */,
 			);
 			name = AccessKioskControllers;

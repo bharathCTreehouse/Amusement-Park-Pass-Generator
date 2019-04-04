@@ -88,14 +88,11 @@ class EntrantCompanyInfoTableViewCell: EntrantInformationTableViewCell {
             
             
             //Set current date
-            let dateFormatter: DateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/yyyy"
-            dateOfVisitLabel.text = dateFormatter.string(from: Date())
-            if let dateString = dateOfVisitLabel.text {
-                let currentDate: Date? = dateFormatter.date(from: dateString)
-                if let currentDate = currentDate {
-                    entrantCompanyDataSource?.updateDateOfVisit(with: currentDate)
-                }
+            let currentDate: Date = Date()
+            dateOfVisitLabel.text = currentDate.string(withDateFormat: "MM/dd/yyyy")
+            if let formattedCurrentDate = currentDate.formatted(usingFormat: "MM/dd/yyyy") {
+                entrantCompanyDataSource?.updateDateOfVisit(with: formattedCurrentDate)
+                
             }
             
         }

@@ -31,6 +31,8 @@ class DateValidator {
         
         let currentDate: Date? = Date().formatted(usingFormat: "MM/dd/yyyy")
         let givenDate: Date? = date?.formatted(usingFormat: "MM/dd/yyyy")
+        //let givenDate: Date? = date
+        
         
         if currentDate == nil {
             throw DateError.failedToValidate
@@ -41,25 +43,26 @@ class DateValidator {
         if givenDate! == currentDate! {
             throw DateError.invalidDate
         }
-
+        
         
         switch type {
             
             
-            case let .dateOfBirth(withCriteria: Criteria.under(age: value)):
-                    let numberOfDays: Double = 365 * Double(value)
-                    let numberOfSeconds: Double = numberOfDays * 86400
-                    if currentDate!.timeIntervalSince(givenDate!) > numberOfSeconds ||  givenDate! > currentDate! {
-                        throw DateError.invalidDate
-                    }
-            case let .dateOfBirth(withCriteria: Criteria.above(age: value)):
-                    let numberOfDays: Double = 365 * Double(value)
-                    let numberOfSeconds: Double = numberOfDays * 86400
-                    if currentDate!.timeIntervalSince(givenDate!) < numberOfSeconds ||  givenDate! > currentDate!{
-                        throw DateError.invalidDate
-                    }
+        case let .dateOfBirth(withCriteria: Criteria.under(age: value)):
+            let numberOfDays: Double = 365 * Double(value)
+            let numberOfSeconds: Double = numberOfDays * 86400
+            if currentDate!.timeIntervalSince(givenDate!) > numberOfSeconds ||  givenDate! > currentDate! {
+                throw DateError.invalidDate
             }
-        
+        case let .dateOfBirth(withCriteria: Criteria.above(age: value)):
+            let numberOfDays: Double = 365 * Double(value)
+            let numberOfSeconds: Double = numberOfDays * 86400
+            if  currentDate!.timeIntervalSince(givenDate!) < numberOfSeconds ||  givenDate! > currentDate! {
+                throw DateError.invalidDate
+            }
+            
+            
+        }
     }
     
 }

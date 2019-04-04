@@ -29,10 +29,14 @@ enum PersonNameError: Swift.Error {
 }
 
 
+
+
 struct PersonName {
     
     var firstName: String
     var lastName: String
+    
+    let nameLengthMaxLimit: Int = 35
     
     
     func fullName() -> String {
@@ -70,7 +74,7 @@ extension PersonName {
         if firstName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return PersonNameError.missingFirstName
         }
-        else if firstName.count > 35 {
+        else if firstName.count > nameLengthMaxLimit {
             return PersonNameError.lengthError
         }
         else  {
@@ -97,7 +101,7 @@ extension PersonName {
         if lastName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return PersonNameError.missingLastName
         }
-        else if lastName.count > 35 {
+        else if lastName.count > nameLengthMaxLimit {
             return PersonNameError.lengthError
         }
         else  {

@@ -66,14 +66,8 @@ extension PassGenerationView {
         stackView.spacing = 32.0
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32.0).isActive = true
-        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 32.0).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32.0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -84.0).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-
+        stackView.configure(withConstraints: [.leading(referenceConstraint: leadingAnchor, constantOffSet: 32.0, equalityType: .equalTo), .top(referenceConstraint: topAnchor, constantOffSet: 32.0, equalityType: .equalTo), .trailing(referenceConstraint: trailingAnchor, constantOffSet: -32.0, equalityType: .equalTo), .bottom(referenceConstraint: bottomAnchor, constantOffSet: -84.0, equalityType: .equalTo), .height(constantOffSet: 70.0, equalityType: .equalTo)])
         
     }
     

@@ -44,21 +44,11 @@ enum AddressError: Swift.Error {
 }
 
 
-enum AddressDetail {
-    case street
-    case city
-    case state
-    case zipCode
-    
-    var validationLength: Int {
-        
-        switch self {
-            case .street: return 45
-            case .city: return 18
-            case .state: return 20
-            case .zipCode: return 15
-        }
-    }
+enum AddressDetailMaxLimit: Int {
+    case street = 45
+    case city = 18
+    case state = 20
+    case zipCode = 15
 }
 
 
@@ -118,7 +108,7 @@ extension Address {
         if streetAddress.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return AddressError.missingStreetDetails
         }
-        else if streetAddress.count > AddressDetail.street.validationLength {
+        else if streetAddress.count > AddressDetailMaxLimit.street.rawValue {
             return AddressError.lengthError_StreetDetails
         }
         return nil
@@ -131,7 +121,7 @@ extension Address {
         if city.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return AddressError.missingCity
         }
-        else if city.count > AddressDetail.city.validationLength {
+        else if city.count > AddressDetailMaxLimit.city.rawValue {
             return AddressError.lengthError_City
         }
         else  {
@@ -159,7 +149,7 @@ extension Address {
         if state.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return AddressError.missingState
         }
-        else if state.count > AddressDetail.state.validationLength {
+        else if state.count > AddressDetailMaxLimit.state.rawValue {
             return AddressError.lengthError_State
         }
         else {
@@ -186,7 +176,7 @@ extension Address {
         if  zipCode.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
             return AddressError.missingZipCode
         }
-        else if zipCode.count > AddressDetail.zipCode.validationLength {
+        else if zipCode.count > AddressDetailMaxLimit.zipCode.rawValue {
             return AddressError.lengthError_ZipCode
         }
         else if Int(zipCode) == nil {
