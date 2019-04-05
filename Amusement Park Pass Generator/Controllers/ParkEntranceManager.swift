@@ -141,7 +141,7 @@ class ParkEntranceManager {
                 
                 //Have set the criteria for a vendor to be above the age of 13 - Child Labour law in India :)
                 do {
-                    try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.above(age: 12)))
+                    try DateValidator.validate(date: birthDate, forDateType: TypeOfDate.dateOfBirth(withCriteria: Criteria.above(age: 13)))
                     
                     entrantPass = VendorPass(withPassNumber: (entrantCount + 1), entrant: entrant)
                     

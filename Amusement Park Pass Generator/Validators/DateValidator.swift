@@ -31,7 +31,6 @@ class DateValidator {
         
         let currentDate: Date? = Date().formatted(usingFormat: "MM/dd/yyyy")
         let givenDate: Date? = date?.formatted(usingFormat: "MM/dd/yyyy")
-        //let givenDate: Date? = date
         
         
         if currentDate == nil {
@@ -40,28 +39,71 @@ class DateValidator {
         if givenDate == nil {
             throw DateError.missingDate
         }
-        if givenDate! == currentDate! {
+        if givenDate! >= currentDate! {
             throw DateError.invalidDate
         }
         
+        let ageCalendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         
         switch type {
             
             
-        case let .dateOfBirth(withCriteria: Criteria.under(age: value)):
-            let numberOfDays: Double = 365 * Double(value)
-            let numberOfSeconds: Double = numberOfDays * 86400
-            if currentDate!.timeIntervalSince(givenDate!) > numberOfSeconds ||  givenDate! > currentDate! {
-                throw DateError.invalidDate
-            }
-        case let .dateOfBirth(withCriteria: Criteria.above(age: value)):
-            let numberOfDays: Double = 365 * Double(value)
-            let numberOfSeconds: Double = numberOfDays * 86400
-            if  currentDate!.timeIntervalSince(givenDate!) < numberOfSeconds ||  givenDate! > currentDate! {
-                throw DateError.invalidDate
-            }
+            case let .dateOfBirth(withCriteria: Criteria.under(age: value)):
+                
+                let compoSet: Set<Calendar.Component> = [Calendar.Component.year]
+                let age: Int? = ageCalendar.dateComponents(compoSet, from: givenDate!, to: currentDate!).year
+                
+                if age != nil {
+                    
+                    if age! < 0 || age! >= value {
+                        throw DateError.invalidDate
+                    }
+                }
+                else {
+                    //Could not determine the age.
+                    throw DateError.failedToValidate
+                }
             
-            
+            case let .dateOfBirth(withCriteria: Criteria.above(age: value)):
+                
+                let compoSet: Set<Calendar.Component> = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
+                let age: Int? = ageCalendar.dateComponents(compoSet, from: givenDate!, to: currentDate!).year
+                
+                if age != nil {
+                    
+                    if age! < 0 || age! < value {
+                        throw DateError.invalidDate
+                    }
+                    else if age == value {
+                        
+                        //Get month details.
+                        let dateComponent: DateComponents =  ageCalendar.dateComponents(compoSet, from: givenDate!, to: currentDate!)
+                        let month: Int? = dateComponent.month
+                        if month != nil {
+                            if month! < 0 {
+                                throw DateError.invalidDate
+                            }
+                        }
+                        else {
+                            throw DateError.invalidDate
+                        }
+                        
+                        //Get day details.
+                        let day: Int? = dateComponent.day
+                        if day != nil {
+                            if day! < 0  || (day! == 0 && month! == 0) {
+                                throw DateError.invalidDate
+                            }
+                        }
+                        else {
+                            throw DateError.invalidDate
+                        }
+                    }
+                }
+                else {
+                    //Could not determine the age.
+                    throw DateError.failedToValidate
+                }
         }
     }
     
