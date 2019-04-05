@@ -180,10 +180,7 @@ extension AccessKioskManager {
     func isTodayBirthdayOfEntrant(withPass pass: PersonalInformationReminder) -> Bool? {
         
         if let dob = birthDateOfEntrant(withPass: pass) {
-            
-            let bDateFormatter: DateFormatter = DateFormatter()
-            bDateFormatter.dateFormat = "MMM d"
-            return bDateFormatter.string(from: dob)  ==  bDateFormatter.string(from: Date())
+            return dob.string(withDateFormat: "MMM d") == Date().string(withDateFormat: "MMM d")
         }
         return nil
     }
