@@ -121,6 +121,10 @@ class ParkEntranceManager {
                 if project == nil {
                     throw PassGenerationFailure.passGenerationFailed("Project information is missing")
                 }
+                else if project!.containsOnlyNumbers() == false {
+                    
+                    throw PassGenerationFailure.passGenerationFailed("Project information is invalid")
+                }
                 entrantPass = ContractEmployeePass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
             
@@ -134,6 +138,9 @@ class ParkEntranceManager {
                 try validate(name: name)
                 if company == nil {
                     throw PassGenerationFailure.passGenerationFailed("Company information is missing")
+                }
+                else if company!.containsCharactersOtherThanAlphabetsAndWhiteSpaces() == true {
+                    throw PassGenerationFailure.passGenerationFailed("Company information is invalid")
                 }
                 else if visitDate == nil {
                     throw PassGenerationFailure.passGenerationFailed("Failed to generate date of visit")

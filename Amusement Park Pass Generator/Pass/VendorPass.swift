@@ -8,14 +8,21 @@
 
 import Foundation
 
-enum CompaniesRegistered {
+enum CompaniesRegistered: CustomStringConvertible {
     
     case acme
     case orkin
     case fedex
     case nwElectrical
     
+    
+    var description: String {
+        return displayString
+    }
+    
+    
     var displayString: String {
+        
         
         switch self {
             case .acme: return "Acme"

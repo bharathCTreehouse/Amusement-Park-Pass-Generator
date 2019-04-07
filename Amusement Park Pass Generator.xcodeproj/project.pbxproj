@@ -72,6 +72,7 @@
 		4C9FE43422401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */; };
 		4C9FE436224020E500FAFA38 /* DisplayableEntrantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */; };
 		4CB7FC51224CC1B600DC6E76 /* AmusementParkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */; };
+		4CF1B2C92259CF5F00E9C926 /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1B2C82259CF5F00E9C926 /* StringUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		4C9FE43322401FF300FAFA38 /* DisplayableEntrantInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisplayableEntrantInfoTableViewCell.swift; path = ../Controllers/DisplayableEntrantInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4C9FE435224020E500FAFA38 /* DisplayableEntrantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisplayableEntrantInformationView.swift; path = ../Controllers/DisplayableEntrantInformationView.swift; sourceTree = "<group>"; };
 		4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmusementParkAlertController.swift; sourceTree = "<group>"; };
+		4CF1B2C82259CF5F00E9C926 /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +368,7 @@
 		4C9807CA21E0F4A300C67A86 /* Amusement Park Pass Generator */ = {
 			isa = PBXGroup;
 			children = (
+				4CF1B2C72259CF4200E9C926 /* Utilities */,
 				4C4EA7C22251193900F2D951 /* Sounds */,
 				4C15AC9A22146D8200E6791D /* View */,
 				4C15AC92220763EB00E6791D /* Validators */,
@@ -487,6 +490,14 @@
 				4CB7FC50224CC1B600DC6E76 /* AmusementParkAlertController.swift */,
 			);
 			name = AlertControllers;
+			sourceTree = "<group>";
+		};
+		4CF1B2C72259CF4200E9C926 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4CF1B2C82259CF5F00E9C926 /* StringUtilities.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -641,6 +652,7 @@
 				4C9807F821E37A6500C67A86 /* Address.swift in Sources */,
 				4C15AC9C2214703E00E6791D /* EntrantInformationTableView.swift in Sources */,
 				4C9807FA21E37F8400C67A86 /* Pass.swift in Sources */,
+				4CF1B2C92259CF5F00E9C926 /* StringUtilities.swift in Sources */,
 				4C98080621E39E9600C67A86 /* ManagerPass.swift in Sources */,
 				4C15AC8D2200DB9800E6791D /* VendorPass.swift in Sources */,
 				4C4EA7C822511B9300F2D951 /* AccessKioskSoundManager.swift in Sources */,

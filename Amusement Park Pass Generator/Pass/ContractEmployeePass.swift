@@ -8,13 +8,18 @@
 
 import Foundation
 
-enum ProjectRegistered {
+enum ProjectRegistered: CustomStringConvertible {
     
     case project_1001
     case project_1002
     case project_1003
     case project_2001
     case project_2002
+    
+    
+    var description: String {
+        return self.displayString
+    }
     
     var displayString: String {
         

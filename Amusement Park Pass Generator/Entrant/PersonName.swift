@@ -71,55 +71,34 @@ extension PersonName {
     
     func errorInFirstName() -> PersonNameError? {
         
-        if firstName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if firstName.containsOnlyEmptySpaces() == true {
             return PersonNameError.missingFirstName
         }
         else if firstName.count > nameLengthMaxLimit {
             return PersonNameError.lengthError
         }
-        else  {
-            
-            for (_, data) in firstName.enumerated() {
-                
-                let str: String? = String(data)
-                
-                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil {
-                    
-                    return PersonNameError.invalidFirstName
-                    
-                }
-            }
-            
+        else if firstName.containsOnlyAlphabets() == false {
+            return PersonNameError.invalidFirstName
         }
-        
         return nil
     }
     
     
     func errorInLastName() -> PersonNameError? {
         
-        if lastName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if lastName.containsOnlyEmptySpaces() == true {
             return PersonNameError.missingLastName
         }
         else if lastName.count > nameLengthMaxLimit {
             return PersonNameError.lengthError
         }
-        else  {
-            
-            for (_, data) in lastName.enumerated() {
-                
-                let str: String? = String(data)
-                
-                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
-                    
-                    return PersonNameError.invalidLastName
-                    
-                }
-            }
-            
+        else if lastName.containsOnlyAlphabets() == false  {
+            return PersonNameError.invalidLastName
         }
         return nil
         
     }
     
 }
+
+

@@ -105,7 +105,7 @@ extension Address {
     
     func errorInStreetAddress() -> AddressError? {
         
-        if streetAddress.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if streetAddress.containsOnlyEmptySpaces() == true {
             return AddressError.missingStreetDetails
         }
         else if streetAddress.count > AddressDetailMaxLimit.street.rawValue {
@@ -118,25 +118,14 @@ extension Address {
     
     func errorInCityDetails() -> AddressError? {
         
-        if city.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if city.containsOnlyEmptySpaces() == true {
             return AddressError.missingCity
         }
         else if city.count > AddressDetailMaxLimit.city.rawValue {
             return AddressError.lengthError_City
         }
-        else  {
-            
-            for (_, data) in city.enumerated() {
-                
-                let str: String? = String(data)
-                
-                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
-                    
-                    return AddressError.invalidCity
-                    
-                }
-            }
-            
+        else if city.containsCharactersOtherThanAlphabetsAndWhiteSpaces() == true   {
+            return AddressError.invalidCity
         }
         
         return nil
@@ -146,26 +135,15 @@ extension Address {
     
     func errorInStateDetails() -> AddressError? {
         
-        if state.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if state.containsOnlyEmptySpaces() == true {
             return AddressError.missingState
         }
         else if state.count > AddressDetailMaxLimit.state.rawValue {
             return AddressError.lengthError_State
         }
-        else {
-            
-            for (_, data) in state.enumerated() {
-                
-                let str: String? = String(data)
-                
-                if str!.rangeOfCharacter(from: CharacterSet.lowercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil && str!.rangeOfCharacter(from: CharacterSet.whitespaces) == nil {
-                    
-                    return AddressError.invalidState
-                    
-                }
-            }
+        else if state.containsCharactersOtherThanAlphabetsAndWhiteSpaces() == true  {
+            return AddressError.invalidState
         }
-        
         return nil
     }
     
@@ -173,13 +151,13 @@ extension Address {
     
     func errorInZipCode() -> AddressError? {
         
-        if  zipCode.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty == true {
+        if  zipCode.containsOnlyEmptySpaces() == true {
             return AddressError.missingZipCode
         }
         else if zipCode.count > AddressDetailMaxLimit.zipCode.rawValue {
             return AddressError.lengthError_ZipCode
         }
-        else if Int(zipCode) == nil {
+        else if zipCode.containsOnlyNumbers() == false {
             return AddressError.invalidZipCode
         }
         return nil

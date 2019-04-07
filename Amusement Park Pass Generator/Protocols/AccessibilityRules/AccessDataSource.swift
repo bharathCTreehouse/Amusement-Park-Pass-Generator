@@ -31,30 +31,7 @@ extension AccessDataSource {
     
     
     var hasValidDiscountAccess: Bool {
-        
         return uniqueIdentifier.isValid
-        
-        //var hasFailed: Bool = discountPrivileges.isEmpty == true ||  !uniqueIdentifier.isValid
-        
-        /*if hasFailed == false {
-            
-            let _: Bool =  discountPrivileges.contains(where: ( { (discount: Discount) -> Bool in
-                
-                switch discount {
-                    case .undefined: hasFailed = true
-                    default: hasFailed = false
-                    
-                }
-                return hasFailed
-            }))
-            
-            return !hasFailed
-            
-        }
-        else {
-            return !hasFailed
-        }*/
-        
     }
 }
 
