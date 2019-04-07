@@ -19,6 +19,7 @@ enum Criteria {
 
 enum DateError: Swift.Error {
     case invalidDate
+    case criteriaFail
     case missingDate
     case failedToValidate
 }
@@ -55,8 +56,11 @@ class DateValidator {
                 
                 if age != nil {
                     
-                    if age! < 0 || age! >= value {
+                    if age! < 0 {
                         throw DateError.invalidDate
+                    }
+                    else if age! >= value {
+                        throw DateError.criteriaFail
                     }
                 }
                 else {
@@ -71,8 +75,11 @@ class DateValidator {
                 
                 if age != nil {
                     
-                    if age! < 0 || age! < value {
+                    if age! < 0 {
                         throw DateError.invalidDate
+                    }
+                    else if age! < value {
+                        throw DateError.criteriaFail
                     }
                     else if age == value {
                         
@@ -91,8 +98,11 @@ class DateValidator {
                         //Get day details.
                         let day: Int? = dateComponent.day
                         if day != nil {
-                            if day! < 0  || (day! == 0 && month! == 0) {
+                            if day! < 0 {
                                 throw DateError.invalidDate
+                            }
+                            else if day! == 0 && month! == 0 {
+                                throw DateError.criteriaFail
                             }
                         }
                         else {

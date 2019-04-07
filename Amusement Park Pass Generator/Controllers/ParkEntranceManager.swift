@@ -61,6 +61,7 @@ class ParkEntranceManager {
             case .guest(.classic):
                 entrantPass = Pass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
+            //A guest is eligibile for a child guest pass only if he is below the age of 5.
             case let .guest(.freeChild(dateOfBirth: birthDate)):
                 
                 do {
@@ -69,6 +70,9 @@ class ParkEntranceManager {
                 }
                 catch DateError.invalidDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
+                }
+                catch DateError.criteriaFail {
+                    throw PassGenerationFailure.passGenerationFailed("The guest has to be under the age of 5 to get a child guest pass")
                 }
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
@@ -85,6 +89,7 @@ class ParkEntranceManager {
                 try validate(name: name, address: address)
                 entrantPass = SeasonPass(withPassNumber: (entrantCount + 1), entrant: entrant)
             
+            //A guest is eligibile for a senior guest pass only if he is above the age of 59.
             case let .guest(.seniorGuest(name, dateOfBirth: birthDate)):
                 
                 try validate(name: name)
@@ -95,6 +100,9 @@ class ParkEntranceManager {
                 }
                 catch DateError.invalidDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
+                }
+                catch DateError.criteriaFail {
+                    throw PassGenerationFailure.passGenerationFailed("The guest has to be above the age of 59 to get a senior guest pass")
                 }
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
@@ -155,6 +163,9 @@ class ParkEntranceManager {
                 }
                 catch DateError.invalidDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth entered is invalid")
+                }
+                catch DateError.criteriaFail {
+                    throw PassGenerationFailure.passGenerationFailed("The entrant has to be above the age of 13 to get a vendor pass")
                 }
                 catch DateError.missingDate {
                     throw PassGenerationFailure.passGenerationFailed("Date of birth is missing")
